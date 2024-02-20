@@ -1,8 +1,8 @@
-//
-//  MainModel.swift
-//  dxTimeCapsule
-//
-//  Created by t2023-m0031 on 2/20/24.
-//
-
 import Foundation
+
+// ViewModel: ViewController의 데이터 관리 및 비즈니스 로직 담당
+class MainViewModel {
+    var welcomeMessage: String {
+        return "Welcome to \n MainView"
+    }
+}
