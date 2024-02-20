@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		1F5786D92B849AF800C40B08 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5786D82B849AF800C40B08 /* AppDelegate.swift */; };
 		1F5786DB2B849AF800C40B08 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5786DA2B849AF800C40B08 /* SceneDelegate.swift */; };
-		1F5786E32B849AF800C40B08 /* dxTimeCapsule.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1F5786E12B849AF800C40B08 /* dxTimeCapsule.xcdatamodeld */; };
 		1F5786E52B849AFA00C40B08 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1F5786E42B849AFA00C40B08 /* Assets.xcassets */; };
 		1F5786E82B849AFA00C40B08 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1F5786E62B849AFA00C40B08 /* LaunchScreen.storyboard */; };
 		1F5786F22B849CA900C40B08 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5786F12B849CA900C40B08 /* MainViewModel.swift */; };
@@ -25,7 +24,6 @@
 		1F5786D52B849AF800C40B08 /* dxTimeCapsule.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = dxTimeCapsule.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1F5786D82B849AF800C40B08 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1F5786DA2B849AF800C40B08 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		1F5786E22B849AF800C40B08 /* dxTimeCapsule.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = dxTimeCapsule.xcdatamodel; sourceTree = "<group>"; };
 		1F5786E42B849AFA00C40B08 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1F5786E72B849AFA00C40B08 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1F5786E92B849AFA00C40B08 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -83,7 +81,6 @@
 				1F5786E42B849AFA00C40B08 /* Assets.xcassets */,
 				1F5786E62B849AFA00C40B08 /* LaunchScreen.storyboard */,
 				1F5786E92B849AFA00C40B08 /* Info.plist */,
-				1F5786E12B849AF800C40B08 /* dxTimeCapsule.xcdatamodeld */,
 				1F5786FF2B84DAC100C40B08 /* GoogleService-Info.plist */,
 			);
 			path = dxTimeCapsule;
@@ -272,7 +269,6 @@
 				1F5786FC2B84D5F200C40B08 /* TimeCapsuleModel.swift in Sources */,
 				1F5786F72B849D1E00C40B08 /* MainModel.swift in Sources */,
 				1F5786D92B849AF800C40B08 /* AppDelegate.swift in Sources */,
-				1F5786E32B849AF800C40B08 /* dxTimeCapsule.xcdatamodeld in Sources */,
 				1F5786DB2B849AF800C40B08 /* SceneDelegate.swift in Sources */,
 				1F5786FE2B84D69600C40B08 /* TimeCapsuleViewModel.swift in Sources */,
 				1F5786F42B849D0900C40B08 /* MainView.swift in Sources */,
@@ -493,19 +489,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		1F5786E12B849AF800C40B08 /* dxTimeCapsule.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				1F5786E22B849AF800C40B08 /* dxTimeCapsule.xcdatamodel */,
-			);
-			currentVersion = 1F5786E22B849AF800C40B08 /* dxTimeCapsule.xcdatamodel */;
-			path = dxTimeCapsule.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = 1F5786CD2B849AF800C40B08 /* Project object */;
 }
