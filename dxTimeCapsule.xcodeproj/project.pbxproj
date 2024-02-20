@@ -15,6 +15,9 @@
 		1F5786F22B849CA900C40B08 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5786F12B849CA900C40B08 /* MainViewModel.swift */; };
 		1F5786F42B849D0900C40B08 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5786F32B849D0900C40B08 /* MainView.swift */; };
 		1F5786F72B849D1E00C40B08 /* MainModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5786F62B849D1E00C40B08 /* MainModel.swift */; };
+		1F5786FC2B84D5F200C40B08 /* TimeCapsuleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5786FB2B84D5F200C40B08 /* TimeCapsuleModel.swift */; };
+		1F5786FE2B84D69600C40B08 /* TimeCapsuleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5786FD2B84D69600C40B08 /* TimeCapsuleViewModel.swift */; };
+		1F5787002B84DAC200C40B08 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1F5786FF2B84DAC100C40B08 /* GoogleService-Info.plist */; };
 		E78B6E77D4BF46A2A0DBDD7C /* Pods_dxTimeCapsule.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7393F25B661CF5EEDDA14271 /* Pods_dxTimeCapsule.framework */; };
 /* End PBXBuildFile section */
 
@@ -29,6 +32,9 @@
 		1F5786F12B849CA900C40B08 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		1F5786F32B849D0900C40B08 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		1F5786F62B849D1E00C40B08 /* MainModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainModel.swift; sourceTree = "<group>"; };
+		1F5786FB2B84D5F200C40B08 /* TimeCapsuleModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeCapsuleModel.swift; sourceTree = "<group>"; };
+		1F5786FD2B84D69600C40B08 /* TimeCapsuleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeCapsuleViewModel.swift; sourceTree = "<group>"; };
+		1F5786FF2B84DAC100C40B08 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		2E00AB31CA1D86FBB97D9F95 /* Pods-dxTimeCapsule.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dxTimeCapsule.debug.xcconfig"; path = "Target Support Files/Pods-dxTimeCapsule/Pods-dxTimeCapsule.debug.xcconfig"; sourceTree = "<group>"; };
 		638BAC997222CF132B3F1215 /* Pods-dxTimeCapsule.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dxTimeCapsule.release.xcconfig"; path = "Target Support Files/Pods-dxTimeCapsule/Pods-dxTimeCapsule.release.xcconfig"; sourceTree = "<group>"; };
 		7393F25B661CF5EEDDA14271 /* Pods_dxTimeCapsule.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_dxTimeCapsule.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -71,12 +77,14 @@
 				1F5786F02B849C2F00C40B08 /* View */,
 				1F5786EF2B849C2200C40B08 /* ViewModel */,
 				1F5786F82B84C45C00C40B08 /* Services */,
+				1F5786FA2B84D26000C40B08 /* Database */,
 				1F5786D82B849AF800C40B08 /* AppDelegate.swift */,
 				1F5786DA2B849AF800C40B08 /* SceneDelegate.swift */,
 				1F5786E42B849AFA00C40B08 /* Assets.xcassets */,
 				1F5786E62B849AFA00C40B08 /* LaunchScreen.storyboard */,
 				1F5786E92B849AFA00C40B08 /* Info.plist */,
 				1F5786E12B849AF800C40B08 /* dxTimeCapsule.xcdatamodeld */,
+				1F5786FF2B84DAC100C40B08 /* GoogleService-Info.plist */,
 			);
 			path = dxTimeCapsule;
 			sourceTree = "<group>";
@@ -85,6 +93,7 @@
 			isa = PBXGroup;
 			children = (
 				1F5786F12B849CA900C40B08 /* MainViewModel.swift */,
+				1F5786FD2B84D69600C40B08 /* TimeCapsuleViewModel.swift */,
 			);
 			name = ViewModel;
 			sourceTree = "<group>";
@@ -101,6 +110,7 @@
 			isa = PBXGroup;
 			children = (
 				1F5786F62B849D1E00C40B08 /* MainModel.swift */,
+				1F5786FB2B84D5F200C40B08 /* TimeCapsuleModel.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -118,6 +128,13 @@
 			children = (
 			);
 			name = LocationService;
+			sourceTree = "<group>";
+		};
+		1F5786FA2B84D26000C40B08 /* Database */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Database;
 			sourceTree = "<group>";
 		};
 		25AD7CDE47BA0E85739F3959 /* Pods */ = {
@@ -199,6 +216,7 @@
 			files = (
 				1F5786E82B849AFA00C40B08 /* LaunchScreen.storyboard in Resources */,
 				1F5786E52B849AFA00C40B08 /* Assets.xcassets in Resources */,
+				1F5787002B84DAC200C40B08 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -251,10 +269,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1F5786FC2B84D5F200C40B08 /* TimeCapsuleModel.swift in Sources */,
 				1F5786F72B849D1E00C40B08 /* MainModel.swift in Sources */,
 				1F5786D92B849AF800C40B08 /* AppDelegate.swift in Sources */,
 				1F5786E32B849AF800C40B08 /* dxTimeCapsule.xcdatamodeld in Sources */,
 				1F5786DB2B849AF800C40B08 /* SceneDelegate.swift in Sources */,
+				1F5786FE2B84D69600C40B08 /* TimeCapsuleViewModel.swift in Sources */,
 				1F5786F42B849D0900C40B08 /* MainView.swift in Sources */,
 				1F5786F22B849CA900C40B08 /* MainViewModel.swift in Sources */,
 			);

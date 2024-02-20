@@ -16,7 +16,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(windowScene: windowScene)
         
         // ViewModel 초기화
-        let viewModel = MainViewModel()
+        let viewModel = MainModel()
         
         // ViewController 초기화 및 ViewModel 전달
         let mainViewController = MainView(viewModel: viewModel)
