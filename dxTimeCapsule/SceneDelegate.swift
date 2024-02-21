@@ -15,11 +15,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
         
-        // ViewModel 초기화
-        let viewModel = MainTabViewModel()
+//         ViewModel 초기화
+//        let viewModel = MainTabViewModel()
         
         // ViewController 초기화 및 ViewModel 전달
-        let mainViewController = MainTabView(viewModel: viewModel)
+        let mainViewController = MainTabViewController()
         
         window?.rootViewController = mainViewController
         window?.backgroundColor = .systemBackground
