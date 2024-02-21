@@ -17,6 +17,7 @@
 		1F5786FC2B84D5F200C40B08 /* TimeCapsuleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5786FB2B84D5F200C40B08 /* TimeCapsuleModel.swift */; };
 		1F5786FE2B84D69600C40B08 /* TimeCapsuleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5786FD2B84D69600C40B08 /* TimeCapsuleViewModel.swift */; };
 		1F5787002B84DAC200C40B08 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1F5786FF2B84DAC100C40B08 /* GoogleService-Info.plist */; };
+		1F5787062B85949100C40B08 /* TimeCapsuleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5787052B85949100C40B08 /* TimeCapsuleView.swift */; };
 		E78B6E77D4BF46A2A0DBDD7C /* Pods_dxTimeCapsule.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7393F25B661CF5EEDDA14271 /* Pods_dxTimeCapsule.framework */; };
 /* End PBXBuildFile section */
 
@@ -33,6 +34,7 @@
 		1F5786FB2B84D5F200C40B08 /* TimeCapsuleModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeCapsuleModel.swift; sourceTree = "<group>"; };
 		1F5786FD2B84D69600C40B08 /* TimeCapsuleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeCapsuleViewModel.swift; sourceTree = "<group>"; };
 		1F5786FF2B84DAC100C40B08 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		1F5787052B85949100C40B08 /* TimeCapsuleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeCapsuleView.swift; sourceTree = "<group>"; };
 		2E00AB31CA1D86FBB97D9F95 /* Pods-dxTimeCapsule.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dxTimeCapsule.debug.xcconfig"; path = "Target Support Files/Pods-dxTimeCapsule/Pods-dxTimeCapsule.debug.xcconfig"; sourceTree = "<group>"; };
 		638BAC997222CF132B3F1215 /* Pods-dxTimeCapsule.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dxTimeCapsule.release.xcconfig"; path = "Target Support Files/Pods-dxTimeCapsule/Pods-dxTimeCapsule.release.xcconfig"; sourceTree = "<group>"; };
 		7393F25B661CF5EEDDA14271 /* Pods_dxTimeCapsule.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_dxTimeCapsule.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -99,6 +101,7 @@
 			isa = PBXGroup;
 			children = (
 				1F5786F32B849D0900C40B08 /* MainView.swift */,
+				1F5787052B85949100C40B08 /* TimeCapsuleView.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -273,6 +276,7 @@
 				1F5786FE2B84D69600C40B08 /* TimeCapsuleViewModel.swift in Sources */,
 				1F5786F42B849D0900C40B08 /* MainView.swift in Sources */,
 				1F5786F22B849CA900C40B08 /* MainViewModel.swift in Sources */,
+				1F5787062B85949100C40B08 /* TimeCapsuleView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
