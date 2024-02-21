@@ -12,12 +12,12 @@ class MainTabViewController: UITabBarController {
         let myTimeCapsuleViewController = MyTimeCapsuleViewController()
         let profileViewController = ProfileViewController()
         
-        // 각 뷰 컨트롤러에 탭 바 아이템 설정
-        homeViewController.tabBarItem = UITabBarItem(title: "홈", image: UIImage(named: "homeIcon"), selectedImage: nil)
-        friendListViewController.tabBarItem = UITabBarItem(title: "친구", image: UIImage(named: "friendsIcon"), selectedImage: nil)
-        postUploadViewController.tabBarItem = UITabBarItem(title: "업로드", image: UIImage(named: "uploadIcon"), selectedImage: nil)
-        myTimeCapsuleViewController.tabBarItem = UITabBarItem(title: "내 캡슐", image: UIImage(named: "capsuleIcon"), selectedImage: nil)
-        profileViewController.tabBarItem = UITabBarItem(title: "프로필", image: UIImage(named: "profileIcon"), selectedImage: nil)
+        // 시스템 이미지를 사용한 탭 바 아이템 설정
+        homeViewController.tabBarItem = UITabBarItem(title: "홈", image: UIImage(systemName: "house"), selectedImage: UIImage(systemName: "house.fill"))
+        friendListViewController.tabBarItem = UITabBarItem(title: "친구", image: UIImage(systemName: "person.2"), selectedImage: UIImage(systemName: "person.2.fill"))
+        postUploadViewController.tabBarItem = UITabBarItem(title: "업로드", image: UIImage(systemName: "plus.square"), selectedImage: UIImage(systemName: "plus.square.fill"))
+        myTimeCapsuleViewController.tabBarItem = UITabBarItem(title: "내 캡슐", image: UIImage(systemName: "capsule"), selectedImage: UIImage(systemName: "capsule.fill"))
+        profileViewController.tabBarItem = UITabBarItem(title: "프로필", image: UIImage(systemName: "person"), selectedImage: UIImage(systemName: "person.fill"))
         
         // 탭 바 컨트롤러에 뷰 컨트롤러들 추가
         viewControllers = [homeViewController, friendListViewController, postUploadViewController, myTimeCapsuleViewController, profileViewController].map {

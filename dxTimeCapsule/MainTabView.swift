@@ -1,6 +1,6 @@
 import UIKit
 
-class MainView: UIViewController {
+class MainTabView: UIViewController {
 
     let label = UILabel()
     var viewModel: MainTabViewModel
@@ -24,7 +24,7 @@ class MainView: UIViewController {
 
 
 //MARK: - Style & Layouts
-extension MainView {
+extension MainTabView {
 
     private func setup() {
         // 초기 셋업할 코드들
@@ -57,7 +57,7 @@ import SwiftUI
 
 struct MainViewControllerPreview: PreviewProvider {
     static var previews: some View {
-        MainView(viewModel: MainTabViewModel())
+        MainTabView(viewModel: MainTabViewModel())
             .toPreview()
     }
 }
