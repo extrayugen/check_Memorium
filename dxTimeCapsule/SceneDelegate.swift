@@ -16,7 +16,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(windowScene: windowScene)
         
         // ViewModel 초기화
-        let viewModel = MainModel()
+        let viewModel = MainTabViewModel()
         
         // ViewController 초기화 및 ViewModel 전달
         let mainViewController = MainView(viewModel: viewModel)
@@ -55,7 +55,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // to restore the scene back to its current state.
 
         // Save changes in the application's managed object context when the application transitions to the background.
-        (UIApplication.shared.delegate as? AppDelegate)?.saveContext()
+//        (UIApplication.shared.delegate as? AppDelegate)?.saveContext()
     }
 
 

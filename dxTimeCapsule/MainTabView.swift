@@ -3,9 +3,9 @@ import UIKit
 class MainView: UIViewController {
 
     let label = UILabel()
-    var viewModel: MainModel
+    var viewModel: MainTabViewModel
 
-    init(viewModel: MainModel) {
+    init(viewModel: MainTabViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
@@ -57,7 +57,7 @@ import SwiftUI
 
 struct MainViewControllerPreview: PreviewProvider {
     static var previews: some View {
-        MainView(viewModel: MainModel())
+        MainView(viewModel: MainTabViewModel())
             .toPreview()
     }
 }

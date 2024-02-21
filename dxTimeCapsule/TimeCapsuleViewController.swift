@@ -1,7 +1,7 @@
 import Foundation
 import FirebaseFirestore
 
-class TimeCapsuleViewModel {
+class TimeCapsuleViewController {
     private var db = Firestore.firestore()
     
     // MARK: - 캡슐 추가 (Create)

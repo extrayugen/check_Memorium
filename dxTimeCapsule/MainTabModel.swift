@@ -1,6 +1,6 @@
 import Foundation
 
-class MainModel {
+class MainTabViewModel {
     var welcomeMessage: String {
         return "Welcome to \n MainView"
     }
