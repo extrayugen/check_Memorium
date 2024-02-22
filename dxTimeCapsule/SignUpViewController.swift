@@ -9,18 +9,24 @@ import UIKit
 import FirebaseFirestore
 
 class SignUpViewController: UIViewController {
+    
+    // MARK: - UI Components
+    
     // UI 컴포넌트 선언
     private let emailTextField = UITextField()
     private let passwordTextField = UITextField()
     private let nameTextField = UITextField()
     private let signUpButton = UIButton(type: .system)
     
+    // MARK: - View Life Cycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
         setupNavigationBar()
-        
     }
+    
+    // MARK: - UI Setup
     
     private func setupUI() {
         view.backgroundColor = .white
@@ -52,11 +58,15 @@ class SignUpViewController: UIViewController {
         }
     }
     
+    // MARK: - Navigation Bar Setup
+    
     private func setupNavigationBar() {
         navigationItem.title = "회원가입"
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(dismissSelf))
     }
 
+    // MARK: - Actions
+    
     @objc private func signUpAction() {
         guard let email = emailTextField.text, !email.isEmpty,
               let password = passwordTextField.text, !password.isEmpty,
