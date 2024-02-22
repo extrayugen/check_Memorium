@@ -11,12 +11,13 @@
 		1F5786DB2B849AF800C40B08 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5786DA2B849AF800C40B08 /* SceneDelegate.swift */; };
 		1F5786E52B849AFA00C40B08 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1F5786E42B849AFA00C40B08 /* Assets.xcassets */; };
 		1F5786E82B849AFA00C40B08 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1F5786E62B849AFA00C40B08 /* LaunchScreen.storyboard */; };
-		1F5786F22B849CA900C40B08 /* MainHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5786F12B849CA900C40B08 /* MainHomeViewController.swift */; };
+		1F5786F22B849CA900C40B08 /* AuthenticationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5786F12B849CA900C40B08 /* AuthenticationViewModel.swift */; };
 		1F5786FC2B84D5F200C40B08 /* TimeCapsuleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5786FB2B84D5F200C40B08 /* TimeCapsuleModel.swift */; };
 		1F5786FE2B84D69600C40B08 /* TimeCapsuleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5786FD2B84D69600C40B08 /* TimeCapsuleViewController.swift */; };
 		1F5787002B84DAC200C40B08 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1F5786FF2B84DAC100C40B08 /* GoogleService-Info.plist */; };
 		1F5787062B85949100C40B08 /* TimeCapsuleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5787052B85949100C40B08 /* TimeCapsuleView.swift */; };
-		D330A68E102E8212D443900D /* Pods_dxTimeCapsule.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD23484D51C196D641845594 /* Pods_dxTimeCapsule.framework */; };
+		1F5787132B86DBF900C40B08 /* AuthenticationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5787122B86DBF900C40B08 /* AuthenticationViewController.swift */; };
+		927DF4BA11D550E3439DC791 /* Pods_dxTimeCapsule.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7852692F586552FA2D93EA4 /* Pods_dxTimeCapsule.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,14 +27,15 @@
 		1F5786E42B849AFA00C40B08 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1F5786E72B849AFA00C40B08 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1F5786E92B849AFA00C40B08 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		1F5786F12B849CA900C40B08 /* MainHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainHomeViewController.swift; sourceTree = "<group>"; };
+		1F5786F12B849CA900C40B08 /* AuthenticationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewModel.swift; sourceTree = "<group>"; };
 		1F5786FB2B84D5F200C40B08 /* TimeCapsuleModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeCapsuleModel.swift; sourceTree = "<group>"; };
 		1F5786FD2B84D69600C40B08 /* TimeCapsuleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeCapsuleViewController.swift; sourceTree = "<group>"; };
 		1F5786FF2B84DAC100C40B08 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		1F5787052B85949100C40B08 /* TimeCapsuleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeCapsuleView.swift; sourceTree = "<group>"; };
-		9114CCA22153576240BE5E91 /* Pods-dxTimeCapsule.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dxTimeCapsule.debug.xcconfig"; path = "Target Support Files/Pods-dxTimeCapsule/Pods-dxTimeCapsule.debug.xcconfig"; sourceTree = "<group>"; };
-		B5174B38BEACA63B50E9DCA6 /* Pods-dxTimeCapsule.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dxTimeCapsule.release.xcconfig"; path = "Target Support Files/Pods-dxTimeCapsule/Pods-dxTimeCapsule.release.xcconfig"; sourceTree = "<group>"; };
-		CD23484D51C196D641845594 /* Pods_dxTimeCapsule.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_dxTimeCapsule.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1F5787122B86DBF900C40B08 /* AuthenticationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewController.swift; sourceTree = "<group>"; };
+		23DDF6A42359D2BE16A2180B /* Pods-dxTimeCapsule.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dxTimeCapsule.debug.xcconfig"; path = "Target Support Files/Pods-dxTimeCapsule/Pods-dxTimeCapsule.debug.xcconfig"; sourceTree = "<group>"; };
+		51835482EA934B9B07ED8BAE /* Pods-dxTimeCapsule.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dxTimeCapsule.release.xcconfig"; path = "Target Support Files/Pods-dxTimeCapsule/Pods-dxTimeCapsule.release.xcconfig"; sourceTree = "<group>"; };
+		E7852692F586552FA2D93EA4 /* Pods_dxTimeCapsule.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_dxTimeCapsule.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -41,7 +43,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D330A68E102E8212D443900D /* Pods_dxTimeCapsule.framework in Frameworks */,
+				927DF4BA11D550E3439DC791 /* Pods_dxTimeCapsule.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -54,7 +56,7 @@
 				1F5786D72B849AF800C40B08 /* dxTimeCapsule */,
 				1F5786D62B849AF800C40B08 /* Products */,
 				25AD7CDE47BA0E85739F3959 /* Pods */,
-				7A3368E856C0AA8781CC6E55 /* Frameworks */,
+				2883F35D475B5BA1F33E2ACB /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -70,8 +72,8 @@
 			isa = PBXGroup;
 			children = (
 				1F5786F52B849D0D00C40B08 /* Model */,
-				1F5786F02B849C2F00C40B08 /* View */,
 				1F5786EF2B849C2200C40B08 /* ViewModel */,
+				1F5786F02B849C2F00C40B08 /* View */,
 				1F5786F82B84C45C00C40B08 /* Services */,
 				1F5786FA2B84D26000C40B08 /* Legercy */,
 				1F5786D82B849AF800C40B08 /* AppDelegate.swift */,
@@ -87,7 +89,7 @@
 		1F5786EF2B849C2200C40B08 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				1F5786F12B849CA900C40B08 /* MainHomeViewController.swift */,
+				1F5786F12B849CA900C40B08 /* AuthenticationViewModel.swift */,
 			);
 			name = ViewModel;
 			sourceTree = "<group>";
@@ -95,7 +97,7 @@
 		1F5786F02B849C2F00C40B08 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				1F5787052B85949100C40B08 /* TimeCapsuleView.swift */,
+				1F5787122B86DBF900C40B08 /* AuthenticationViewController.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -126,6 +128,7 @@
 		1F5786FA2B84D26000C40B08 /* Legercy */ = {
 			isa = PBXGroup;
 			children = (
+				1F5787052B85949100C40B08 /* TimeCapsuleView.swift */,
 				1F5786FD2B84D69600C40B08 /* TimeCapsuleViewController.swift */,
 			);
 			name = Legercy;
@@ -134,16 +137,16 @@
 		25AD7CDE47BA0E85739F3959 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				9114CCA22153576240BE5E91 /* Pods-dxTimeCapsule.debug.xcconfig */,
-				B5174B38BEACA63B50E9DCA6 /* Pods-dxTimeCapsule.release.xcconfig */,
+				23DDF6A42359D2BE16A2180B /* Pods-dxTimeCapsule.debug.xcconfig */,
+				51835482EA934B9B07ED8BAE /* Pods-dxTimeCapsule.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
 		};
-		7A3368E856C0AA8781CC6E55 /* Frameworks */ = {
+		2883F35D475B5BA1F33E2ACB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				CD23484D51C196D641845594 /* Pods_dxTimeCapsule.framework */,
+				E7852692F586552FA2D93EA4 /* Pods_dxTimeCapsule.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -155,11 +158,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1F5786EC2B849AFA00C40B08 /* Build configuration list for PBXNativeTarget "dxTimeCapsule" */;
 			buildPhases = (
-				81CB2A44CB1FFE31D846FE52 /* [CP] Check Pods Manifest.lock */,
+				518C51783B20EEFA1A376883 /* [CP] Check Pods Manifest.lock */,
 				1F5786D12B849AF800C40B08 /* Sources */,
 				1F5786D22B849AF800C40B08 /* Frameworks */,
 				1F5786D32B849AF800C40B08 /* Resources */,
-				093AD2F26F3819FA9A4C4913 /* [CP] Embed Pods Frameworks */,
+				FB79CD014252EECA7C4148AD /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -217,24 +220,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		093AD2F26F3819FA9A4C4913 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-dxTimeCapsule/Pods-dxTimeCapsule-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-dxTimeCapsule/Pods-dxTimeCapsule-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-dxTimeCapsule/Pods-dxTimeCapsule-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		81CB2A44CB1FFE31D846FE52 /* [CP] Check Pods Manifest.lock */ = {
+		518C51783B20EEFA1A376883 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -256,6 +242,23 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		FB79CD014252EECA7C4148AD /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-dxTimeCapsule/Pods-dxTimeCapsule-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-dxTimeCapsule/Pods-dxTimeCapsule-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-dxTimeCapsule/Pods-dxTimeCapsule-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -266,8 +269,9 @@
 				1F5786FC2B84D5F200C40B08 /* TimeCapsuleModel.swift in Sources */,
 				1F5786D92B849AF800C40B08 /* AppDelegate.swift in Sources */,
 				1F5786DB2B849AF800C40B08 /* SceneDelegate.swift in Sources */,
+				1F5787132B86DBF900C40B08 /* AuthenticationViewController.swift in Sources */,
 				1F5786FE2B84D69600C40B08 /* TimeCapsuleViewController.swift in Sources */,
-				1F5786F22B849CA900C40B08 /* MainHomeViewController.swift in Sources */,
+				1F5786F22B849CA900C40B08 /* AuthenticationViewModel.swift in Sources */,
 				1F5787062B85949100C40B08 /* TimeCapsuleView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -407,7 +411,7 @@
 		};
 		1F5786ED2B849AFA00C40B08 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9114CCA22153576240BE5E91 /* Pods-dxTimeCapsule.debug.xcconfig */;
+			baseConfigurationReference = 23DDF6A42359D2BE16A2180B /* Pods-dxTimeCapsule.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -436,7 +440,7 @@
 		};
 		1F5786EE2B849AFA00C40B08 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B5174B38BEACA63B50E9DCA6 /* Pods-dxTimeCapsule.release.xcconfig */;
+			baseConfigurationReference = 51835482EA934B9B07ED8BAE /* Pods-dxTimeCapsule.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

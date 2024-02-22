@@ -8,10 +8,8 @@ target 'dxTimeCapsule' do
   # Pods for dxTimeCapsule
   pod 'SnapKit'
 
-  # Add the Firebase pod for Google Analytics
-  pod 'FirebaseAnalytics'
-
   pod 'FirebaseCore', :git => 'https://github.com/firebase/firebase-ios-sdk.git', :branch => 'main'
   pod 'FirebaseAuth'
   pod 'FirebaseFirestore', :git => 'https://github.com/firebase/firebase-ios-sdk.git', :branch => 'main'
+  pod 'FirebaseUI'
 end
