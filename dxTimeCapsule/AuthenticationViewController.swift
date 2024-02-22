@@ -45,7 +45,7 @@ class AuthenticationViewController: UIViewController {
         // 이미지 뷰 레이아웃
         imageView.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.centerY.equalToSuperview().offset(-800) // 중앙에서 위로 조금 올림
+            make.centerY.equalToSuperview().offset(-80) // 중앙에서 위로 조금 올림
             make.width.height.equalTo(100)
         }
         
