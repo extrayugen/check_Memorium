@@ -3,65 +3,154 @@ import SnapKit
 import FirebaseAuth
 
 class AuthenticationViewController: UIViewController {
+    
+    // MARK: - Propertys
+    private let emailTextField = UITextField()
+    private let passwordTextField = UITextField()
     private let loginButton = UIButton(type: .system)
     private let signUpButton = UIButton(type: .system)
-
-    private var viewModel = AuthenticationViewModel()
+    private let imageView = UIImageView(image: UIImage(systemName: "person.circle.fill"))
     
+    private var authenticationViewModel = AuthenticationViewModel()
+    
+    // MARK: - Life Cycles
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
     }
-
+    
+    // MARK: - Functions
     private func setupUI() {
+        // 배경색 설정
         view.backgroundColor = .white
-
-        // 로그인 버튼 설정
-        loginButton.setTitle("로그인", for: .normal)
-        loginButton.backgroundColor = .systemBlue
-        loginButton.setTitleColor(.white, for: .normal)
-        loginButton.layer.cornerRadius = 10
-        loginButton.addTarget(self, action: #selector(didTapLoginButton), for: .touchUpInside)
-
-        // 회원가입 버튼 설정
-        signUpButton.setTitle("회원가입", for: .normal)
-        signUpButton.backgroundColor = .systemBlue
-        signUpButton.setTitleColor(.white, for: .normal)
-        signUpButton.layer.cornerRadius = 10
-        signUpButton.addTarget(self, action: #selector(didTapSignUpButton), for: .touchUpInside)
-
-        // 뷰에 버튼 추가
-        view.addSubview(loginButton)
-        view.addSubview(signUpButton)
-
-        // 버튼 레이아웃 설정
-        loginButton.snp.makeConstraints { make in
+        
+        // 이미지 뷰 설정
+        imageView.contentMode = .scaleAspectFit
+        view.addSubview(imageView)
+        
+        // 이메일 텍스트 필드 설정
+        emailTextField.placeholder = "이메일"
+        emailTextField.borderStyle = .roundedRect
+        view.addSubview(emailTextField)
+        
+        // 비밀번호 텍스트 필드 설정
+        passwordTextField.placeholder = "비밀번호"
+        passwordTextField.borderStyle = .roundedRect
+        passwordTextField.isSecureTextEntry = true
+        view.addSubview(passwordTextField)
+        
+        // UI 컴포넌트 설정 및 레이아웃 조정
+        configureUIComponents()
+        
+        // 이미지 뷰 레이아웃
+        imageView.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.bottom.equalTo(self.signUpButton.snp.top).offset(-20)
-            make.width.equalToSuperview().multipliedBy(0.5)
-            make.height.equalTo(50)
+            make.centerY.equalToSuperview().offset(-800) // 중앙에서 위로 조금 올림
+            make.width.height.equalTo(100)
         }
-
-        signUpButton.snp.makeConstraints { make in
+        
+        
+        // 이메일 텍스트 필드 레이아웃 설정
+        emailTextField.placeholder = "이메일"
+        view.addSubview(emailTextField)
+        emailTextField.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.bottom.equalToSuperview().offset(-50)
+            make.top.equalTo(imageView.snp.bottom).offset(20)
             make.width.equalToSuperview().multipliedBy(0.8)
             make.height.equalTo(50)
         }
+        
+        // 비밀번호 텍스트 필드 레이아웃 설정
+        passwordTextField.placeholder = "비밀번호"
+        view.addSubview(passwordTextField)
+        passwordTextField.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(emailTextField.snp.bottom).offset(10)
+            make.width.equalToSuperview().multipliedBy(0.8)
+            make.height.equalTo(50)
+        }
+        
+        // 회원가입 버튼 레이아웃 조정
+        signUpButton.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.centerY.equalToSuperview().offset(300)
+            make.top.equalTo(loginButton.snp.bottom).offset(30) // 간격을 30 포인트로 조정
+            make.width.equalToSuperview().multipliedBy(0.8)
+            make.height.equalTo(50)
+        }
+
+        // 로그인 버튼 레이아웃 조정
+        loginButton.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.bottom.equalTo(signUpButton.snp.top).offset(-30) // 간격을 30 포인트로 조정
+            make.width.equalToSuperview().multipliedBy(0.8)
+            make.height.equalTo(50)
+        }
+
+
     }
     
+    private func configureUIComponents() {
+        // 로그인 및 회원가입 버튼 설정
+        setupButton(loginButton, title: "로그인", backgroundColor: .systemBlue, selector: #selector(didTapLoginButton))
+        setupButton(signUpButton, title: "회원가입", backgroundColor: .systemBlue, selector: #selector(didTapSignUpButton))
+        
+        // 뷰에 컴포넌트 추가
+        view.addSubview(emailTextField)
+        view.addSubview(passwordTextField)
+        view.addSubview(loginButton)
+        view.addSubview(signUpButton)
+        
+        // 로그인 및 회원가입 버튼 레이아웃 설정
+        loginButton.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            // 기타 제약 조건
+        }
+
+        signUpButton.snp.makeConstraints { make in
+            make.top.equalTo(loginButton.snp.bottom).offset(10)
+            make.centerX.equalToSuperview()
+            // 기타 제약 조건
+        }
+    }
+    
+    
+    // 버튼 셋업
+    private func setupButton(_ button: UIButton, title: String, backgroundColor: UIColor, selector: Selector) {
+        button.setTitle(title, for: .normal)
+        button.backgroundColor = backgroundColor
+        button.setTitleColor(.white, for: .normal)
+        button.layer.cornerRadius = 10
+        button.addTarget(self, action: selector, for: .touchUpInside)
+    }
+    
+    // 로그인 버튼 탭 처리
     @objc private func didTapLoginButton() {
-        // 로그인 버튼 탭 처리
-        viewModel.signIn()
+        // 가정: emailTextField와 passwordTextField가 이미 정의되어 있고, 사용자 입력을 받는다.
+        let email = emailTextField.text ?? ""
+        let password = passwordTextField.text ?? ""
+        
+        authenticationViewModel.signIn(email: email, password: password) { success, errorMessage in
+            if success {
+                // 로그인 성공 처리, 예: 다음 화면으로 전환
+            } else {
+                // 에러 메시지 표시
+                print(errorMessage ?? "로그인 실패")
+            }
+        }
     }
-
+    
+    // 회원가입 버튼 탭 처리
     @objc private func didTapSignUpButton() {
-        // 회원가입 버튼 탭 처리
-        viewModel.signUp()
+        let signUpViewController = SignUpViewController()
+        let navigationController = UINavigationController(rootViewController: signUpViewController)
+        navigationController.modalPresentationStyle = .fullScreen
+        present(navigationController, animated: true, completion: nil)
     }
 
+    
+    // 간단한 알림 창 표시 함수
     private func showAlert(with message: String) {
-        // 간단한 알림 창 표시 함수
         let alert = UIAlertController(title: "알림", message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "확인", style: .default))
         present(alert, animated: true)

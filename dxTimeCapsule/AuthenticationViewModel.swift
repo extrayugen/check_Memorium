@@ -1,34 +1,42 @@
 import Foundation
 import FirebaseAuth
+import FirebaseFirestore
 
 class AuthenticationViewModel {
-    // 사용자 입력 프로퍼티
+    private let db = Firestore.firestore()
+    
     var email: String = ""
     var password: String = ""
-
+    
     // 상태 업데이트를 위한 클로저
     var onAuthStateChanged: ((Bool, String?) -> Void)?
-
-    // 로그인 함수
-    func signIn() {
-        Auth.auth().signIn(withEmail: email, password: password) { [weak self] authResult, error in
-            if let error = error {
-                self?.onAuthStateChanged?(false, error.localizedDescription)
-            } else {
-                self?.onAuthStateChanged?(true, nil)
-            }
-        }
-    }
-
+    
     // 회원가입 함수
-    func signUp() {
-        Auth.auth().createUser(withEmail: email, password: password) { [weak self] authResult, error in
+    func signUp(email: String, password: String, name: String) {
+        // Firestore에 사용자 정보 저장
+        let userDocument = db.collection("users").document(email)
+        userDocument.setData([
+            "email": email,
+            "password": password, // 실제 앱에서는 비밀번호를 평문으로 저장해서는 안 됩니다. 암호화를 고려해야 합니다.
+            "name": name
+        ]) { error in
             if let error = error {
-                self?.onAuthStateChanged?(false, error.localizedDescription)
+                print("Error adding document: \(error)")
             } else {
-                self?.onAuthStateChanged?(true, nil)
+                print("Document added with ID: \(userDocument.documentID)")
             }
         }
     }
-}
+    
+    // 로그인 함수
+    func signIn(email: String, password: String, completion: @escaping (Bool, String?) -> Void) {
+        Auth.auth().signIn(withEmail: email, password: password) { authResult, error in
+            if let error = error {
+                completion(false, error.localizedDescription)
+            } else {
+                completion(true, nil)
+            }
+        }
+    }
 
+}
