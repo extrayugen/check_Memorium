@@ -17,6 +17,10 @@ class AuthenticationViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        
+        // MARK: - Test 자동기입 정보(나중에 파기해야됨)
+        emailTextField.text = "admin@time.co.kr"
+        passwordTextField.text = "123456"
     }
     
     // MARK: - Functions
@@ -124,21 +128,41 @@ class AuthenticationViewController: UIViewController {
         button.addTarget(self, action: selector, for: .touchUpInside)
     }
     
+    // MARK: - Actions
+    
     // 로그인 버튼 탭 처리
     @objc private func didTapLoginButton() {
-        // 가정: emailTextField와 passwordTextField가 이미 정의되어 있고, 사용자 입력을 받는다.
-        let email = emailTextField.text ?? ""
-        let password = passwordTextField.text ?? ""
+        guard let email = emailTextField.text, !email.isEmpty,
+              let password = passwordTextField.text, !password.isEmpty else {
+            let alert = UIAlertController(title: "입력 오류", message: "이메일 또는 비밀번호를 입력해주세요.", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "확인", style: .default))
+            self.present(alert, animated: true)
+            return
+        }
         
-        authenticationViewModel.signIn(email: email, password: password) { success, errorMessage in
-            if success {
-                // 로그인 성공 처리, 예: 다음 화면으로 전환
-            } else {
-                // 에러 메시지 표시
-                print(errorMessage ?? "로그인 실패")
+        Auth.auth().signIn(withEmail: email, password: password) { [weak self] authResult, error in
+            guard let self = self else { return }
+            
+            DispatchQueue.main.async {
+                if let error = error {
+                    // 로그인 실패: 에러 메시지 처리 및 알림 표시
+                    let alert = UIAlertController(title: "로그인 실패", message: error.localizedDescription, preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "확인", style: .default))
+                    self.present(alert, animated: true)
+                } else {
+                    // 로그인 성공: 성공 메시지 표시 및 메인 피드 화면으로 전환
+                    let alert = UIAlertController(title: "로그인 성공", message: "로그인 되었습니다", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "확인", style: .default) { _ in
+                        // 메인 피드 화면으로 전환하는 로직
+                        // 여기서는 예시로 performSegue를 사용합니다. 실제 화면 전환 방법은 앱의 구조에 따라 다를 수 있습니다.
+                        self.performSegue(withIdentifier: "MainFeedSegueIdentifier", sender: self)
+                    })
+                    self.present(alert, animated: true)
+                }
             }
         }
     }
+
     
     // 회원가입 버튼 탭 처리
     @objc private func didTapSignUpButton() {
