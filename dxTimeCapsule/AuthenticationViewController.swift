@@ -118,7 +118,6 @@ class AuthenticationViewController: UIViewController {
         }
     }
     
-    
     // 버튼 셋업
     private func setupButton(_ button: UIButton, title: String, backgroundColor: UIColor, selector: Selector) {
         button.setTitle(title, for: .normal)
@@ -152,12 +151,16 @@ class AuthenticationViewController: UIViewController {
                 } else {
                     // 로그인 성공: 성공 메시지 표시 및 메인 피드 화면으로 전환
                     let alert = UIAlertController(title: "로그인 성공", message: "로그인 되었습니다", preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: "확인", style: .default) { _ in
-                        // 메인 피드 화면으로 전환하는 로직
-                        // 여기서는 예시로 performSegue를 사용합니다. 실제 화면 전환 방법은 앱의 구조에 따라 다를 수 있습니다.
-                        self.performSegue(withIdentifier: "MainFeedSegueIdentifier", sender: self)
+                    alert.addAction(UIAlertAction(title: "확인", style: .default) { [weak self] _ in
+                        guard let self = self else { return }
+                        let mainFeedVC = HomeViewController()
+                        // 네비게이션 컨트롤러가 있는 경우
+//                        self.navigationController?.pushViewController(mainFeedVC, animated: true)
+                        // 네비게이션 컨트롤러가 없는 경우
+                         self.present(mainFeedVC, animated: true, completion: nil)
                     })
                     self.present(alert, animated: true)
+
                 }
             }
         }
