@@ -94,6 +94,7 @@ class AuthenticationViewController: UIViewController {
 
     }
     
+    // UI 컴포넌트 설정
     private func configureUIComponents() {
         // 로그인 및 회원가입 버튼 설정
         setupButton(loginButton, title: "로그인", backgroundColor: .systemBlue, selector: #selector(didTapLoginButton))
@@ -108,13 +109,11 @@ class AuthenticationViewController: UIViewController {
         // 로그인 및 회원가입 버튼 레이아웃 설정
         loginButton.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            // 기타 제약 조건
         }
 
         signUpButton.snp.makeConstraints { make in
             make.top.equalTo(loginButton.snp.bottom).offset(10)
             make.centerX.equalToSuperview()
-            // 기타 제약 조건
         }
     }
     
@@ -126,6 +125,14 @@ class AuthenticationViewController: UIViewController {
         button.layer.cornerRadius = 10
         button.addTarget(self, action: selector, for: .touchUpInside)
     }
+    
+    // 간단한 알림 창 표시 함수
+    private func showAlert(with message: String) {
+        let alert = UIAlertController(title: "알림", message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "확인", style: .default))
+        present(alert, animated: true)
+    }
+
     
     // MARK: - Actions
     
@@ -174,17 +181,7 @@ class AuthenticationViewController: UIViewController {
         navigationController.modalPresentationStyle = .fullScreen
         present(navigationController, animated: true, completion: nil)
     }
-
-    
-    // 간단한 알림 창 표시 함수
-    private func showAlert(with message: String) {
-        let alert = UIAlertController(title: "알림", message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "확인", style: .default))
-        present(alert, animated: true)
-    }
 }
-
-
 
 // MARK: - Preview
 import SwiftUI

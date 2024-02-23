@@ -69,7 +69,7 @@ class TimeCapsuleCreationViewController: UIViewController, UIImagePickerControll
         photoPlaceholderLabel.text = "사진 업로드를 해주세요"
         photoPlaceholderView.addSubview(photoPlaceholderLabel)
         
-        uploadPhotoButton.setTitle("사진 업로드", for: .normal)
+//        uploadPhotoButton.setTitle("사진 업로드", for: .normal)
         photoPlaceholderView.addSubview(uploadPhotoButton)
         
         // SnapKit을 사용한 레이아웃 설정 - 상단으로 이동
