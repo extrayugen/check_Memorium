@@ -3,7 +3,7 @@ import SnapKit
 import FirebaseFirestore
 import FirebaseAuth
 
-class CapsuleCreationViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class CreationViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     // MARK: - UI Components
     private let photoPlaceholderView = UIView()

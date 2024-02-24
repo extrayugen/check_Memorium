@@ -15,14 +15,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
         
-//         ViewModel 초기화
-//        let viewModel = MainTabViewModel()
+        // ViewController 초기화
+        let mainViewController = PhotoUploadViewController()
         
-        // ViewController 초기화 및 ViewModel 전달
-//        let mainViewController = AuthenticationViewController()
-        let mainViewController = CapsulePhotoUploadViewController()
+        // 네비게이션 컨트롤러를 초기화하고 루트 뷰 컨트롤러로 설정
+        let navigationController = UINavigationController(rootViewController: mainViewController)
         
-        window?.rootViewController = mainViewController
+        window?.rootViewController = navigationController // 이 부분을 수정
         window?.backgroundColor = .systemBackground
         window?.makeKeyAndVisible()
     }
