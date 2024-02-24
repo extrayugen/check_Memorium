@@ -23,7 +23,8 @@
 		1FB3873B2B886E9800054816 /* CreationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB3873A2B886E9800054816 /* CreationViewController.swift */; };
 		1FB3873E2B88791A00054816 /* TimeCapsuleCreationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB3873D2B88791A00054816 /* TimeCapsuleCreationViewModel.swift */; };
 		1FB387402B8881DB00054816 /* TimeCapsule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB3873F2B8881DB00054816 /* TimeCapsule.swift */; };
-		27C81E3E2B8A1662001E3623 /* APIKey.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 27C81E3D2B8A1662001E3623 /* APIKey.xcconfig */; };
+		460FE7652B8A1FE500AF8086 /* APIKey.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 460FE7642B8A1FE500AF8086 /* APIKey.xcconfig */; };
+		460FE7672B8A200D00AF8086 /* LockedCapsuleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 460FE7662B8A200D00AF8086 /* LockedCapsuleCell.swift */; };
 		46EA9BAE2B89A27E00633EC4 /* CapsuleMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46EA9BAD2B89A27E00633EC4 /* CapsuleMapViewController.swift */; };
 		927DF4BA11D550E3439DC791 /* Pods_dxTimeCapsule.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7852692F586552FA2D93EA4 /* Pods_dxTimeCapsule.framework */; };
 		D25B20EB2B89CD02006CEED8 /* LaunchScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25B20EA2B89CD02006CEED8 /* LaunchScreenViewController.swift */; };
@@ -49,7 +50,8 @@
 		1FB3873D2B88791A00054816 /* TimeCapsuleCreationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeCapsuleCreationViewModel.swift; sourceTree = "<group>"; };
 		1FB3873F2B8881DB00054816 /* TimeCapsule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeCapsule.swift; sourceTree = "<group>"; };
 		23DDF6A42359D2BE16A2180B /* Pods-dxTimeCapsule.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dxTimeCapsule.debug.xcconfig"; path = "Target Support Files/Pods-dxTimeCapsule/Pods-dxTimeCapsule.debug.xcconfig"; sourceTree = "<group>"; };
-		27C81E3D2B8A1662001E3623 /* APIKey.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = APIKey.xcconfig; sourceTree = "<group>"; };
+		460FE7642B8A1FE500AF8086 /* APIKey.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = APIKey.xcconfig; sourceTree = "<group>"; };
+		460FE7662B8A200D00AF8086 /* LockedCapsuleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockedCapsuleCell.swift; sourceTree = "<group>"; };
 		46EA9BAD2B89A27E00633EC4 /* CapsuleMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapsuleMapViewController.swift; sourceTree = "<group>"; };
 		51835482EA934B9B07ED8BAE /* Pods-dxTimeCapsule.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dxTimeCapsule.release.xcconfig"; path = "Target Support Files/Pods-dxTimeCapsule/Pods-dxTimeCapsule.release.xcconfig"; sourceTree = "<group>"; };
 		D25B20EA2B89CD02006CEED8 /* LaunchScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenViewController.swift; sourceTree = "<group>"; };
@@ -89,6 +91,7 @@
 		1F5786D72B849AF800C40B08 /* dxTimeCapsule */ = {
 			isa = PBXGroup;
 			children = (
+				460FE7642B8A1FE500AF8086 /* APIKey.xcconfig */,
 				1F5786F52B849D0D00C40B08 /* Model */,
 				1F5786EF2B849C2200C40B08 /* ViewModel */,
 				1F5786F02B849C2F00C40B08 /* View */,
@@ -98,9 +101,9 @@
 				1F5786DA2B849AF800C40B08 /* SceneDelegate.swift */,
 				1F5786E42B849AFA00C40B08 /* Assets.xcassets */,
 				1F5786E62B849AFA00C40B08 /* LaunchScreen.storyboard */,
-				27C81E3D2B8A1662001E3623 /* APIKey.xcconfig */,
 				1F5786E92B849AFA00C40B08 /* Info.plist */,
 				1F5786FF2B84DAC100C40B08 /* GoogleService-Info.plist */,
+				460FE7662B8A200D00AF8086 /* LockedCapsuleCell.swift */,
 			);
 			path = dxTimeCapsule;
 			sourceTree = "<group>";
@@ -246,8 +249,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				27C81E3E2B8A1662001E3623 /* APIKey.xcconfig in Resources */,
 				1F5786E82B849AFA00C40B08 /* LaunchScreen.storyboard in Resources */,
+				460FE7652B8A1FE500AF8086 /* APIKey.xcconfig in Resources */,
 				1F5786E52B849AFA00C40B08 /* Assets.xcassets in Resources */,
 				1F5787002B84DAC200C40B08 /* GoogleService-Info.plist in Resources */,
 			);
@@ -303,6 +306,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				46EA9BAE2B89A27E00633EC4 /* CapsuleMapViewController.swift in Sources */,
+				460FE7672B8A200D00AF8086 /* LockedCapsuleCell.swift in Sources */,
 				1F5786D92B849AF800C40B08 /* AppDelegate.swift in Sources */,
 				1FB387352B87A0B300054816 /* SignUpViewController.swift in Sources */,
 				1F0D3B322B89D85500A31E82 /* PhotoDetailViewController.swift in Sources */,
@@ -336,7 +340,6 @@
 /* Begin XCBuildConfiguration section */
 		1F5786EA2B849AFA00C40B08 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 27C81E3D2B8A1662001E3623 /* APIKey.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -400,7 +403,6 @@
 		};
 		1F5786EB2B849AFA00C40B08 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 27C81E3D2B8A1662001E3623 /* APIKey.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
