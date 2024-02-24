@@ -215,8 +215,43 @@ class HomeViewController: UIViewController {
         button.backgroundColor = .white
         button.layer.cornerRadius = 20
         button.titleLabel?.font = UIFont.systemFont(ofSize: 20, weight: .black)
-        button.addTarget(HomeViewController.self, action: #selector(addNewTCButtonTapped), for: .touchUpInside)
+        button.addTarget(self, action: #selector(openedMemoryButtonTapped), for: .touchUpInside)
         return button
+    }()
+    
+    // 다가오는 타임캡슐 라벨
+    let upComingLabel: UILabel = {
+        let label = UILabel()
+        label.text = "다가오는 타임 캡슐"
+        label.font = UIFont.boldSystemFont(ofSize: 15)
+        label.textColor = .black
+        return label
+    }()
+    
+    // MARK: - Collection View
+
+    // 열어 본 타임캡슐 컬렉션 뷰
+    lazy var openedcollectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.backgroundColor = .clear
+        collectionView.dataSource = self
+        collectionView.delegate = self
+        collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "openedCellIdentifier")
+        return collectionView
+    }()
+    
+    // 다가오는 타임캡슐 컬렉션 뷰
+    lazy var upComingCollectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.backgroundColor = .clear
+        collectionView.dataSource = self
+        collectionView.delegate = self
+        collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "upComingCellIdentifier")
+        return collectionView
     }()
     
     // MARK: - Lifecycle
@@ -224,13 +259,13 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
+        openedcollectionView.layoutIfNeeded()
     }
     
     // MARK: - Helpers
     
     private func configureUI(){
         view.backgroundColor = .white
-        // 네비게이션 바 숨기기
         navigationController?.isNavigationBarHidden = true
         
         // 메뉴 스택뷰 추가
@@ -352,6 +387,15 @@ class HomeViewController: UIViewController {
         containerView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20).isActive = true
         containerView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20).isActive = true
         
+        // 컨테이너뷰에 컬렉션 뷰 추가
+        view.addSubview(openedcollectionView)
+        openedcollectionView.translatesAutoresizingMaskIntoConstraints = false
+        openedcollectionView.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 10).isActive = true
+        openedcollectionView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 10).isActive = true
+        openedcollectionView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -10).isActive = true
+        openedcollectionView.heightAnchor.constraint(equalTo: containerView.heightAnchor, multiplier: 3/5).isActive = true
+
+    
         containerView.addSubview(openedTCStackView)
 
         openedTCStackView.translatesAutoresizingMaskIntoConstraints = false
@@ -364,7 +408,26 @@ class HomeViewController: UIViewController {
         
         memoryThirdLabel.widthAnchor.constraint(equalTo: memoryThirdLabel.heightAnchor).isActive = true
         
+        view.addSubview(upComingCollectionView)
+        
+        // 컨테이너뷰에 라벨 추가
+        containerView.addSubview(upComingLabel)
+
+        upComingLabel.translatesAutoresizingMaskIntoConstraints = false
+        upComingLabel.topAnchor.constraint(equalTo: upComingCollectionView.topAnchor, constant: -20).isActive = true
+        upComingLabel.leadingAnchor.constraint(equalTo: upComingCollectionView.leadingAnchor, constant: 10).isActive = true
+        
+        upComingCollectionView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            upComingCollectionView.topAnchor.constraint(equalTo: containerView.bottomAnchor, constant: 45),
+            upComingCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            upComingCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            upComingCollectionView.heightAnchor.constraint(equalToConstant: 0) // 적절한 높이 설정
+        ])
+        
     }
+    
+    // MARK: - Actions
     
     @objc func menuButtonTapped() {
         print("메뉴 버튼이 클릭되었습니다")
@@ -396,3 +459,41 @@ class HomeViewController: UIViewController {
     }
 }
 
+// MARK: - UICollectionViewDataSource
+
+// 첫 번째 컬렉션 뷰 데이터 소스 및 델리게이트
+extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        if collectionView == openedcollectionView {
+            return 20 // 첫 번째 컬렉션 뷰의 아이템 개수 설정
+        } else if collectionView == upComingCollectionView {
+            return 15 // 두 번째 컬렉션 뷰의 아이템 개수 설정
+        } else {
+            return 0
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "openedCellIdentifier", for: indexPath)
+        
+        if collectionView == openedcollectionView {
+            cell.backgroundColor = .blue // 첫 번째 컬렉션 뷰의 셀 색상 설정
+        } else if collectionView == upComingCollectionView {
+            cell.backgroundColor = .yellow // 두 번째 컬렉션 뷰의 셀 색상 설정
+        }
+        
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        if collectionView == openedcollectionView {
+            let collectionViewHeight = openedcollectionView.frame.height
+            return CGSize(width: 40, height: collectionViewHeight) // 첫 번째 컬렉션 뷰의 셀 크기 설정
+        } else if collectionView == upComingCollectionView {
+            let collectionViewHeight = upComingCollectionView.frame.height
+            return CGSize(width: 50, height: collectionViewHeight) // 두 번째 컬렉션 뷰의 셀 크기 설정
+        } else {
+            return CGSize.zero
+        }
+    }
+}
