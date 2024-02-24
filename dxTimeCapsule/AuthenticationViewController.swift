@@ -17,6 +17,10 @@ class AuthenticationViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        
+        // MARK: - Test 자동기입 정보(나중에 파기해야됨)
+        emailTextField.text = "admin@time.co.kr"
+        passwordTextField.text = "123456"
     }
     
     // MARK: - Functions
@@ -90,6 +94,7 @@ class AuthenticationViewController: UIViewController {
 
     }
     
+    // UI 컴포넌트 설정
     private func configureUIComponents() {
         // 로그인 및 회원가입 버튼 설정
         setupButton(loginButton, title: "로그인", backgroundColor: .systemBlue, selector: #selector(didTapLoginButton))
@@ -104,16 +109,13 @@ class AuthenticationViewController: UIViewController {
         // 로그인 및 회원가입 버튼 레이아웃 설정
         loginButton.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            // 기타 제약 조건
         }
 
         signUpButton.snp.makeConstraints { make in
             make.top.equalTo(loginButton.snp.bottom).offset(10)
             make.centerX.equalToSuperview()
-            // 기타 제약 조건
         }
     }
-    
     
     // 버튼 셋업
     private func setupButton(_ button: UIButton, title: String, backgroundColor: UIColor, selector: Selector) {
@@ -124,21 +126,53 @@ class AuthenticationViewController: UIViewController {
         button.addTarget(self, action: selector, for: .touchUpInside)
     }
     
+    // 간단한 알림 창 표시 함수
+    private func showAlert(with message: String) {
+        let alert = UIAlertController(title: "알림", message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "확인", style: .default))
+        present(alert, animated: true)
+    }
+
+    
+    // MARK: - Actions
+    
     // 로그인 버튼 탭 처리
     @objc private func didTapLoginButton() {
-        // 가정: emailTextField와 passwordTextField가 이미 정의되어 있고, 사용자 입력을 받는다.
-        let email = emailTextField.text ?? ""
-        let password = passwordTextField.text ?? ""
+        guard let email = emailTextField.text, !email.isEmpty,
+              let password = passwordTextField.text, !password.isEmpty else {
+            let alert = UIAlertController(title: "입력 오류", message: "이메일 또는 비밀번호를 입력해주세요.", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "확인", style: .default))
+            self.present(alert, animated: true)
+            return
+        }
         
-        authenticationViewModel.signIn(email: email, password: password) { success, errorMessage in
-            if success {
-                // 로그인 성공 처리, 예: 다음 화면으로 전환
-            } else {
-                // 에러 메시지 표시
-                print(errorMessage ?? "로그인 실패")
+        Auth.auth().signIn(withEmail: email, password: password) { [weak self] authResult, error in
+            guard let self = self else { return }
+            
+            DispatchQueue.main.async {
+                if let error = error {
+                    // 로그인 실패: 에러 메시지 처리 및 알림 표시
+                    let alert = UIAlertController(title: "로그인 실패", message: error.localizedDescription, preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "확인", style: .default))
+                    self.present(alert, animated: true)
+                } else {
+                    // 로그인 성공: 성공 메시지 표시 및 메인 피드 화면으로 전환
+                    let alert = UIAlertController(title: "로그인 성공", message: "로그인 되었습니다", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "확인", style: .default) { [weak self] _ in
+                        guard let self = self else { return }
+                        let mainFeedVC = HomeViewController()
+                        // 네비게이션 컨트롤러가 있는 경우
+//                        self.navigationController?.pushViewController(mainFeedVC, animated: true)
+                        // 네비게이션 컨트롤러가 없는 경우
+                         self.present(mainFeedVC, animated: true, completion: nil)
+                    })
+                    self.present(alert, animated: true)
+
+                }
             }
         }
     }
+
     
     // 회원가입 버튼 탭 처리
     @objc private func didTapSignUpButton() {
@@ -147,17 +181,7 @@ class AuthenticationViewController: UIViewController {
         navigationController.modalPresentationStyle = .fullScreen
         present(navigationController, animated: true, completion: nil)
     }
-
-    
-    // 간단한 알림 창 표시 함수
-    private func showAlert(with message: String) {
-        let alert = UIAlertController(title: "알림", message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "확인", style: .default))
-        present(alert, animated: true)
-    }
 }
-
-
 
 // MARK: - Preview
 import SwiftUI

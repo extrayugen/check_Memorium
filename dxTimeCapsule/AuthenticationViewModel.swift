@@ -12,30 +12,41 @@ class AuthenticationViewModel {
     var onAuthStateChanged: ((Bool, String?) -> Void)?
     
     // 회원가입 함수
-    func signUp(email: String, password: String, name: String) {
-        // Firestore에 사용자 정보 저장
-        let userDocument = db.collection("users").document(email)
-        userDocument.setData([
-            "email": email,
-            "password": password, // 실제 앱에서는 비밀번호를 평문으로 저장해서는 안 됩니다. 암호화를 고려해야 합니다.
-            "name": name
-        ]) { error in
+    func signUp(email: String, password: String, nickname: String) {
+        // Firebase Authentication을 사용하여 사용자 생성
+        Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
             if let error = error {
-                print("Error adding document: \(error)")
-            } else {
-                print("Document added with ID: \(userDocument.documentID)")
+                print("Error creating user: \(error)")
+                return
+            }
+            
+            // 사용자 생성 성공, Firestore에 추가 정보 저장
+            guard let userId = authResult?.user.uid else { return }
+            let userDocument = Firestore.firestore().collection("users").document(userId)
+            
+            userDocument.setData([
+                "nickname": nickname
+                // 비밀번호는 저장하지 않습니다.
+            ]) { error in
+                if let error = error {
+                    print("Error saving user information: \(error)")
+                } else {
+                    print("User information saved successfully")
+                }
             }
         }
     }
+
     
     // 로그인 함수
-    func signIn(email: String, password: String, completion: @escaping (Bool, String?) -> Void) {
+    func signIn(email: String, password: String) {
         Auth.auth().signIn(withEmail: email, password: password) { authResult, error in
             if let error = error {
-                completion(false, error.localizedDescription)
-            } else {
-                completion(true, nil)
+                print("Login error: \(error.localizedDescription)")
+                return
             }
+            // 성공적으로 로그인된 경우의 처리
+            print("User logged in successfully")
         }
     }
 
