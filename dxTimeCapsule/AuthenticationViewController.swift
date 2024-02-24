@@ -162,9 +162,9 @@ class AuthenticationViewController: UIViewController {
                         guard let self = self else { return }
                         let mainFeedVC = PhotoUploadViewController()
                         // 네비게이션 컨트롤러가 있는 경우
-//                        self.navigationController?.pushViewController(mainFeedVC, animated: true)
+                        self.navigationController?.pushViewController(mainFeedVC, animated: true)
                         // 네비게이션 컨트롤러가 없는 경우
-                         self.present(mainFeedVC, animated: true, completion: nil)
+//                         self.present(mainFeedVC, animated: true, completion: nil)
                     })
                     self.present(alert, animated: true)
 
