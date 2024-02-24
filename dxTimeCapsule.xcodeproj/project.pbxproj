@@ -16,6 +16,7 @@
 		1F5787062B85949100C40B08 /* TimeCapsuleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5787052B85949100C40B08 /* TimeCapsuleView.swift */; };
 		1F5787132B86DBF900C40B08 /* AuthenticationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5787122B86DBF900C40B08 /* AuthenticationViewController.swift */; };
 		1FB387352B87A0B300054816 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB387342B87A0B300054816 /* SignUpViewController.swift */; };
+		46EA9BAE2B89A27E00633EC4 /* CapsuleMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46EA9BAD2B89A27E00633EC4 /* CapsuleMapViewController.swift */; };
 		1FB387372B8862AF00054816 /* MainFeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB387362B8862AF00054816 /* MainFeedViewController.swift */; };
 		1FB387392B8863DE00054816 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB387382B8863DE00054816 /* HomeViewController.swift */; };
 		1FB3873B2B886E9800054816 /* TimeCapsuleCreationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB3873A2B886E9800054816 /* TimeCapsuleCreationViewController.swift */; };
@@ -42,6 +43,8 @@
 		1FB3873D2B88791A00054816 /* TimeCapsuleCreationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeCapsuleCreationViewModel.swift; sourceTree = "<group>"; };
 		1FB3873F2B8881DB00054816 /* TimeCapsule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeCapsule.swift; sourceTree = "<group>"; };
 		23DDF6A42359D2BE16A2180B /* Pods-dxTimeCapsule.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dxTimeCapsule.debug.xcconfig"; path = "Target Support Files/Pods-dxTimeCapsule/Pods-dxTimeCapsule.debug.xcconfig"; sourceTree = "<group>"; };
+		46EA9BAC2B89A14700633EC4 /* APIKey.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = APIKey.xcconfig; sourceTree = "<group>"; };
+		46EA9BAD2B89A27E00633EC4 /* CapsuleMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapsuleMapViewController.swift; sourceTree = "<group>"; };
 		51835482EA934B9B07ED8BAE /* Pods-dxTimeCapsule.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dxTimeCapsule.release.xcconfig"; path = "Target Support Files/Pods-dxTimeCapsule/Pods-dxTimeCapsule.release.xcconfig"; sourceTree = "<group>"; };
 		E7852692F586552FA2D93EA4 /* Pods_dxTimeCapsule.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_dxTimeCapsule.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -79,6 +82,7 @@
 		1F5786D72B849AF800C40B08 /* dxTimeCapsule */ = {
 			isa = PBXGroup;
 			children = (
+				46EA9BAC2B89A14700633EC4 /* APIKey.xcconfig */,
 				1F5786F52B849D0D00C40B08 /* Model */,
 				1F5786EF2B849C2200C40B08 /* ViewModel */,
 				1F5786F02B849C2F00C40B08 /* View */,
@@ -108,6 +112,7 @@
 			children = (
 				1F5787122B86DBF900C40B08 /* AuthenticationViewController.swift */,
 				1FB387342B87A0B300054816 /* SignUpViewController.swift */,
+				46EA9BAD2B89A27E00633EC4 /* CapsuleMapViewController.swift */,
 				1FB387382B8863DE00054816 /* HomeViewController.swift */,
 				1FB387362B8862AF00054816 /* MainFeedViewController.swift */,
 				1FB3873C2B886EDA00054816 /* TimeCapsule */,
@@ -286,6 +291,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				46EA9BAE2B89A27E00633EC4 /* CapsuleMapViewController.swift in Sources */,
 				1F5786D92B849AF800C40B08 /* AppDelegate.swift in Sources */,
 				1FB387352B87A0B300054816 /* SignUpViewController.swift in Sources */,
 				1FB3873B2B886E9800054816 /* TimeCapsuleCreationViewController.swift in Sources */,
@@ -316,6 +322,7 @@
 /* Begin XCBuildConfiguration section */
 		1F5786EA2B849AFA00C40B08 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 46EA9BAC2B89A14700633EC4 /* APIKey.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -379,6 +386,7 @@
 		};
 		1F5786EB2B849AFA00C40B08 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 46EA9BAC2B89A14700633EC4 /* APIKey.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;

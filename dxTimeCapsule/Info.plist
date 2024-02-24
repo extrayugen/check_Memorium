@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NMFClientId</key>
+	<string>$(NMFClientId)</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
@@ -19,5 +21,9 @@
 			</array>
 		</dict>
 	</dict>
+	<key>X-NCP-APIGW-API-KEY</key>
+	<string>$(X-NCP-APIGW-API-KEY)</string>
+	<key>X-NCP-APIGW-API-KEY-ID</key>
+	<string>$(X-NCP-APIGW-API-KEY-ID)</string>
 </dict>
 </plist>
