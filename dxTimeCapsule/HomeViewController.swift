@@ -7,28 +7,51 @@
 
 import UIKit
 
+#Preview{
+   HomeViewController()
+}
+
 class HomeViewController: UIViewController {
     
     // MARK: - Properties
     
-    // 메뉴 스택 바
-    let menuStackBar: UIStackView = {
+    // 메뉴 스택바 생성
+    let menuStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .horizontal
         stackView.alignment = .center
         stackView.spacing = 10
         return stackView
     }()
-    
-    // pagelogo 이미지뷰
+
+    // pagelogo 이미지뷰 생성
     let logoImageView: UIImageView = {
-        let imageView = UIImageView(image: UIImage(named: "launchLogo"))
-        imageView.contentMode = .scaleAspectFit // 이미지 비율 유지
+        let imageView = UIImageView(image: UIImage(named: "pagelogo"))
+        imageView.contentMode = .scaleAspectFit
         return imageView
     }()
+
+    // 알림 버튼 생성
+    let notificationButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(systemName: "bell"), for: .normal)
+        button.addTarget(self, action: #selector(notificationButtonTapped), for: .touchUpInside)
+        button.isUserInteractionEnabled = true
+        return button
+    }()
+
+    // 메뉴 버튼 생성
+    let menuButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(systemName: "line.horizontal.3"), for: .normal)
+        button.addTarget(self, action: #selector(menuButtonTapped), for: .touchUpInside)
+        button.isUserInteractionEnabled = true
+        return button
+    }()
+
     
     // 스택뷰
-    let stackView: UIStackView = {
+    let userStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .horizontal
         stackView.alignment = .center
@@ -41,7 +64,7 @@ class HomeViewController: UIViewController {
         let imageView = UIImageView(image: UIImage(named: "profilePic"))
         imageView.contentMode = .scaleAspectFit
         imageView.clipsToBounds = true
-        imageView.layer.cornerRadius = 20 // 원하는 값으로 조정
+        imageView.layer.cornerRadius = 20
         return imageView
     }()
     
@@ -107,8 +130,9 @@ class HomeViewController: UIViewController {
         button.setTitle("새로운 타임캡슐 만들기", for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.backgroundColor = UIColor(red: 113/255, green: 183/255, blue: 246/255, alpha: 1.0)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .black)
         button.layer.cornerRadius = 10
-        button.addTarget(HomeViewController.self, action: #selector(addNewTCButtonTapped), for: .touchUpInside)
+        button.addTarget(self, action: #selector(addNewTCButtonTapped), for: .touchUpInside)
         return button
     }()
     
@@ -116,7 +140,7 @@ class HomeViewController: UIViewController {
     let containerView: UIView = {
         let view = UIView()
         view.backgroundColor = UIColor(red: 163/255, green: 201/255, blue: 246/255, alpha: 1.0)
-        view.layer.cornerRadius = 20 // 모서리 둥글게 설정
+        view.layer.cornerRadius = 20
         return view
     }()
     
@@ -150,12 +174,11 @@ class HomeViewController: UIViewController {
     // Opened Label StackView 생성
     lazy var openedLabelStackView: UIStackView = {
         let stackView = UIStackView()
-        stackView.axis = .vertical // 수직으로 쌓임
+        stackView.axis = .vertical
         stackView.alignment = .fill
-        stackView.spacing = 3 // 간격 설정
+        stackView.spacing = 3
         stackView.addArrangedSubview(self.memoryLabel)
         stackView.addArrangedSubview(self.memorySecondLabel)
-        
         return stackView
     }()
     
@@ -164,7 +187,7 @@ class HomeViewController: UIViewController {
         let stackView = UIStackView()
         stackView.axis = .horizontal
         stackView.alignment = .fill
-        stackView.spacing = 8 // 간격 설정
+        stackView.spacing = 8
         stackView.addArrangedSubview(self.memoryThirdLabel)
         stackView.addArrangedSubview(self.openedLabelStackView)
         stackView.addArrangedSubview(self.openedMemoryButton)
@@ -206,74 +229,76 @@ class HomeViewController: UIViewController {
     // MARK: - Helpers
     
     private func configureUI(){
-        
+        view.backgroundColor = .white
         // 네비게이션 바 숨기기
         navigationController?.isNavigationBarHidden = true
         
         // 메뉴 스택뷰 추가
-        view.addSubview(menuStackBar)
-        menuStackBar.translatesAutoresizingMaskIntoConstraints = false
-        menuStackBar.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20).isActive = true
-        menuStackBar.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        menuStackBar.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        view.addSubview(menuStackView)
+        menuStackView.translatesAutoresizingMaskIntoConstraints = false
+        menuStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20).isActive = true
+        menuStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        menuStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         
         // pagelogo 이미지뷰 추가
-        menuStackBar.addSubview(logoImageView)
+        menuStackView.addSubview(logoImageView)
         logoImageView.translatesAutoresizingMaskIntoConstraints = false
-        logoImageView.centerYAnchor.constraint(equalTo: menuStackBar.centerYAnchor).isActive = true
-        logoImageView.leftAnchor.constraint(equalTo: menuStackBar.leftAnchor).isActive = true
-        logoImageView.widthAnchor.constraint(equalToConstant: 170).isActive = true // 원하는 크기로 조정
+        logoImageView.centerYAnchor.constraint(equalTo: menuStackView.centerYAnchor).isActive = true
+        logoImageView.leftAnchor.constraint(equalTo: menuStackView.leftAnchor).isActive = true
+        logoImageView.widthAnchor.constraint(equalToConstant: 170).isActive = true
         
         // 메뉴 버튼 추가
         let menuButton = UIButton(type: .system)
-        menuButton.setImage(UIImage(systemName: "line.horizontal.3"), for: .normal)
-        menuButton.addTarget(self, action: #selector(menuButtonTapped), for: .touchUpInside)
-        menuButton.isUserInteractionEnabled = true
-        menuStackBar.addSubview(menuButton)
-        menuButton.translatesAutoresizingMaskIntoConstraints = false
-        menuButton.centerYAnchor.constraint(equalTo: menuStackBar.centerYAnchor).isActive = true
-        menuButton.rightAnchor.constraint(equalTo: menuStackBar.rightAnchor, constant: -16).isActive = true
-        
+            menuButton.setImage(UIImage(systemName: "line.horizontal.3"), for: .normal)
+            menuButton.addTarget(self, action: #selector(menuButtonTapped), for: .touchUpInside)
+            menuButton.isUserInteractionEnabled = true
+        menuStackView.addSubview(menuButton)
+            menuButton.translatesAutoresizingMaskIntoConstraints = false
+            menuButton.centerYAnchor.constraint(equalTo: menuStackView.centerYAnchor).isActive = true
+            menuButton.rightAnchor.constraint(equalTo: menuStackView.rightAnchor, constant: -16).isActive = true
+                
         // 알림 버튼 추가
         let notificationButton = UIButton(type: .system)
-        notificationButton.setImage(UIImage(systemName: "bell"), for: .normal)
-        notificationButton.addTarget(self, action: #selector(notificationButtonTapped), for: .touchUpInside)
-        notificationButton.isUserInteractionEnabled = true
-        menuStackBar.addSubview(notificationButton)
-        notificationButton.translatesAutoresizingMaskIntoConstraints = false
-        notificationButton.centerYAnchor.constraint(equalTo: menuStackBar.centerYAnchor).isActive = true
-        notificationButton.rightAnchor.constraint(equalTo: menuButton.leftAnchor, constant: -16).isActive = true
+            notificationButton.setImage(UIImage(systemName: "bell"), for: .normal)
+            notificationButton.addTarget(self, action: #selector(notificationButtonTapped), for: .touchUpInside)
+            notificationButton.isUserInteractionEnabled = true
+        menuStackView.addSubview(notificationButton)
+            notificationButton.translatesAutoresizingMaskIntoConstraints = false
+            notificationButton.centerYAnchor.constraint(equalTo: menuStackView.centerYAnchor).isActive = true
+            notificationButton.rightAnchor.constraint(equalTo: menuButton.leftAnchor, constant: -16).isActive = true
+        
+        
         
         // 스택뷰 추가
-        view.addSubview(stackView)
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.topAnchor.constraint(equalTo: menuStackBar.bottomAnchor, constant: 30).isActive = true
-        stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20).isActive = true
-        stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20).isActive = true
+        view.addSubview(userStackView)
+        userStackView.translatesAutoresizingMaskIntoConstraints = false
+        userStackView.topAnchor.constraint(equalTo: menuStackView.bottomAnchor, constant: 30).isActive = true
+        userStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20).isActive = true
+        userStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20).isActive = true
         
         // 프로필 이미지뷰 추가
-        stackView.addArrangedSubview(profileImageView)
+        userStackView.addArrangedSubview(profileImageView)
         profileImageView.translatesAutoresizingMaskIntoConstraints = false
-        profileImageView.widthAnchor.constraint(equalToConstant: 40).isActive = true // 원하는 크기로 조정
-        profileImageView.heightAnchor.constraint(equalToConstant: 40).isActive = true // 원하는 크기로 조정
+        profileImageView.widthAnchor.constraint(equalToConstant: 40).isActive = true
+        profileImageView.heightAnchor.constraint(equalToConstant: 40).isActive = true
         profileImageView.layer.cornerRadius = 20
         
         // 사용자 ID 레이블 추가
-        stackView.addArrangedSubview(userIdLabel)
+        userStackView.addArrangedSubview(userIdLabel)
         
         // 날씨 정보 레이블 추가
-        stackView.addArrangedSubview(weatherLabel)
+        userStackView.addArrangedSubview(weatherLabel)
         
         // 메인 타임캡슐 이미지뷰 추가
         view.addSubview(mainTCImageView)
         mainTCImageView.isUserInteractionEnabled = true
         mainTCImageView.translatesAutoresizingMaskIntoConstraints = false
-        mainTCImageView.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 20).isActive = true
+        mainTCImageView.topAnchor.constraint(equalTo: userStackView.bottomAnchor, constant: 20).isActive = true
         mainTCImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20).isActive = true
         mainTCImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20).isActive = true
         mainTCImageView.heightAnchor.constraint(equalToConstant: 200).isActive = true
         mainTCImageView.layer.cornerRadius = 20
-        mainTCImageView.layer.masksToBounds = true // 둥근 모서리가 잘린 이미지를 보여주도록 설정
+        mainTCImageView.layer.masksToBounds = true
         mainTCImageView.layer.shadowColor = UIColor.black.cgColor
         mainTCImageView.layer.shadowOpacity = 0.5
         mainTCImageView.layer.shadowOffset = CGSize(width: 0, height: 2)
@@ -338,27 +363,36 @@ class HomeViewController: UIViewController {
         openedMemoryButton.widthAnchor.constraint(equalTo: openedMemoryButton.heightAnchor).isActive = true
         
         memoryThirdLabel.widthAnchor.constraint(equalTo: memoryThirdLabel.heightAnchor).isActive = true
-
         
     }
     
     @objc func menuButtonTapped() {
         print("메뉴 버튼이 클릭되었습니다")
+        
     }
     
     @objc func notificationButtonTapped() {
         print("알림 버튼이 클릭되었습니다")
+        
     }
     
     @objc private func mainTCImageViewTapped() {
         print("메인 타임캡슐 보러가기 버튼이 클릭되었습니다")
+        let mainCapsuleVC = MainCapsuleViewController()
+        let navController = UINavigationController(rootViewController: mainCapsuleVC)
+        present(navController, animated: true, completion: nil)
     }
     
     @objc func addNewTCButtonTapped() {
         print("새로운 타임캡슐 만들기 버튼이 클릭되었습니다")
+        let addNewTCVC = CreationViewController()
+        let navController = UINavigationController(rootViewController: addNewTCVC)
+        present(navController, animated: true, completion: nil)
     }
+    
     @objc func openedMemoryButtonTapped(){
         print("저장된 타임캡슐 열기 버튼이 클릭되었습니다")
+        
     }
 }
 

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0650E25C14207B6941E876DD /* Pods_dxTimeCapsule.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E53E63672B22459B20786B7 /* Pods_dxTimeCapsule.framework */; };
 		1F0D3B2C2B89AA2B00A31E82 /* PhotoUploadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0D3B2B2B89AA2B00A31E82 /* PhotoUploadViewController.swift */; };
 		1F0D3B322B89D85500A31E82 /* PhotoDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0D3B312B89D85500A31E82 /* PhotoDetailViewController.swift */; };
 		1F5786D92B849AF800C40B08 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5786D82B849AF800C40B08 /* AppDelegate.swift */; };
@@ -23,12 +24,13 @@
 		1FB3873B2B886E9800054816 /* CreationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB3873A2B886E9800054816 /* CreationViewController.swift */; };
 		1FB3873E2B88791A00054816 /* TimeCapsuleCreationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB3873D2B88791A00054816 /* TimeCapsuleCreationViewModel.swift */; };
 		1FB387402B8881DB00054816 /* TimeCapsule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB3873F2B8881DB00054816 /* TimeCapsule.swift */; };
+		27C81E452B8A3A39001E3623 /* OpenedTCCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27C81E442B8A3A39001E3623 /* OpenedTCCollectionViewCell.swift */; };
+		27C81E472B8A3A4C001E3623 /* UpcomingTCCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27C81E462B8A3A4C001E3623 /* UpcomingTCCollectionViewCell.swift */; };
 		460FE7652B8A1FE500AF8086 /* APIKey.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 460FE7642B8A1FE500AF8086 /* APIKey.xcconfig */; };
 		460FE7672B8A200D00AF8086 /* LockedCapsuleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 460FE7662B8A200D00AF8086 /* LockedCapsuleCell.swift */; };
 		46EA9BAE2B89A27E00633EC4 /* CapsuleMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46EA9BAD2B89A27E00633EC4 /* CapsuleMapViewController.swift */; };
 		4EC308DE2B8A200300EEE54C /* MainCapsuleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC308DD2B8A200300EEE54C /* MainCapsuleViewModel.swift */; };
 		4EC308E02B8A202400EEE54C /* MainCapsuleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC308DF2B8A202400EEE54C /* MainCapsuleViewController.swift */; };
-		98B1D72E5D91C0CF51BB1E6F /* Pods_dxTimeCapsule.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C59E911965D15C01F14022D /* Pods_dxTimeCapsule.framework */; };
 		D25B20EB2B89CD02006CEED8 /* LaunchScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25B20EA2B89CD02006CEED8 /* LaunchScreenViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -51,17 +53,16 @@
 		1FB3873A2B886E9800054816 /* CreationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreationViewController.swift; sourceTree = "<group>"; };
 		1FB3873D2B88791A00054816 /* TimeCapsuleCreationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeCapsuleCreationViewModel.swift; sourceTree = "<group>"; };
 		1FB3873F2B8881DB00054816 /* TimeCapsule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeCapsule.swift; sourceTree = "<group>"; };
-
-		23DDF6A42359D2BE16A2180B /* Pods-dxTimeCapsule.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dxTimeCapsule.debug.xcconfig"; path = "Target Support Files/Pods-dxTimeCapsule/Pods-dxTimeCapsule.debug.xcconfig"; sourceTree = "<group>"; };
+		24940157E90C825F0AF8F6E7 /* Pods-dxTimeCapsule.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dxTimeCapsule.release.xcconfig"; path = "Target Support Files/Pods-dxTimeCapsule/Pods-dxTimeCapsule.release.xcconfig"; sourceTree = "<group>"; };
+		27C81E442B8A3A39001E3623 /* OpenedTCCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenedTCCollectionViewCell.swift; sourceTree = "<group>"; };
+		27C81E462B8A3A4C001E3623 /* UpcomingTCCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingTCCollectionViewCell.swift; sourceTree = "<group>"; };
+		4096504136FE62FB0887CFD8 /* Pods-dxTimeCapsule.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dxTimeCapsule.debug.xcconfig"; path = "Target Support Files/Pods-dxTimeCapsule/Pods-dxTimeCapsule.debug.xcconfig"; sourceTree = "<group>"; };
 		460FE7642B8A1FE500AF8086 /* APIKey.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = APIKey.xcconfig; sourceTree = "<group>"; };
 		460FE7662B8A200D00AF8086 /* LockedCapsuleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockedCapsuleCell.swift; sourceTree = "<group>"; };
-
 		46EA9BAD2B89A27E00633EC4 /* CapsuleMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapsuleMapViewController.swift; sourceTree = "<group>"; };
 		4EC308DD2B8A200300EEE54C /* MainCapsuleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCapsuleViewModel.swift; sourceTree = "<group>"; };
 		4EC308DF2B8A202400EEE54C /* MainCapsuleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCapsuleViewController.swift; sourceTree = "<group>"; };
-		5C59E911965D15C01F14022D /* Pods_dxTimeCapsule.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_dxTimeCapsule.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		7CBEAD0AD7208A95F503F7F0 /* Pods-dxTimeCapsule.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dxTimeCapsule.release.xcconfig"; path = "Target Support Files/Pods-dxTimeCapsule/Pods-dxTimeCapsule.release.xcconfig"; sourceTree = "<group>"; };
-		A8720466EB6EDC06CD2D3BB6 /* Pods-dxTimeCapsule.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dxTimeCapsule.debug.xcconfig"; path = "Target Support Files/Pods-dxTimeCapsule/Pods-dxTimeCapsule.debug.xcconfig"; sourceTree = "<group>"; };
+		9E53E63672B22459B20786B7 /* Pods_dxTimeCapsule.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_dxTimeCapsule.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D25B20EA2B89CD02006CEED8 /* LaunchScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -70,7 +71,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				98B1D72E5D91C0CF51BB1E6F /* Pods_dxTimeCapsule.framework in Frameworks */,
+				0650E25C14207B6941E876DD /* Pods_dxTimeCapsule.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -83,7 +84,7 @@
 				1F5786D72B849AF800C40B08 /* dxTimeCapsule */,
 				1F5786D62B849AF800C40B08 /* Products */,
 				25AD7CDE47BA0E85739F3959 /* Pods */,
-				2E48FAF47BEE864F6A3797F3 /* Frameworks */,
+				3CC1A9291EBAFDCA26B0042E /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -128,11 +129,11 @@
 		1F5786F02B849C2F00C40B08 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				27C81E412B8A39E9001E3623 /* HomeView */,
 				D25B20EA2B89CD02006CEED8 /* LaunchScreenViewController.swift */,
 				1F5787122B86DBF900C40B08 /* AuthenticationViewController.swift */,
 				1FB387342B87A0B300054816 /* SignUpViewController.swift */,
 				46EA9BAD2B89A27E00633EC4 /* CapsuleMapViewController.swift */,
-				1FB387382B8863DE00054816 /* HomeViewController.swift */,
 				1FB387362B8862AF00054816 /* MainFeedViewController.swift */,
 				4EC308DF2B8A202400EEE54C /* MainCapsuleViewController.swift */,
 				1FB3873C2B886EDA00054816 /* TimeCapsuleUpload */,
@@ -184,16 +185,26 @@
 		25AD7CDE47BA0E85739F3959 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				A8720466EB6EDC06CD2D3BB6 /* Pods-dxTimeCapsule.debug.xcconfig */,
-				7CBEAD0AD7208A95F503F7F0 /* Pods-dxTimeCapsule.release.xcconfig */,
+				4096504136FE62FB0887CFD8 /* Pods-dxTimeCapsule.debug.xcconfig */,
+				24940157E90C825F0AF8F6E7 /* Pods-dxTimeCapsule.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
 		};
-		2E48FAF47BEE864F6A3797F3 /* Frameworks */ = {
+		27C81E412B8A39E9001E3623 /* HomeView */ = {
 			isa = PBXGroup;
 			children = (
-				5C59E911965D15C01F14022D /* Pods_dxTimeCapsule.framework */,
+				1FB387382B8863DE00054816 /* HomeViewController.swift */,
+				27C81E442B8A3A39001E3623 /* OpenedTCCollectionViewCell.swift */,
+				27C81E462B8A3A4C001E3623 /* UpcomingTCCollectionViewCell.swift */,
+			);
+			name = HomeView;
+			sourceTree = "<group>";
+		};
+		3CC1A9291EBAFDCA26B0042E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9E53E63672B22459B20786B7 /* Pods_dxTimeCapsule.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -205,11 +216,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1F5786EC2B849AFA00C40B08 /* Build configuration list for PBXNativeTarget "dxTimeCapsule" */;
 			buildPhases = (
-				500FB8AF35074100C46A732D /* [CP] Check Pods Manifest.lock */,
+				4D7A0023A0A11C6D72ADD3AD /* [CP] Check Pods Manifest.lock */,
 				1F5786D12B849AF800C40B08 /* Sources */,
 				1F5786D22B849AF800C40B08 /* Frameworks */,
 				1F5786D32B849AF800C40B08 /* Resources */,
-				B9F7B45B4C217E81FF5E3F2B /* [CP] Embed Pods Frameworks */,
+				00D43A2815645565EFCF0A8D /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -268,7 +279,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		500FB8AF35074100C46A732D /* [CP] Check Pods Manifest.lock */ = {
+		00D43A2815645565EFCF0A8D /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-dxTimeCapsule/Pods-dxTimeCapsule-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-dxTimeCapsule/Pods-dxTimeCapsule-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-dxTimeCapsule/Pods-dxTimeCapsule-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4D7A0023A0A11C6D72ADD3AD /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -290,23 +318,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		B9F7B45B4C217E81FF5E3F2B /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-dxTimeCapsule/Pods-dxTimeCapsule-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-dxTimeCapsule/Pods-dxTimeCapsule-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-dxTimeCapsule/Pods-dxTimeCapsule-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -326,6 +337,8 @@
 				1F5787132B86DBF900C40B08 /* AuthenticationViewController.swift in Sources */,
 				1FB387402B8881DB00054816 /* TimeCapsule.swift in Sources */,
 				1FB387392B8863DE00054816 /* HomeViewController.swift in Sources */,
+				27C81E452B8A3A39001E3623 /* OpenedTCCollectionViewCell.swift in Sources */,
+				27C81E472B8A3A4C001E3623 /* UpcomingTCCollectionViewCell.swift in Sources */,
 				1F5786F22B849CA900C40B08 /* AuthenticationViewModel.swift in Sources */,
 				1FB387372B8862AF00054816 /* MainFeedViewController.swift in Sources */,
 				1FB3873E2B88791A00054816 /* TimeCapsuleCreationViewModel.swift in Sources */,
@@ -470,7 +483,7 @@
 		};
 		1F5786ED2B849AFA00C40B08 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A8720466EB6EDC06CD2D3BB6 /* Pods-dxTimeCapsule.debug.xcconfig */;
+			baseConfigurationReference = 4096504136FE62FB0887CFD8 /* Pods-dxTimeCapsule.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -483,7 +496,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -499,7 +512,7 @@
 		};
 		1F5786EE2B849AFA00C40B08 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7CBEAD0AD7208A95F503F7F0 /* Pods-dxTimeCapsule.release.xcconfig */;
+			baseConfigurationReference = 24940157E90C825F0AF8F6E7 /* Pods-dxTimeCapsule.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -512,7 +525,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
