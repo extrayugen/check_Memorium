@@ -135,8 +135,8 @@ class PhotoUploadViewController: UIViewController, UIImagePickerControllerDelega
         // "이 사진으로 선택하기" 액션
         let confirmAction = UIAlertAction(title: "이 사진으로 선택하기", style: .default) { [weak self] _ in
             self?.imageView.image = image
-            // 이미지 확정 후 CapsuleOptionViewController로 넘어가는 로직
-            let optionVC = CapsuleOptionViewController()
+            // 이미지 확정 후 PhotoDetailViewController로 넘어가는 로직
+            let optionVC = PhotoDetailViewController()
             self?.navigationController?.pushViewController(optionVC, animated: true)
         }
         
