@@ -128,8 +128,8 @@
 				46EA9BAD2B89A27E00633EC4 /* CapsuleMapViewController.swift */,
 				1FB387382B8863DE00054816 /* HomeViewController.swift */,
 				1FB387362B8862AF00054816 /* MainFeedViewController.swift */,
-				1FB3873C2B886EDA00054816 /* TimeCapsuleUpload */,
 				4EC308DF2B8A202400EEE54C /* MainCapsuleViewController.swift */,
+				1FB3873C2B886EDA00054816 /* TimeCapsuleUpload */,
 			);
 			name = View;
 			sourceTree = "<group>";
