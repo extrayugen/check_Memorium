@@ -20,6 +20,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let splashVC = LaunchScreenViewController()
         window.rootViewController = splashVC
         window.makeKeyAndVisible()
+
         
         self.window = window
         

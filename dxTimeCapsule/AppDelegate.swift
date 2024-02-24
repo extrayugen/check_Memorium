@@ -7,6 +7,7 @@
 
 import UIKit
 import FirebaseCore
+import NMapsMap
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,6 +17,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         FirebaseApp.configure()
+        let NMFClientId = Bundle.main.infoDictionary?["NMFClientId"] as! String
+        NMFAuthManager.shared().clientId = NMFClientId
+        //print("네이버 클라이언트 id: \(NMFClientId)")
+        
         return true
     }
 }
