@@ -91,7 +91,7 @@ class UploadDetailViewController: UIViewController {
             make.height.equalTo(50)
         }
     }
-    
+
     // MARK: - Actions
     @objc private func saveButtonTapped() {
         // 사진 세부사항 저장 로직

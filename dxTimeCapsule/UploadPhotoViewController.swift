@@ -3,20 +3,23 @@ import SnapKit
 
 class PhotoUploadViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
-    // UI 컴포넌트 선언
+    // MARK: - Properties
+    
     private let uploadAreaView = UIView()
     private let imageView = UIImageView()
     private let instructionLabel = UILabel()
     private let startUploadButton = UIButton()
     private let testPageButton = UIButton()
     
-    // 뷰의 생명주기: viewDidLoad
+    // MARK: - Life Cycles
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
     }
     
-    // UI 설정
+    // MARK: - UI Setup
+    
     private func setupUI() {
         view.backgroundColor = .systemBackground // 시스템 배경색 사용
         setupUploadAreaView()
@@ -24,6 +27,8 @@ class PhotoUploadViewController: UIViewController, UIImagePickerControllerDelega
         setupStartUploadButton()
         setupTestPageButton()
     }
+    
+    // MARK: - Functions
     
     // 업로드 영역 뷰 설정
     private func setupUploadAreaView() {
@@ -92,34 +97,6 @@ class PhotoUploadViewController: UIViewController, UIImagePickerControllerDelega
             make.height.equalTo(44) // 버튼 높이 표준화
         }
     }
-    // MARK: - Actions
-    @objc private func SearchPageButtonTapped() {
-        let vc = SearchUserViewController()
-        navigationController?.pushViewController(vc, animated: true)
-    }
-        
-    @objc private func startUploadButtonTapped() {
-        // 액션 시트 생성
-        let actionSheet = UIAlertController(title: "선택", message: "사진을 촬영하거나 앨범에서 선택해주세요.", preferredStyle: .actionSheet)
-        
-        // 카메라 액션 추가
-        if UIImagePickerController.isSourceTypeAvailable(.camera) {
-            actionSheet.addAction(UIAlertAction(title: "카메라 촬영", style: .default, handler: { [weak self] _ in
-                self?.presentImagePicker(sourceType: .camera)
-            }))
-        }
-        
-        // 사진 앨범 액션 추가
-        actionSheet.addAction(UIAlertAction(title: "앨범에서 선택", style: .default, handler: { [weak self] _ in
-            self?.presentImagePicker(sourceType: .photoLibrary)
-        }))
-        
-        // 취소 액션 추가
-        actionSheet.addAction(UIAlertAction(title: "취소", style: .cancel, handler: nil))
-        
-        // 액션 시트 표시
-        present(actionSheet, animated: true)
-    }
     
     // UIImagePickerController를 표시하는 메소드
     private func presentImagePicker(sourceType: UIImagePickerController.SourceType) {
@@ -131,7 +108,7 @@ class PhotoUploadViewController: UIViewController, UIImagePickerControllerDelega
     }
     
     
-    // MARK: - Image Picker Delegate
+    // imagePickerController를 표시하는 메소드
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         picker.dismiss(animated: true) { [weak self] in
             DispatchQueue.main.async {
@@ -146,6 +123,7 @@ class PhotoUploadViewController: UIViewController, UIImagePickerControllerDelega
         }
     }
     
+    // 이미지 선택 또는 모달 뷰를 표시하는 메소드
     private func confirmImageSelection(with image: UIImage) {
         // Action Sheet 생성
         let actionSheet = UIAlertController(title: "선택한 사진으로 진행하시겠습니까?", message: "", preferredStyle: .actionSheet)
@@ -175,4 +153,32 @@ class PhotoUploadViewController: UIViewController, UIImagePickerControllerDelega
         self.present(actionSheet, animated: true, completion: nil)
     }
     
+    // MARK: - Actions
+    @objc private func SearchPageButtonTapped() {
+        let vc = SearchUserViewController()
+        navigationController?.pushViewController(vc, animated: true)
+    }
+        
+    @objc private func startUploadButtonTapped() {
+        // 액션 시트 생성
+        let actionSheet = UIAlertController(title: "선택", message: "사진을 촬영하거나 앨범에서 선택해주세요.", preferredStyle: .actionSheet)
+        
+        // 카메라 액션 추가
+        if UIImagePickerController.isSourceTypeAvailable(.camera) {
+            actionSheet.addAction(UIAlertAction(title: "카메라 촬영", style: .default, handler: { [weak self] _ in
+                self?.presentImagePicker(sourceType: .camera)
+            }))
+        }
+        
+        // 사진 앨범 액션 추가
+        actionSheet.addAction(UIAlertAction(title: "앨범에서 선택", style: .default, handler: { [weak self] _ in
+            self?.presentImagePicker(sourceType: .photoLibrary)
+        }))
+        
+        // 취소 액션 추가
+        actionSheet.addAction(UIAlertAction(title: "취소", style: .cancel, handler: nil))
+        
+        // 액션 시트 표시
+        present(actionSheet, animated: true)
+    }
 }

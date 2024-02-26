@@ -22,7 +22,8 @@ class SearchUserViewController: UIViewController {
             make.height.equalTo(50)
         }
     }
-    
+
+
     private func setupButton() {
         searchButton.addTarget(self, action: #selector(searchButtonTapped), for: .touchUpInside)
         searchButton.backgroundColor = .systemBlue
