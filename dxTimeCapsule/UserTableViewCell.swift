@@ -31,7 +31,7 @@ class UserTableViewCell: UITableViewCell {
         addUserButton.addTarget(self, action: #selector(addUserButtonTapped), for: .touchUpInside)
         addSubview(addUserButton)
         
-        // SnapKit을 사용한 레이아웃 설정 (이 부분은 사용 환경에 맞게 조정해야 합니다)
+        // 프로필 이미지 뷰 레이아웃 설정
         userProfileImageView.snp.makeConstraints { make in
             make.left.equalToSuperview().offset(10)
             make.centerY.equalToSuperview()

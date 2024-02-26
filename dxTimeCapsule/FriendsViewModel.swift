@@ -20,6 +20,7 @@ class FriendsViewModel {
                     var user = User(id: doc.documentID, email: "", nickname: "", profileImageUrl: nil)
                     user.nickname = doc.get("nickname") as? String ?? ""
                     user.profileImageUrl = doc.get("profileImageUrl") as? String
+                    user.email = doc.get("email") as? String ?? ""
                     return user
                 }
                 

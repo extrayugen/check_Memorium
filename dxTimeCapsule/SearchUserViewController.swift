@@ -9,11 +9,9 @@ class SearchUserViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
+        view.backgroundColor = .systemBackground
         setupUI()
         setupButton()
-        print("View did load")
-
     }
     
     private func setupUI() {

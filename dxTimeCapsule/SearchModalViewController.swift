@@ -17,7 +17,7 @@ class SearchModalViewController: UIViewController, UITableViewDelegate, UITableV
     
     private let tableView: UITableView = {
         let tableView = UITableView()
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "userCell")
+        tableView.register(UserTableViewCell.self, forCellReuseIdentifier: "userCell")
         return tableView
     }()
     
