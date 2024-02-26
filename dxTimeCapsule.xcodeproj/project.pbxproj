@@ -16,7 +16,7 @@
 		1F5786F22B849CA900C40B08 /* AuthenticationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5786F12B849CA900C40B08 /* AuthenticationViewModel.swift */; };
 		1F5787132B86DBF900C40B08 /* AuthenticationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5787122B86DBF900C40B08 /* AuthenticationViewController.swift */; };
 		1F9DA7AF2B8C922800A74D84 /* SearchUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F9DA7AE2B8C922700A74D84 /* SearchUserViewController.swift */; };
-		1F9DA7B12B8C93BD00A74D84 /* UserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F9DA7B02B8C93BD00A74D84 /* UserTableViewCell.swift */; };
+		1F9DA7B12B8C93BD00A74D84 /* SerachUserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F9DA7B02B8C93BD00A74D84 /* SerachUserTableViewCell.swift */; };
 		1F9DA7B52B8CA75900A74D84 /* SearchModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F9DA7B42B8CA75900A74D84 /* SearchModalViewController.swift */; };
 		1FAB4DF62B8C48AF0054618A /* FriendsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FAB4DF52B8C48AF0054618A /* FriendsViewModel.swift */; };
 		1FAB4DF82B8C49590054618A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FAB4DF72B8C49590054618A /* User.swift */; };
@@ -47,7 +47,7 @@
 		1F5786F12B849CA900C40B08 /* AuthenticationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewModel.swift; sourceTree = "<group>"; };
 		1F5787122B86DBF900C40B08 /* AuthenticationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewController.swift; sourceTree = "<group>"; };
 		1F9DA7AE2B8C922700A74D84 /* SearchUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchUserViewController.swift; sourceTree = "<group>"; };
-		1F9DA7B02B8C93BD00A74D84 /* UserTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTableViewCell.swift; sourceTree = "<group>"; };
+		1F9DA7B02B8C93BD00A74D84 /* SerachUserTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SerachUserTableViewCell.swift; sourceTree = "<group>"; };
 		1F9DA7B42B8CA75900A74D84 /* SearchModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchModalViewController.swift; sourceTree = "<group>"; };
 		1FAB4DF52B8C48AF0054618A /* FriendsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsViewModel.swift; sourceTree = "<group>"; };
 		1FAB4DF72B8C49590054618A /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -104,7 +104,6 @@
 				1F5786F52B849D0D00C40B08 /* Model */,
 				1F5786EF2B849C2200C40B08 /* ViewModel */,
 				1F5786F02B849C2F00C40B08 /* View */,
-				1FAB4DEB2B8C238F0054618A /* Resource */,
 				1F5786FA2B84D26000C40B08 /* Legercy */,
 				1F5786D82B849AF800C40B08 /* AppDelegate.swift */,
 				1F5786DA2B849AF800C40B08 /* SceneDelegate.swift */,
@@ -135,7 +134,7 @@
 				1FAB4DEC2B8C29D80054618A /* Authentication */,
 				1FB3873C2B886EDA00054816 /* TimeCapsuleUpload */,
 				1FAB4DEE2B8C2B800054618A /* Capsule */,
-				1F9DA7AD2B8C921900A74D84 /* Friend */,
+				1F9DA7AD2B8C921900A74D84 /* SearchUser */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -156,14 +155,15 @@
 			name = Legercy;
 			sourceTree = "<group>";
 		};
-		1F9DA7AD2B8C921900A74D84 /* Friend */ = {
+		1F9DA7AD2B8C921900A74D84 /* SearchUser */ = {
 			isa = PBXGroup;
 			children = (
 				1F9DA7AE2B8C922700A74D84 /* SearchUserViewController.swift */,
 				1F9DA7B42B8CA75900A74D84 /* SearchModalViewController.swift */,
-				1F9DA7B02B8C93BD00A74D84 /* UserTableViewCell.swift */,
+				1F9DA7B02B8C93BD00A74D84 /* SerachUserTableViewCell.swift */,
+				1FAB4DEB2B8C238F0054618A /* Resource */,
 			);
-			name = Friend;
+			name = SearchUser;
 			sourceTree = "<group>";
 		};
 		1FAB4DEB2B8C238F0054618A /* Resource */ = {
@@ -359,7 +359,7 @@
 				1FB387392B8863DE00054816 /* HomeViewController.swift in Sources */,
 				1F5786F22B849CA900C40B08 /* AuthenticationViewModel.swift in Sources */,
 				1FB387372B8862AF00054816 /* MainFeedViewController.swift in Sources */,
-				1F9DA7B12B8C93BD00A74D84 /* UserTableViewCell.swift in Sources */,
+				1F9DA7B12B8C93BD00A74D84 /* SerachUserTableViewCell.swift in Sources */,
 				1FB3873E2B88791A00054816 /* TimeCapsuleCreationViewModel.swift in Sources */,
 				1F9DA7AF2B8C922800A74D84 /* SearchUserViewController.swift in Sources */,
 				D25B20EB2B89CD02006CEED8 /* LaunchScreenViewController.swift in Sources */,

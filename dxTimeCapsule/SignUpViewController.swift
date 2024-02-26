@@ -4,6 +4,8 @@ import FirebaseAuth
 import SnapKit
 
 class SignUpViewController: UIViewController {
+    var profileImageUrl: String?
+    
     
     // MARK: - UI Components
     private let emailTextField = UITextField()
@@ -83,28 +85,39 @@ class SignUpViewController: UIViewController {
                 return
             }
 
-            guard let userId = authResult?.user.uid else { return }
-            let userDocument = Firestore.firestore().collection("users").document(userId)
+            guard let uid = authResult?.user.uid else { return }
+            let userDocument = Firestore.firestore().collection("users").document(uid)
 
-            // 사용자 정보를 Firestore에 저장합니다. 친구 기능을 위해 필요한 필드를 추가할 수 있습니다.
-            userDocument.setData([
-                "nickname": nickname, // 닉네임
-                "email": email, // 이메일
-                "profileImageUrl": "", // 프로필 이미지 URL,
-                "friends": [], // 친구 UID 목록, 친구 추가 기능을 통해 업데이트
-                // 필요한 추가 정보
-            ]) { error in
+            // 사용자 정보를 Firestore에 저장합니다.
+            var userData: [String: Any] = [
+                "uid": uid,
+                "email": email,
+                "nickname": nickname,
+                "friends": [],
+                "friendRequestsSent": [],
+                "friendRequestsReceived": []
+            ]
+            
+            if let profileImageUrl = self.profileImageUrl {
+                userData["profileImageUrl"] = profileImageUrl
+            } else {
+                // 프로필 이미지가 없는 경우 기본 이미지로 설정
+                let defaultProfileImageUrl = "defaultProfileImage"
+                userData["profileImageUrl"] = defaultProfileImageUrl
+            }
+            
+            userDocument.setData(userData) { error in
                 if let error = error {
                     self.presentAlert(title: "정보 저장 실패", message: error.localizedDescription)
                 } else {
                     // 회원가입 성공 알림 후 이전 화면으로 돌아가기
                     DispatchQueue.main.async {
                         let alert = UIAlertController(title: "회원가입 성공", message: "회원가입이 완료되었습니다.", preferredStyle: .alert)
+                        print("----------------------------")
+                        print("가입한 userData: \(userData)")
+                        print("----------------------------\n")
                         alert.addAction(UIAlertAction(title: "확인", style: .default) { _ in
-                            // 네비게이션 컨트롤러를 사용하는 경우
-//                            self.navigationController?.popViewController(animated: true)
-                            // 모달 방식으로 표시된 경우
-                             self.dismiss(animated: true, completion: nil)
+                            self.dismiss(animated: true, completion: nil)
                         })
                         self.present(alert, animated: true)
                     }
@@ -112,6 +125,8 @@ class SignUpViewController: UIViewController {
             }
         }
     }
+
+
 
 
     // Alert

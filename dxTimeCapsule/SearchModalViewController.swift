@@ -3,6 +3,10 @@ import SnapKit
 import SDWebImage
 
 class SearchModalViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
+    
+    
+    // MARK: - Properties
+    
     private var searchResults: [User] = []
     private let friendsViewModel = FriendsViewModel()
     
@@ -17,16 +21,18 @@ class SearchModalViewController: UIViewController, UITableViewDelegate, UITableV
     
     private let tableView: UITableView = {
         let tableView = UITableView()
-        tableView.register(UserTableViewCell.self, forCellReuseIdentifier: "userCell")
+        tableView.register(SearchUserTableViewCell.self, forCellReuseIdentifier: "userCell")
         return tableView
     }()
     
+    // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
         searchTextField.delegate = self
     }
     
+    // MARK: - UI Setup
     private func setupUI() {
         view.backgroundColor = .systemBackground
         view.addSubview(searchTextField)
@@ -45,16 +51,17 @@ class SearchModalViewController: UIViewController, UITableViewDelegate, UITableV
         
         tableView.delegate = self
         tableView.dataSource = self
+        
+        // 텍스트 필드의 editingChanged 이벤트에 대한 핸들러 설정
+        searchTextField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
+        
     }
     
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder() // 키보드 숨김
-        performSearch()
-        return true
-    }
+    // MARK: - Functions
     
+    // 친구 검색
     private func performSearch() {
-        guard let searchText = searchTextField.text, !searchText.isEmpty else { return }
+        guard let searchText = searchTextField.text?.lowercased(), !searchText.isEmpty else { return }
 
         friendsViewModel.searchUsersByNickname(nickname: searchText) { [weak self] users, error in
             DispatchQueue.main.async {
@@ -62,26 +69,62 @@ class SearchModalViewController: UIViewController, UITableViewDelegate, UITableV
                     // 에러 처리 로직 (예: 사용자에게 에러 메시지 표시)
                     print("Error searching users: \(error.localizedDescription)")
                 } else {
-                    self?.searchResults = users ?? []
-                    self?.tableView.reloadData()
-                    print("searchResults: \(self?.searchResults ?? [])")
+                    if let users = users {
+                        self?.searchResults = users
+                        self?.tableView.reloadData()
+                        if users.isEmpty {
+                            // 검색 결과가 없을 때, 검색 목록에 메시지 표시
+                            self?.showNoResultsMessage()
+                        }
+                        print("Search results: \(users)")
+                    }
                 }
             }
         }
     }
-
     
+    // 검색 결과 없음 메시지 표시
+    private func showNoResultsMessage() {
+        // 현재 검색 결과 목록을 비워줌
+        searchResults.removeAll()
+        tableView.reloadData()
+        
+        // 검색 결과 없음을 나타내는 레이블 생성 및 설정
+        let noResultsLabel = UILabel()
+        noResultsLabel.text = "검색 결과 없음"
+        noResultsLabel.textColor = .gray
+        noResultsLabel.textAlignment = .center
+        noResultsLabel.font = UIFont.systemFont(ofSize: 20)
+        
+        // 테이블 뷰의 footer로 설정하여 검색 결과가 없음을 표시
+        tableView.tableFooterView = noResultsLabel
+    }
+    // MARK: - Actions
+    
+    @objc private func textFieldDidChange(_ textField: UITextField) {
+        // 텍스트필드가 바뀔때마다 검색을 수행합니다.
+        performSearch()
+    }
+    
+    // MARK: - TextField Delegate
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder() // 키보드 숨김
+        performSearch()
+        return true
+    }
+    
+    // MARK: - TableView Delegate & DataSource
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return searchResults.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "userCell", for: indexPath) as? UserTableViewCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "userCell", for: indexPath) as? SearchUserTableViewCell else {
             return UITableViewCell()
         }
         let user = searchResults[indexPath.row]
         cell.configure(with: user)
-        
+
         cell.addUserAction = {
             // Firestore에 친구 추가 요청 로직 구현
             print("친구 추가 요청: \(user.nickname)")
@@ -89,5 +132,5 @@ class SearchModalViewController: UIViewController, UITableViewDelegate, UITableV
         
         return cell
     }
-
+    
 }
