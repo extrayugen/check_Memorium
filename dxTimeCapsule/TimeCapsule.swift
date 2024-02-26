@@ -2,7 +2,7 @@ import Foundation
 
 struct TimeCapsule {
     var timeCapsuleId: String // 타임캡슐 고유 ID
-    var Id: String // 타임캡슐을 생성한 사용자의 ID
+    var uid: String // 타임캡슐을 생성한 사용자의 ID
     var mood: String // 선택된 기분
     var photoUrl: String? // 업로드된 사진의 URL
     var location: String? // 위치

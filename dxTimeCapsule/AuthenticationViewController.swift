@@ -19,7 +19,7 @@ class AuthenticationViewController: UIViewController {
         super.viewDidLoad()
         setupUI()
         
-        // MARK: - Test 자동기입 정보(나중에 파기해야됨)
+        // Test 자동기입 정보(나중에 파기해야됨)
         emailTextField.text = "admin@time.co.kr"
         passwordTextField.text = "123456"
     }
@@ -97,6 +97,7 @@ class AuthenticationViewController: UIViewController {
     
     // UI 컴포넌트 설정
     private func configureUIComponents() {
+        
         // 로그인 및 회원가입 버튼 설정
         setupButton(loginButton, title: "로그인", backgroundColor: .systemBlue, selector: #selector(didTapLoginButton))
         setupButton(signUpButton, title: "회원가입", backgroundColor: .systemBlue, selector: #selector(didTapSignUpButton))

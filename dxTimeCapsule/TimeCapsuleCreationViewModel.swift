@@ -11,7 +11,7 @@ class TimeCapsuleCreationViewModel {
         guard let userId = Auth.auth().currentUser?.uid else { return }
         
         let data: [String: Any] = [
-            "id": timeCapsule.Id,
+            "id": timeCapsule.uid,
             "userId": userId, // 현재 로그인한 사용자의 ID
             "mood": timeCapsule.mood, // 기분
             "photoUrl": timeCapsule.photoUrl ?? "", // 사진url
