@@ -2,7 +2,7 @@ import UIKit
 import SnapKit
 import SDWebImage
 
-class SearchModalViewController: 
+class SearchModalTableViewController:
     UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, UIViewControllerTransitioningDelegate {
     
     
@@ -18,6 +18,18 @@ class SearchModalViewController:
         textField.autocorrectionType = .no
         textField.spellCheckingType = .no
         return textField
+    }()
+    
+    private let tableHeaderView: UIView = {
+        let headerView = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 50))
+        headerView.backgroundColor = UIColor.systemBlue.withAlphaComponent(0.2)
+
+        let label = UILabel(frame: headerView.bounds)
+        label.text = "친구 검색"
+        label.textAlignment = .center
+        headerView.addSubview(label)
+
+        return headerView
     }()
     
     private let tableView: UITableView = {
@@ -56,6 +68,9 @@ class SearchModalViewController:
         
         tableView.delegate = self
         tableView.dataSource = self
+        
+        // 테이블 뷰의 헤더 설정
+        tableView.tableHeaderView = tableHeaderView
         
         // 텍스트 필드의 editingChanged 이벤트에 대한 핸들러 설정
         searchTextField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
