@@ -29,6 +29,9 @@ class OpenedTCCollectionViewCell: UICollectionViewCell {
                 imageView.trailingAnchor.constraint(equalTo: trailingAnchor),
                 imageView.bottomAnchor.constraint(equalTo: bottomAnchor)
             ])
+           // 모서리를 둥글게 처리
+           layer.cornerRadius = 20
+           layer.masksToBounds = true
         }
         
         required init?(coder aDecoder: NSCoder) {
