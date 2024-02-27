@@ -84,11 +84,3 @@ class SearchUserTableViewCell: UITableViewCell {
     }
 }
 
-struct Preview1 : UIViewControllerRepresentable {
-    func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {
-    }
-    
-    func makeUIViewController(context: Context) -> some UIViewController {
-        SearchUserViewController()
-    }
-}
