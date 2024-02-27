@@ -95,6 +95,8 @@ iOSInjectionProject/
 
 ### Xcode ###
 *.xcconfig
+.DS_Store
+
 ## Xcode 8 and earlier
 
 ### Xcode Patch ###
@@ -107,5 +109,5 @@ iOSInjectionProject/
 **/xcshareddata/WorkspaceSettings.xcsettings
 *.xcconfig
 
-# End of https://www.toptal.com/developers/gitignore/api/cocoapods,swift,xcode
 
+# End of https://www.toptal.com/developers/gitignore/api/cocoapods,swift,xcode
