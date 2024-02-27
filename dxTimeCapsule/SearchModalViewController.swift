@@ -2,9 +2,8 @@ import UIKit
 import SnapKit
 import SDWebImage
 
-class SearchModalTableViewController:
-    UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, UIViewControllerTransitioningDelegate {
-    
+class SearchModalViewController:
+    UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, UIViewControllerTransitioningDelegate, UIGestureRecognizerDelegate {
     
     // MARK: - Properties
     
@@ -20,18 +19,6 @@ class SearchModalTableViewController:
         return textField
     }()
     
-    private let tableHeaderView: UIView = {
-        let headerView = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 50))
-        headerView.backgroundColor = UIColor.systemBlue.withAlphaComponent(0.2)
-
-        let label = UILabel(frame: headerView.bounds)
-        label.text = "친구 검색"
-        label.textAlignment = .center
-        headerView.addSubview(label)
-
-        return headerView
-    }()
-    
     private let tableView: UITableView = {
         let tableView = UITableView()
         tableView.register(SearchUserTableViewCell.self, forCellReuseIdentifier: "userCell")
@@ -41,12 +28,9 @@ class SearchModalTableViewController:
     // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupUI()
         searchTextField.delegate = self
+        setupUI()
         
-        // 배경에 탭 제스처를 추가하여 모달 밖을 탭할 때 모달을 닫습니다.
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(backgroundTapped))
-        view.addGestureRecognizer(tapGesture)
     }
     
     // MARK: - UI Setup
@@ -69,9 +53,6 @@ class SearchModalTableViewController:
         tableView.delegate = self
         tableView.dataSource = self
         
-        // 테이블 뷰의 헤더 설정
-        tableView.tableHeaderView = tableHeaderView
-        
         // 텍스트 필드의 editingChanged 이벤트에 대한 핸들러 설정
         searchTextField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
         
@@ -89,16 +70,14 @@ class SearchModalTableViewController:
                     // 에러 처리 로직 (예: 사용자에게 에러 메시지 표시)
                     print("Error searching users: \(error.localizedDescription)")
                 } else {
-                    if let users = users {
-                        if users.isEmpty {
-                            // 검색 결과가 없을 때, 검색 목록에 메시지 표시
-                            self?.showNoResultsMessage()
-                        } else {
-                            // 검색 결과가 있을 때는 표시
-                            self?.searchResults = users
-                            self?.tableView.reloadData()
-                        }
-                        print("Search results: \(users)")
+                    self?.tableView.tableFooterView = nil  // 기존에 표시된 푸터 뷰 제거
+                    if let users = users, users.isEmpty {
+                        // 검색 결과가 없을 때, "검색 결과 없음" 메시지 표시
+                        self?.showNoResultsMessage()
+                    } else {
+                        // 검색 결과가 있을 때, 테이블 뷰 리로드
+                        self?.searchResults = users ?? []
+                        self?.tableView.reloadData()
                     }
                 }
             }
@@ -108,12 +87,9 @@ class SearchModalTableViewController:
     // 검색 결과 없음 메시지 표시
     private func showNoResultsMessage() {
         
-        // 현재 검색 결과 목록을 비워줌
-        searchResults.removeAll()
-        tableView.reloadData()
-        
         // 검색 결과 없음을 나타내는 레이블 생성 및 설정
-        let noResultsLabel = UILabel()
+        let noResultsLabel = UILabel(frame: CGRect(x: 0, y: 0, width: tableView.bounds.size.width, height: tableView.bounds.size.height))
+        
         noResultsLabel.text = "검색 결과 없음"
         noResultsLabel.textColor = .gray
         noResultsLabel.textAlignment = .center
@@ -122,6 +98,18 @@ class SearchModalTableViewController:
         // 테이블 뷰의 footer로 설정하여 검색 결과가 없음을 표시
         tableView.tableFooterView = noResultsLabel
     }
+    
+    // MARK: - gestureRecognizer
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
+        let location = touch.location(in: self.view)
+        
+        // Only dismiss if touch is outside of searchTextField and tableView
+        if !searchTextField.frame.contains(location) && !tableView.frame.contains(location) {
+            return true
+        }
+        return false
+    }
+    
     // MARK: - Actions
     
     @objc private func textFieldDidChange(_ textField: UITextField) {
@@ -144,6 +132,10 @@ class SearchModalTableViewController:
     // MARK: - TableView Delegate & DataSource
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return searchResults.count
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 100
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

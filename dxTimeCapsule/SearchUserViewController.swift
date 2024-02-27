@@ -32,7 +32,7 @@ class SearchUserViewController: UIViewController, UIViewControllerTransitioningD
     
     // MARK: - Button Action
     @objc func searchButtonTapped() {
-        let searchModalVC = SearchModalTableViewController()
+        let searchModalVC = SearchModalViewController()
         searchModalVC.modalPresentationStyle = .custom // Custom으로 변경
         searchModalVC.transitioningDelegate = self // 커스텀 트랜지션 딜리게이트 설정
         present(searchModalVC, animated: true, completion: nil)
