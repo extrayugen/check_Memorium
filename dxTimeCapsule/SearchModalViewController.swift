@@ -87,6 +87,10 @@ class SearchModalViewController:
     // 검색 결과 없음 메시지 표시
     private func showNoResultsMessage() {
         
+        // 현재 검색 결과 목록을 비워줌
+        searchResults.removeAll()
+        tableView.reloadData()
+        
         // 검색 결과 없음을 나타내는 레이블 생성 및 설정
         let noResultsLabel = UILabel(frame: CGRect(x: 0, y: 0, width: tableView.bounds.size.width, height: tableView.bounds.size.height))
         
@@ -135,7 +139,7 @@ class SearchModalViewController:
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100
+        return 80
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
