@@ -37,6 +37,14 @@ class MainCapsuleViewController: UIViewController {
         return imageView
     }()
     
+    // BackLight 이미지
+    private lazy var backLightImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "BackLight")
+        imageView.contentMode = .scaleAspectFill
+        return imageView
+    }()
+    
     //개봉일이되었을때 생성되는 tap 안내문구
     private lazy var openCapsuleLabel: UILabel = {
         let label = UILabel()
@@ -85,11 +93,22 @@ class MainCapsuleViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
+        setupBackLightLayout()
         setupLayout()
         addTapGestureToCapsuleImageView()
         // D-day 확인 후 레이블 표시 로직
         checkIfItsOpeningDay()
         fetchTimeCapsuleData()
+    }
+    
+    private func setupBackLightLayout() {
+        view.addSubview(backLightImageView)
+        backLightImageView.snp.makeConstraints { make in
+            make.centerX.equalToSuperview() // X축은 중앙
+            make.centerY.equalToSuperview().offset(-20) // Y축은 중앙에서 0만큼 위로 올림
+            make.width.equalTo(400) // backLight 이미지 너비
+            make.height.equalTo(360) // backLight 이미지 높이
+        }
     }
     
     private func setupLayout() {
@@ -105,9 +124,9 @@ class MainCapsuleViewController: UIViewController {
         }
         
         openCapsuleLabel.snp.makeConstraints { make in
-                make.centerX.equalToSuperview()
-                make.top.equalTo(capsuleImageView.snp.bottom).offset(10) // 이미지 아래에 위치
-            }
+            make.centerX.equalToSuperview()
+            make.top.equalTo(capsuleImageView.snp.bottom).offset(10) // 이미지 아래에 위치
+        }
         
         locationName.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(80)
@@ -126,6 +145,13 @@ class MainCapsuleViewController: UIViewController {
     }
 
     @objc private func handleTapOnCapsule() {
+        
+        // 애니메이션 동작시 다른 UI 요소 숨기기
+           backLightImageView.isHidden = true
+           locationName.isHidden = true
+           daysLabel.isHidden = true
+           openCapsuleLabel.isHidden = true
+        
         addShakeAnimation()
         // 흔들림 애니메이션 총 지속 시간보다 약간 짧은 딜레이 후에 페이드아웃 및 확대 애니메이션 시작
         // 예시) 흔들림 애니메이션 지속 시간이 0.5초라면, 0.4초 후에 시작하도록 설정
