@@ -2,7 +2,8 @@ import UIKit
 import SnapKit
 import SDWebImage
 
-class SearchModalViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
+class SearchModalViewController: 
+    UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, UIViewControllerTransitioningDelegate {
     
     
     // MARK: - Properties
@@ -30,6 +31,10 @@ class SearchModalViewController: UIViewController, UITableViewDelegate, UITableV
         super.viewDidLoad()
         setupUI()
         searchTextField.delegate = self
+        
+        // 배경에 탭 제스처를 추가하여 모달 밖을 탭할 때 모달을 닫습니다.
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(backgroundTapped))
+        view.addGestureRecognizer(tapGesture)
     }
     
     // MARK: - UI Setup
@@ -70,11 +75,13 @@ class SearchModalViewController: UIViewController, UITableViewDelegate, UITableV
                     print("Error searching users: \(error.localizedDescription)")
                 } else {
                     if let users = users {
-                        self?.searchResults = users
-                        self?.tableView.reloadData()
                         if users.isEmpty {
                             // 검색 결과가 없을 때, 검색 목록에 메시지 표시
                             self?.showNoResultsMessage()
+                        } else {
+                            // 검색 결과가 있을 때는 표시
+                            self?.searchResults = users
+                            self?.tableView.reloadData()
                         }
                         print("Search results: \(users)")
                     }
@@ -85,6 +92,7 @@ class SearchModalViewController: UIViewController, UITableViewDelegate, UITableV
     
     // 검색 결과 없음 메시지 표시
     private func showNoResultsMessage() {
+        
         // 현재 검색 결과 목록을 비워줌
         searchResults.removeAll()
         tableView.reloadData()
@@ -104,6 +112,11 @@ class SearchModalViewController: UIViewController, UITableViewDelegate, UITableV
     @objc private func textFieldDidChange(_ textField: UITextField) {
         // 텍스트필드가 바뀔때마다 검색을 수행합니다.
         performSearch()
+    }
+    
+    // 배경을 탭할 때 호출되는 메서드
+    @objc func backgroundTapped() {
+        dismiss(animated: true, completion: nil)
     }
     
     // MARK: - TextField Delegate
@@ -133,4 +146,17 @@ class SearchModalViewController: UIViewController, UITableViewDelegate, UITableV
         return cell
     }
     
+}
+
+// MARK: - HalfSizePresentationController
+class HalfSizePresentationController: UIPresentationController {
+    override var frameOfPresentedViewInContainerView: CGRect {
+        guard let containerView = containerView else { return CGRect.zero }
+        let originY = containerView.bounds.height / 3 // 화면의 1/3 위치에서 모달이 시작되도록 설정
+        return CGRect(x: 0, y: originY, width: containerView.bounds.width, height: containerView.bounds.height * 2 / 3) // 화면의 2/3 만큼의 높이로 모달 크기 설정
+    }
+    
+    override func containerViewWillLayoutSubviews() {
+        presentedView?.frame = frameOfPresentedViewInContainerView
+    }
 }
