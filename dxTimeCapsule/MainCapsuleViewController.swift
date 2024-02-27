@@ -7,6 +7,8 @@
 
 import UIKit
 import SnapKit
+import FirebaseFirestore
+import FirebaseAuth
 
 class MainCapsuleViewController: UIViewController {
     private var viewModel = MainCapsuleViewModel()
@@ -29,7 +31,7 @@ class MainCapsuleViewController: UIViewController {
     //캡슐이미지
     private lazy var capsuleImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "메인타임캡슐")
+        imageView.image = UIImage(named: "MainCapsule")
         imageView.contentMode = .scaleAspectFit
         imageView.isUserInteractionEnabled = true // 이미지 뷰가 사용자 인터랙션을 받을 수 있도록 설정
         return imageView
@@ -45,6 +47,40 @@ class MainCapsuleViewController: UIViewController {
         return label
     }()
     
+    // Firestore에서 사용자의 타임캡슐 정보를 불러오는 메소드
+    func fetchTimeCapsuleData() {
+        // Firestore 인스턴스를 생성합니다.
+        let db = Firestore.firestore()
+        
+        // 로그인한 사용자의 UID를 가져옵니다.
+//        guard let userId = Auth.auth().currentUser?.uid else { return }
+        
+        let userId = "Lgz9S3d11EcFzQ5xYwP8p0Bar2z2" // 테스트를 위한 임시 UID
+
+        // 사용자의 UID로 필터링하고, openDate 필드로 오름차순 정렬한 후, 최상위 1개 문서만 가져옵니다.
+           db.collection("timeCapsules")
+             .whereField("uid", isEqualTo: userId)
+             .order(by: "openDate", descending: false) // 가장 먼저 개봉될 타임캡슐부터 정렬
+             .limit(to: 1) // 가장 개봉일이 가까운 타임캡슐 1개만 선택
+             .getDocuments { (querySnapshot, err) in
+                 if let err = err {
+                     print("Error getting documents: \(err)")
+                 } else if let document = querySnapshot?.documents.first { // 첫 번째 문서만 사용
+                     // 문서에서 "userLocation" 필드의 값을 가져옵니다.
+                     let userLocation = document.get("userLocation") as? String ?? "Unknown Location"
+                     print("Fetched location: \(userLocation)")
+                     
+                     // 메인 스레드에서 UI 업데이트를 수행합니다.
+                     DispatchQueue.main.async {
+                         self.locationName.text = userLocation
+                     }
+                 } else {
+                               print("No documents found") // 문서가 없는 경우 로그 추가
+                           }
+                 }
+             }
+       
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,7 +89,7 @@ class MainCapsuleViewController: UIViewController {
         addTapGestureToCapsuleImageView()
         // D-day 확인 후 레이블 표시 로직
         checkIfItsOpeningDay()
-    
+        fetchTimeCapsuleData()
     }
     
     private func setupLayout() {
@@ -64,8 +100,8 @@ class MainCapsuleViewController: UIViewController {
         capsuleImageView.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.centerY.equalToSuperview().offset(10)
-            make.width.equalTo(200)
-            make.height.equalTo(200)
+            make.width.equalTo(320)
+            make.height.equalTo(320)
         }
         
         openCapsuleLabel.snp.makeConstraints { make in
