@@ -7,34 +7,29 @@
 
 import UIKit
 import SnapKit
+import SDWebImage
 
 class UserProfileViewController: UIViewController {
-
+    
     // MARK: - Properties
-    private let viewModel: UserProfileViewModel
+    private let userProfileViewModel = UserProfileViewModel()
+
+
 
     // MARK: - UI Components
     private let profileImageView = UIImageView()
     private let nicknameLabel = UILabel()
     private let emailLabel = UILabel()
-    private let updateButton = UIButton()
-
-    // MARK: - Initialization
-    init(viewModel: UserProfileViewModel) {
-        self.viewModel = viewModel
-        super.init(nibName: nil, bundle: nil)
-    }
-
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+    private let deleteAccountButton = UIButton()
 
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
         setupConstraints()
-        bindViewModel()
+        userProfileViewModel.fetchUserData { [weak self] in
+            self?.bindViewModel()
+        }
     }
 
     // MARK: - Setup
@@ -44,11 +39,13 @@ class UserProfileViewController: UIViewController {
         // Profile Image View Setup
         profileImageView.contentMode = .scaleAspectFill
         profileImageView.clipsToBounds = true
+        profileImageView.layer.cornerRadius = 50
         view.addSubview(profileImageView)
         
         // Nickname Label Setup
         nicknameLabel.font = .systemFont(ofSize: 24, weight: .bold)
         nicknameLabel.textAlignment = .center
+        nicknameLabel.text = "test"
         view.addSubview(nicknameLabel)
         
         // Email Label Setup
@@ -57,11 +54,11 @@ class UserProfileViewController: UIViewController {
         view.addSubview(emailLabel)
         
         // Update Button Setup
-        updateButton.setTitle("Update Profile", for: .normal)
-        updateButton.backgroundColor = .blue
-        updateButton.layer.cornerRadius = 5
-        updateButton.addTarget(self, action: #selector(updateProfileTapped), for: .touchUpInside)
-        view.addSubview(updateButton)
+        deleteAccountButton.setTitle("회원탈퇴하기", for: .normal)
+        deleteAccountButton.backgroundColor = .systemMint
+        deleteAccountButton.layer.cornerRadius = 5
+        deleteAccountButton.addTarget(self, action: #selector(updateProfileTapped), for: .touchUpInside)
+        view.addSubview(deleteAccountButton)
     }
 
     private func setupConstraints() {
@@ -85,7 +82,7 @@ class UserProfileViewController: UIViewController {
         }
         
         // Update Button Constraints
-        updateButton.snp.makeConstraints { make in
+        deleteAccountButton.snp.makeConstraints { make in
             make.top.equalTo(emailLabel.snp.bottom).offset(20)
             make.left.right.equalToSuperview().inset(50)
             make.height.equalTo(50)
@@ -94,9 +91,19 @@ class UserProfileViewController: UIViewController {
 
     // MARK: - Binding
     private func bindViewModel() {
-        profileImageView.image = UIImage(named: viewModel.profileImageUrl ?? "")
-        nicknameLabel.text = viewModel.nickname
-        emailLabel.text = viewModel.email
+        if let profileImageUrl = userProfileViewModel.profileImageUrl, let image = UIImage(named: profileImageUrl) {
+            profileImageView.sd_setImage(with: URL(string: profileImageUrl), placeholderImage: UIImage(named: "MainCapsule"))
+            profileImageView.image = image
+        } else {
+            // 기본 이미지를 사용하거나 이미지가 없는 경우를 처리할 수 있습니다.
+            profileImageView.image = UIImage(named: "LoginLogo")
+        }
+        
+        // 닉네임 설정
+        nicknameLabel.text = userProfileViewModel.nickname
+        
+        // 이메일 설정
+        emailLabel.text = userProfileViewModel.email
     }
 
     // MARK: - Actions
