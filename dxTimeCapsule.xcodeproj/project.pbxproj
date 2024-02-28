@@ -21,6 +21,7 @@
 		1F08542B2B8F0F7300711660 /* proximanova_black.otf in Resources */ = {isa = PBXBuildFile; fileRef = 1F0854222B8F0F7300711660 /* proximanova_black.otf */; };
 		1F0854322B8F254B00711660 /* MainCapsuleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0854312B8F254B00711660 /* MainCapsuleViewController.swift */; };
 		1F0854342B8F25A200711660 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0854332B8F25A200711660 /* SceneDelegate.swift */; };
+		1F0854362B8F27D100711660 /* APIKey.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 1F0854352B8F27D100711660 /* APIKey.xcconfig */; };
 		1F0D3B2C2B89AA2B00A31E82 /* UploadPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0D3B2B2B89AA2B00A31E82 /* UploadPhotoViewController.swift */; };
 		1F0D3B322B89D85500A31E82 /* UploadDeatilViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0D3B312B89D85500A31E82 /* UploadDeatilViewController.swift */; };
 		1F5786D92B849AF800C40B08 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5786D82B849AF800C40B08 /* AppDelegate.swift */; };
@@ -65,6 +66,7 @@
 		1F0854222B8F0F7300711660 /* proximanova_black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = proximanova_black.otf; sourceTree = "<group>"; };
 		1F0854312B8F254B00711660 /* MainCapsuleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCapsuleViewController.swift; sourceTree = "<group>"; };
 		1F0854332B8F25A200711660 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		1F0854352B8F27D100711660 /* APIKey.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = APIKey.xcconfig; sourceTree = "<group>"; };
 		1F0D3B2B2B89AA2B00A31E82 /* UploadPhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadPhotoViewController.swift; sourceTree = "<group>"; };
 		1F0D3B312B89D85500A31E82 /* UploadDeatilViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadDeatilViewController.swift; sourceTree = "<group>"; };
 		1F5786D52B849AF800C40B08 /* dxTimeCapsule.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = dxTimeCapsule.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -167,6 +169,7 @@
 				1F5786D62B849AF800C40B08 /* Products */,
 				1F5786E42B849AFA00C40B08 /* Assets.xcassets */,
 				1F5786E62B849AFA00C40B08 /* LaunchScreen.storyboard */,
+				1F0854352B8F27D100711660 /* APIKey.xcconfig */,
 				1F5786E92B849AFA00C40B08 /* Info.plist */,
 				1F0854162B8F091500711660 /* GoogleService-Info.plist */,
 			);
@@ -367,6 +370,7 @@
 				1F5786E82B849AFA00C40B08 /* LaunchScreen.storyboard in Resources */,
 				1F08542B2B8F0F7300711660 /* proximanova_black.otf in Resources */,
 				1F0854172B8F091500711660 /* GoogleService-Info.plist in Resources */,
+				1F0854362B8F27D100711660 /* APIKey.xcconfig in Resources */,
 				1F0854232B8F0F7300711660 /* proximanova_light.otf in Resources */,
 				1F0854272B8F0F7300711660 /* proximanova_extrabold.otf in Resources */,
 				1F0854242B8F0F7300711660 /* proximanova_blackit.otf in Resources */,
