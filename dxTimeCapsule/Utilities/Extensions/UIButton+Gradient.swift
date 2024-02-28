@@ -1,17 +1,10 @@
-//
-//  ButtonGradint.swift
-//  dxTimeCapsule
-//
-//  Created by t2023-m0031 on 2/28/24.
-//
+import UIKit
 
-import Foundation
-
-// 버튼 그라데이션 적용 확장
 extension UIButton {
+    // 버튼 그라데이션 적용 확장
     func applyGradient(colors: [UIColor]) {
         let gradientLayer = CAGradientLayer()
-        gradientLayer.frame = self.bounds // 여기를 수정함
+        gradientLayer.frame = self.bounds
         gradientLayer.colors = colors.map { $0.cgColor }
         gradientLayer.locations = [0.0, 1.0]
         gradientLayer.startPoint = CGPoint(x: 0.0, y: 0.5)
@@ -20,3 +13,5 @@ extension UIButton {
         self.layer.insertSublayer(gradientLayer, at: 0)
     }
 }
+
+
