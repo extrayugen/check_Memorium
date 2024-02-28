@@ -25,6 +25,7 @@
 		1F9DA7B12B8C93BD00A74D84 /* SerachUserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F9DA7B02B8C93BD00A74D84 /* SerachUserTableViewCell.swift */; };
 		1F9DA7B52B8CA75900A74D84 /* SearchModalTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F9DA7B42B8CA75900A74D84 /* SearchModalTableViewController.swift */; };
 		1FA11BF22B8F8C440014002F /* UITextField+Padding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA11BF12B8F8C440014002F /* UITextField+Padding.swift */; };
+		1FAACDE12B8FAA520005B993 /* UIImage+RoundedImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FAACDE02B8FAA520005B993 /* UIImage+RoundedImage.swift */; };
 		1FAB4DF62B8C48AF0054618A /* FriendsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FAB4DF52B8C48AF0054618A /* FriendsViewModel.swift */; };
 		1FAB4DF82B8C49590054618A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FAB4DF72B8C49590054618A /* User.swift */; };
 		1FB387352B87A0B300054816 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB387342B87A0B300054816 /* SignUpViewController.swift */; };
@@ -86,6 +87,7 @@
 		1F9DA7B02B8C93BD00A74D84 /* SerachUserTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SerachUserTableViewCell.swift; sourceTree = "<group>"; };
 		1F9DA7B42B8CA75900A74D84 /* SearchModalTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchModalTableViewController.swift; sourceTree = "<group>"; };
 		1FA11BF12B8F8C440014002F /* UITextField+Padding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Padding.swift"; sourceTree = "<group>"; };
+		1FAACDE02B8FAA520005B993 /* UIImage+RoundedImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+RoundedImage.swift"; sourceTree = "<group>"; };
 		1FAB4DF52B8C48AF0054618A /* FriendsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsViewModel.swift; sourceTree = "<group>"; };
 		1FAB4DF72B8C49590054618A /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		1FB387342B87A0B300054816 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
@@ -278,6 +280,14 @@
 			path = UITextField;
 			sourceTree = "<group>";
 		};
+		1FAACDDF2B8FAA400005B993 /* UIImage */ = {
+			isa = PBXGroup;
+			children = (
+				1FAACDE02B8FAA520005B993 /* UIImage+RoundedImage.swift */,
+			);
+			name = UIImage;
+			sourceTree = "<group>";
+		};
 		1FAB4DEB2B8C238F0054618A /* Resource */ = {
 			isa = PBXGroup;
 			children = (
@@ -368,6 +378,7 @@
 		1FF869192B8F4D59007B5112 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				1FAACDDF2B8FAA400005B993 /* UIImage */,
 				1FA11BF32B8F8C740014002F /* UIButtion */,
 				1FA11BF42B8F8C7F0014002F /* UIColor */,
 				1FA11BF52B8F8C850014002F /* UITextField */,
@@ -540,6 +551,7 @@
 				1F0D3B322B89D85500A31E82 /* CapsuleUploadDeatilViewController.swift in Sources */,
 				1FAB4DF82B8C49590054618A /* User.swift in Sources */,
 				1FAB4DF62B8C48AF0054618A /* FriendsViewModel.swift in Sources */,
+				1FAACDE12B8FAA520005B993 /* UIImage+RoundedImage.swift in Sources */,
 				1F5787132B86DBF900C40B08 /* LoginViewController.swift in Sources */,
 				1FF869172B8F4B87007B5112 /* CapsuleUploadMainViewController.swift in Sources */,
 				27D241B02B8F32C5000F8F16 /* CreateTimeCapsuleViewController.swift in Sources */,

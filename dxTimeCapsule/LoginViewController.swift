@@ -79,7 +79,7 @@ class LoginViewController: UIViewController {
         // 비밀번호 텍스트필드 설정
         configureTextField(passwordTextField, placeholder: "Enter your password")
         
-        // 로그인 버튼 설정 및 액션 연결
+        // 로그인 버튼 설정 및 액션 연결ㅐ
         configureButton(loginButton, title: "Login")
         loginButton.addTarget(self, action: #selector(didTapLoginButton), for: .touchUpInside)
         
@@ -135,16 +135,17 @@ class LoginViewController: UIViewController {
 
         // Ensure dividerView is added to the view before setting constraints
         dividerView.snp.makeConstraints { make in
-            make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(-50)
+            make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(-70)
             make.left.right.equalToSuperview().inset(20)
             make.height.equalTo(1)
         }
 
         // labelsContainerView에 대한 높이 제약 조건 추가
         labelsContainerView.snp.makeConstraints { make in
-            make.top.equalTo(dividerView.snp.bottom).offset(10)
+            make.top.equalTo(dividerView.snp.bottom).offset(15)
             make.centerX.equalToSuperview()
-            make.height.equalTo(50) // 높이를 명시적으로 설정
+            // 높이를 명시적으로 설정
+            make.height.equalTo(20)
         }
 
         // noAccountLabel 및 signUpActionLabel에 대한 레이아웃 설정
