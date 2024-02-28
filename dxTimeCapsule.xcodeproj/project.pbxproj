@@ -20,10 +20,10 @@
 		1F08542A2B8F0F7300711660 /* proximanova_bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 1F0854212B8F0F7300711660 /* proximanova_bold.otf */; };
 		1F08542B2B8F0F7300711660 /* proximanova_black.otf in Resources */ = {isa = PBXBuildFile; fileRef = 1F0854222B8F0F7300711660 /* proximanova_black.otf */; };
 		1F0854322B8F254B00711660 /* MainCapsuleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0854312B8F254B00711660 /* MainCapsuleViewController.swift */; };
+		1F0854342B8F25A200711660 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0854332B8F25A200711660 /* SceneDelegate.swift */; };
 		1F0D3B2C2B89AA2B00A31E82 /* UploadPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0D3B2B2B89AA2B00A31E82 /* UploadPhotoViewController.swift */; };
 		1F0D3B322B89D85500A31E82 /* UploadDeatilViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0D3B312B89D85500A31E82 /* UploadDeatilViewController.swift */; };
 		1F5786D92B849AF800C40B08 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5786D82B849AF800C40B08 /* AppDelegate.swift */; };
-		1F5786DB2B849AF800C40B08 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5786DA2B849AF800C40B08 /* SceneDelegate.swift */; };
 		1F5786E52B849AFA00C40B08 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1F5786E42B849AFA00C40B08 /* Assets.xcassets */; };
 		1F5786E82B849AFA00C40B08 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1F5786E62B849AFA00C40B08 /* LaunchScreen.storyboard */; };
 		1F5786F22B849CA900C40B08 /* AuthenticationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5786F12B849CA900C40B08 /* AuthenticationViewModel.swift */; };
@@ -65,11 +65,11 @@
 		1F0854212B8F0F7300711660 /* proximanova_bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = proximanova_bold.otf; sourceTree = "<group>"; };
 		1F0854222B8F0F7300711660 /* proximanova_black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = proximanova_black.otf; sourceTree = "<group>"; };
 		1F0854312B8F254B00711660 /* MainCapsuleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCapsuleViewController.swift; sourceTree = "<group>"; };
+		1F0854332B8F25A200711660 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		1F0D3B2B2B89AA2B00A31E82 /* UploadPhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadPhotoViewController.swift; sourceTree = "<group>"; };
 		1F0D3B312B89D85500A31E82 /* UploadDeatilViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadDeatilViewController.swift; sourceTree = "<group>"; };
 		1F5786D52B849AF800C40B08 /* dxTimeCapsule.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = dxTimeCapsule.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1F5786D82B849AF800C40B08 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		1F5786DA2B849AF800C40B08 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		1F5786E42B849AFA00C40B08 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1F5786E72B849AFA00C40B08 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1F5786E92B849AFA00C40B08 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -142,7 +142,6 @@
 			isa = PBXGroup;
 			children = (
 				1F5786D72B849AF800C40B08 /* dxTimeCapsule */,
-				1F5786D62B849AF800C40B08 /* Products */,
 				25AD7CDE47BA0E85739F3959 /* Pods */,
 				3CC1A9291EBAFDCA26B0042E /* Frameworks */,
 			);
@@ -154,6 +153,7 @@
 				1F5786D52B849AF800C40B08 /* dxTimeCapsule.app */,
 			);
 			name = Products;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		1F5786D72B849AF800C40B08 /* dxTimeCapsule */ = {
@@ -164,7 +164,8 @@
 				1F5786F02B849C2F00C40B08 /* View */,
 				1F5786FA2B84D26000C40B08 /* Legercy */,
 				1F5786D82B849AF800C40B08 /* AppDelegate.swift */,
-				1F5786DA2B849AF800C40B08 /* SceneDelegate.swift */,
+				1F0854332B8F25A200711660 /* SceneDelegate.swift */,
+				1F5786D62B849AF800C40B08 /* Products */,
 				1F5786E42B849AFA00C40B08 /* Assets.xcassets */,
 				1F5786E62B849AFA00C40B08 /* LaunchScreen.storyboard */,
 				1F5786E92B849AFA00C40B08 /* Info.plist */,
@@ -439,12 +440,12 @@
 				4EC308DE2B8A200300EEE54C /* MainCapsuleViewModel.swift in Sources */,
 				1F0D3B322B89D85500A31E82 /* UploadDeatilViewController.swift in Sources */,
 				1FAB4DF82B8C49590054618A /* User.swift in Sources */,
-				1F5786DB2B849AF800C40B08 /* SceneDelegate.swift in Sources */,
 				1FAB4DF62B8C48AF0054618A /* FriendsViewModel.swift in Sources */,
 				1F5787132B86DBF900C40B08 /* LoginViewController.swift in Sources */,
 				1FB387402B8881DB00054816 /* TimeCapsule.swift in Sources */,
 				1FB387392B8863DE00054816 /* HomeViewController.swift in Sources */,
 				27C81E452B8A3A39001E3623 /* OpenedTCCollectionViewCell.swift in Sources */,
+				1F0854342B8F25A200711660 /* SceneDelegate.swift in Sources */,
 				27C81E472B8A3A4C001E3623 /* UpcomingTCCollectionViewCell.swift in Sources */,
 				1F5786F22B849CA900C40B08 /* AuthenticationViewModel.swift in Sources */,
 				1FB387372B8862AF00054816 /* MainFeedViewController.swift in Sources */,
