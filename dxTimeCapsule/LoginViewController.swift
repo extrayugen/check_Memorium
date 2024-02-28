@@ -53,6 +53,14 @@ class LoginViewController: UIViewController {
     }
     
     private func setupViews() {
+        view.addSubview(logoImageView)
+        view.addSubview(appNameLabel)
+        view.addSubview(emailTextField)
+        view.addSubview(passwordTextField)
+        view.addSubview(loginButton)
+        view.addSubview(dividerView)
+        view.addSubview(labelsContainerView)
+        
         // 로그인 이미지 설정
         logoImageView.image = UIImage(named: "LoginLogo")
         
@@ -87,78 +95,61 @@ class LoginViewController: UIViewController {
         
         // 디바이더 뷰 셋업
         dividerView.backgroundColor = .lightGray
-        view.addSubview(dividerView) // dividerView를 view에 추가
-        
-        // labelsContainerView를 view에 추가
-        view.addSubview(labelsContainerView)
-        
         // labelsContainerView 내에 라벨들을 추가
         labelsContainerView.addSubview(noAccountLabel)
         labelsContainerView.addSubview(signUpActionLabel)
     }
 
-
-
     private func setupLayouts() {
+        // Add the logoImageView constraints
         logoImageView.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(80)
             make.centerX.equalToSuperview()
             make.width.height.equalTo(220)
-            
         }
-        
-        // 앱 이름 레이블 레이아웃 설정
+
+        // Add the appNameLabel constraints
         appNameLabel.snp.makeConstraints { make in
-            make.top.equalTo(logoImageView.snp.bottom).offset(10) // 로고 이미지 아래에 배치
+            make.top.equalTo(logoImageView.snp.bottom).offset(10)
             make.centerX.equalToSuperview()
+
         }
-        
-        // 이메일 텍스트 필드
+
+        // Add the emailTextField constraints
         emailTextField.snp.makeConstraints { make in
             make.top.equalTo(appNameLabel.snp.bottom).offset(40)
-            make.left.equalToSuperview().offset(30) // 왼쪽 여백 추가
-            make.right.equalToSuperview().offset(-30) // 오른쪽 여백 추가
+            make.left.right.equalToSuperview().inset(30)
             make.height.equalTo(44)
         }
-        
-        // 비밀번호 텍스트 필드
+
+        // Add the passwordTextField constraints
         passwordTextField.snp.makeConstraints { make in
             make.top.equalTo(emailTextField.snp.bottom).offset(20)
             make.left.right.equalTo(emailTextField)
             make.height.equalTo(44)
         }
-        
-        // 로그인 버튼
+
+        // Add the loginButton constraints
         loginButton.snp.makeConstraints { make in
             make.top.equalTo(passwordTextField.snp.bottom).offset(20)
             make.left.right.equalTo(passwordTextField)
             make.height.equalTo(44)
         }
-        
-        
-        // 라벨들을 감쌀 컨테이너 뷰 생성 및 설정
-        labelsContainerView.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.bottom.equalTo(dividerView.snp.top).offset(-20)
-        }
-        
-        noAccountLabel.snp.makeConstraints { make in
-            make.top.left.bottom.equalTo(labelsContainerView)
-        }
-        
-        signUpActionLabel.snp.makeConstraints { make in
-            make.top.right.bottom.equalTo(labelsContainerView)
-            make.left.equalTo(noAccountLabel.snp.right).offset(5)
-        }
-        
-        
+
+        // Ensure dividerView is added to the view before setting constraints
         dividerView.snp.makeConstraints { make in
             make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(-10)
             make.left.right.equalToSuperview().inset(20)
             make.height.equalTo(1)
-            
+        }
+
+        // labelsContainerView와 dividerView의 레이아웃을 조정하여 labelsContainerView가 dividerView 바로 아래에 위치하도록 합니다.
+        labelsContainerView.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(dividerView.snp.bottom).offset(20) // 디바이더 아래로 20 포인트의 간격을 둡니다.
         }
     }
+
 
     
     
@@ -243,16 +234,4 @@ private extension LoginViewController {
 }
 
 
-// UITextField 패딩 추가를 위한 확장
-extension UITextField {
-    func setLeftPaddingPoints(_ amount:CGFloat){
-        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: amount, height: self.frame.size.height))
-        self.leftView = paddingView
-        self.leftViewMode = .always
-    }
-    func setRightPaddingPoints(_ amount:CGFloat) {
-        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: amount, height: self.frame.size.height))
-        self.rightView = paddingView
-        self.rightViewMode = .always
-    }
-}
+
