@@ -61,6 +61,10 @@ class LoginViewController: UIViewController {
         view.addSubview(dividerView)
         view.addSubview(labelsContainerView)
         
+        // labelsContainerView 내에 라벨들을 추가
+        labelsContainerView.addSubview(noAccountLabel)
+        labelsContainerView.addSubview(signUpActionLabel)
+        
         // 로그인 이미지 설정
         logoImageView.image = UIImage(named: "LoginLogo")
         
@@ -95,34 +99,27 @@ class LoginViewController: UIViewController {
         
         // 디바이더 뷰 셋업
         dividerView.backgroundColor = .lightGray
-        // labelsContainerView 내에 라벨들을 추가
-        labelsContainerView.addSubview(noAccountLabel)
-        labelsContainerView.addSubview(signUpActionLabel)
+        
     }
 
     private func setupLayouts() {
-        // Add the logoImageView constraints
         logoImageView.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(80)
             make.centerX.equalToSuperview()
             make.width.height.equalTo(220)
         }
-
-        // Add the appNameLabel constraints
+        
         appNameLabel.snp.makeConstraints { make in
             make.top.equalTo(logoImageView.snp.bottom).offset(10)
             make.centerX.equalToSuperview()
-
         }
 
-        // Add the emailTextField constraints
         emailTextField.snp.makeConstraints { make in
             make.top.equalTo(appNameLabel.snp.bottom).offset(40)
             make.left.right.equalToSuperview().inset(30)
             make.height.equalTo(44)
         }
 
-        // Add the passwordTextField constraints
         passwordTextField.snp.makeConstraints { make in
             make.top.equalTo(emailTextField.snp.bottom).offset(20)
             make.left.right.equalTo(emailTextField)
@@ -138,21 +135,38 @@ class LoginViewController: UIViewController {
 
         // Ensure dividerView is added to the view before setting constraints
         dividerView.snp.makeConstraints { make in
-            make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(-10)
+            make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(-50)
             make.left.right.equalToSuperview().inset(20)
             make.height.equalTo(1)
         }
 
-        // labelsContainerView와 dividerView의 레이아웃을 조정하여 labelsContainerView가 dividerView 바로 아래에 위치하도록 합니다.
+        // labelsContainerView에 대한 높이 제약 조건 추가
         labelsContainerView.snp.makeConstraints { make in
+            make.top.equalTo(dividerView.snp.bottom).offset(10)
             make.centerX.equalToSuperview()
-            make.top.equalTo(dividerView.snp.bottom).offset(20) // 디바이더 아래로 20 포인트의 간격을 둡니다.
+            make.height.equalTo(50) // 높이를 명시적으로 설정
         }
+
+        // noAccountLabel 및 signUpActionLabel에 대한 레이아웃 설정
+        noAccountLabel.snp.makeConstraints { make in
+            make.left.equalTo(labelsContainerView.snp.left)
+            make.centerY.equalTo(labelsContainerView.snp.centerY)
+        }
+
+        signUpActionLabel.snp.makeConstraints { make in
+            make.right.equalTo(labelsContainerView.snp.right)
+            make.centerY.equalTo(labelsContainerView.snp.centerY)
+            make.left.equalTo(noAccountLabel.snp.right).offset(5)
+        }
+
+        // 디버깅을 위한 배경색 설정
+//        labelsContainerView.backgroundColor = .green // labelsContainerView의 배경색 설정
+//        noAccountLabel.backgroundColor = .red // noAccountLabel의 배경색 설정
+//        signUpActionLabel.backgroundColor = .blue // signUpActionLabel의 배경색 설정
     }
 
 
-    
-    
+
     // MARK: - Actions
     
     // 로그인 버튼 탭 처리
@@ -229,7 +243,6 @@ private extension LoginViewController {
         signUpLabel.text = "Do not have an account? Sign Up"
         signUpLabel.font = .systemFont(ofSize: 14, weight: .semibold)
         signUpLabel.textAlignment = .center
-        view.addSubview(signUpLabel) // signUpLabel 추가
     }
 }
 
