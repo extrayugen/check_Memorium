@@ -3,25 +3,32 @@ import SnapKit
 
 class PhotoUploadViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
-    // UI 컴포넌트 선언
+    // MARK: - Properties
+    
     private let uploadAreaView = UIView()
     private let imageView = UIImageView()
     private let instructionLabel = UILabel()
     private let startUploadButton = UIButton()
+    private let testPageButton = UIButton()
     
-    // 뷰의 생명주기: viewDidLoad
+    // MARK: - Life Cycles
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
     }
     
-    // UI 설정
+    // MARK: - UI Setup
+    
     private func setupUI() {
         view.backgroundColor = .systemBackground // 시스템 배경색 사용
         setupUploadAreaView()
         setupInstructionLabel()
         setupStartUploadButton()
+        setupTestPageButton()
     }
+    
+    // MARK: - Functions
     
     // 업로드 영역 뷰 설정
     private func setupUploadAreaView() {
@@ -78,8 +85,80 @@ class PhotoUploadViewController: UIViewController, UIImagePickerControllerDelega
         }
     }
     
+    // 친구 검색 버튼 설정
+    private func setupTestPageButton(){
+        startUploadButton.addTarget(self, action: #selector(SearchPageButtonTapped), for: .touchUpInside)
+        view.addSubview(testPageButton)
+        
+        testPageButton.snp.makeConstraints { make in
+            make .centerX.equalToSuperview()
+            make .top.equalTo(startUploadButton.snp.bottom).offset(60)
+            make .width.equalTo(200)
+            make.height.equalTo(44) // 버튼 높이 표준화
+        }
+    }
+    
+    // UIImagePickerController를 표시하는 메소드
+    private func presentImagePicker(sourceType: UIImagePickerController.SourceType) {
+        let imagePickerController = UIImagePickerController()
+        imagePickerController.delegate = self
+        imagePickerController.sourceType = sourceType
+        
+        present(imagePickerController, animated: true, completion: nil)
+    }
+    
+    
+    // imagePickerController를 표시하는 메소드
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        picker.dismiss(animated: true) { [weak self] in
+            DispatchQueue.main.async {
+                guard let self = self else { return }
+                
+                if let pickedImage = info[.originalImage] as? UIImage {
+                    self.imageView.image = pickedImage
+                    // 사용자 정의 Alert 또는 모달 뷰를 표시하여 이미지 확인
+                    self.confirmImageSelection(with: pickedImage)
+                }
+            }
+        }
+    }
+    
+    // 이미지 선택 또는 모달 뷰를 표시하는 메소드
+    private func confirmImageSelection(with image: UIImage) {
+        // Action Sheet 생성
+        let actionSheet = UIAlertController(title: "선택한 사진으로 진행하시겠습니까?", message: "", preferredStyle: .actionSheet)
+        
+        // "이 사진으로 선택하기" 액션
+        let confirmAction = UIAlertAction(title: "이 사진으로 선택하기", style: .default) { [weak self] _ in
+            let optionVC = UploadDetailViewController()
+            self?.navigationController?.pushViewController(optionVC, animated: true)
+        }
+        
+        // "다시 선택하기" 액션
+        let cancelAction = UIAlertAction(title: "다시 선택하기", style: .cancel) { [weak self] _ in
+            self?.imageView.image = image
+            // 이미지 확정 후 UploadDetailViewController로 넘어가는 로직
+            self?.startUploadButtonTapped() // 다시 이미지 선택 로직 호출
+        }
+        actionSheet.addAction(confirmAction)
+        actionSheet.addAction(cancelAction)
+        
+        // iPad에서 Action Sheet를 사용할 경우, popoverPresentationController를 설정해야 합니다.
+        if let popoverController = actionSheet.popoverPresentationController {
+            popoverController.sourceView = self.view
+            popoverController.sourceRect = CGRect(x: self.view.bounds.midX, y: self.view.bounds.midY, width: 0, height: 0)
+            popoverController.permittedArrowDirections = []
+        }
+        
+        self.present(actionSheet, animated: true, completion: nil)
+    }
     
     // MARK: - Actions
+    @objc private func SearchPageButtonTapped() {
+        let vc = SearchUserViewController()
+        navigationController?.pushViewController(vc, animated: true)
+    }
+        
     @objc private func startUploadButtonTapped() {
         // 액션 시트 생성
         let actionSheet = UIAlertController(title: "선택", message: "사진을 촬영하거나 앨범에서 선택해주세요.", preferredStyle: .actionSheet)
@@ -102,60 +181,4 @@ class PhotoUploadViewController: UIViewController, UIImagePickerControllerDelega
         // 액션 시트 표시
         present(actionSheet, animated: true)
     }
-    
-    // UIImagePickerController를 표시하는 메소드
-    private func presentImagePicker(sourceType: UIImagePickerController.SourceType) {
-        let imagePickerController = UIImagePickerController()
-        imagePickerController.delegate = self
-        imagePickerController.sourceType = sourceType
-        
-        present(imagePickerController, animated: true, completion: nil)
-    }
-    
-    
-    // MARK: - Image Picker Delegate
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        picker.dismiss(animated: true) { [weak self] in
-            DispatchQueue.main.async {
-                guard let self = self else { return }
-                
-                if let pickedImage = info[.originalImage] as? UIImage {
-                    self.imageView.image = pickedImage
-                    // 사용자 정의 Alert 또는 모달 뷰를 표시하여 이미지 확인
-                    self.confirmImageSelection(with: pickedImage)
-                }
-            }
-        }
-    }
-    
-    private func confirmImageSelection(with image: UIImage) {
-        // Action Sheet 생성
-        let actionSheet = UIAlertController(title: "선택한 사진으로 진행하시겠습니까?", message: "", preferredStyle: .actionSheet)
-        
-        // "이 사진으로 선택하기" 액션
-        let confirmAction = UIAlertAction(title: "이 사진으로 선택하기", style: .default) { [weak self] _ in
-            self?.imageView.image = image
-            // 이미지 확정 후 PhotoDetailViewController로 넘어가는 로직
-            let optionVC = PhotoDetailViewController()
-            self?.navigationController?.pushViewController(optionVC, animated: true)
-        }
-        
-        // "다시 선택하기" 액션
-        let cancelAction = UIAlertAction(title: "다시 선택하기", style: .cancel) { [weak self] _ in
-            self?.startUploadButtonTapped() // 다시 이미지 선택 로직 호출
-        }
-        
-        actionSheet.addAction(confirmAction)
-        actionSheet.addAction(cancelAction)
-        
-        // iPad에서 Action Sheet를 사용할 경우, popoverPresentationController를 설정해야 합니다.
-        if let popoverController = actionSheet.popoverPresentationController {
-            popoverController.sourceView = self.view
-            popoverController.sourceRect = CGRect(x: self.view.bounds.midX, y: self.view.bounds.midY, width: 0, height: 0)
-            popoverController.permittedArrowDirections = []
-        }
-        
-        self.present(actionSheet, animated: true, completion: nil)
-    }
-
 }
