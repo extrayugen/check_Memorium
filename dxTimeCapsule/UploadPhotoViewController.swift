@@ -10,7 +10,6 @@ class PhotoUploadViewController: UIViewController, UIImagePickerControllerDelega
     private let instructionLabel = UILabel()
     private let startUploadButton = UIButton()
     private let testPageButton = UIButton()
-    
     // MARK: - Life Cycles
     
     override func viewDidLoad() {
@@ -105,6 +104,7 @@ class PhotoUploadViewController: UIViewController, UIImagePickerControllerDelega
         imagePickerController.sourceType = sourceType
         
         present(imagePickerController, animated: true, completion: nil)
+    
     }
     
     

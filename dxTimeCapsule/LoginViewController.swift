@@ -19,10 +19,10 @@ class LoginViewController: UIViewController {
         setupViews()
         setupLayouts()
         
-        // Test 자동기입
+//         Test 자동기입
 //        let testEmail = "admin@time.co.kr"
 //        let testPassword = "123456"
-//        
+        
 //        emailTextField.text = testEmail
 //        passwordTextField.text = testPassword
     }
@@ -30,8 +30,25 @@ class LoginViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
-        // 버튼에 그라데이션 적용
-        loginButton.applyGradient(colors: [#colorLiteral(red: 0.7882352941, green: 0.2941176471, blue: 0.2941176471, alpha: 1), #colorLiteral(red: 0.2941176471, green: 0.07450980392, blue: 0.3098039216, alpha: 1)])
+        // 기존 색상
+//        loginButton.applyGradient(colors: [#colorLiteral(red: 0.7882352941, green: 0.2941176471, blue: 0.2941176471, alpha: 1), #colorLiteral(red: 0.2941176471, green: 0.07450980392, blue: 0.3098039216, alpha: 1)])
+        
+        // BlurryBeach
+        loginButton.applyGradient(colors: [#colorLiteral(red: 0.831372549, green: 0.2, blue: 0.4117647059, alpha: 1), #colorLiteral(red: 0.7960784314, green: 0.6784313725, blue: 0.4274509804, alpha: 1)])
+        
+//         AzurLane
+//        loginButton.applyGradient(colors: [#colorLiteral(red: 0.4980392157, green: 0.4980392157, blue: 0.8352941176, alpha: 1), #colorLiteral(red: 0.5254901961, green: 0.6588235294, blue: 0.9058823529, alpha: 1), #colorLiteral(red: 0.568627451, green: 0.9176470588, blue: 0.8941176471, alpha: 1)])
+
+//         ViceCity
+//        loginButton.applyGradient(colors: [#colorLiteral(red: 0.2039215686, green: 0.5803921569, blue: 0.9019607843, alpha: 1), #colorLiteral(red: 0.9254901961, green: 0.431372549, blue: 0.6784313725, alpha: 1)])
+
+        // Mango
+//        loginButton.applyGradient(colors: [#colorLiteral(red: 1, green: 0.8862745098, blue: 0.3490196078, alpha: 1), #colorLiteral(red: 1, green: 0.6549019608, blue: 0.3176470588, alpha: 1)])
+        
+
+
+
+
     }
 
     private func setupViews() {
@@ -149,7 +166,7 @@ class LoginViewController: UIViewController {
                     alert.addAction(UIAlertAction(title: "확인", style: .default) { [weak self] _ in
                         guard let self = self else { return }
                         
-                        let mainFeedVC = SearchUserViewController()
+                        let mainFeedVC = HomeViewController()
                         // 네비게이션 컨트롤러가 있는 경우
                         self.navigationController?.pushViewController(mainFeedVC, animated: true)
                         // 네비게이션 컨트롤러가 없는 경우
