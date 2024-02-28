@@ -18,6 +18,13 @@ class LoginViewController: UIViewController {
         view.backgroundColor = .white
         setupViews()
         setupLayouts()
+        
+        // Test 자동기입
+//        let testEmail = "admin@time.co.kr"
+//        let testPassword = "123456"
+//        
+//        emailTextField.text = testEmail
+//        passwordTextField.text = testPassword
     }
     
     override func viewDidLayoutSubviews() {
@@ -32,9 +39,9 @@ class LoginViewController: UIViewController {
         logoImageView.image = UIImage(named: "LoginLogo")
         
         // 앱 이름 설정
-//        appNameLabel.text = "dxTimeCapsule"
-//        appNameLabel.font = UIFont.boldSystemFont(ofSize: 24) // 적절한 폰트 및 크기로 설정
-//        appNameLabel.textAlignment = .center
+        appNameLabel.text = "dxCapsule"
+        appNameLabel.font = UIFont.boldSystemFont(ofSize: 36) // 적절한 폰트 및 크기로 설정
+        appNameLabel.textAlignment = .center
         
         // 이메일 텍스트필드 설정
         configureTextField(emailTextField, placeholder: "Enter your email")
@@ -44,6 +51,7 @@ class LoginViewController: UIViewController {
 
         // 로그인 버튼 설정 및 액션 연결
         configureButton(loginButton, title: "Login")
+        loginButton.addTarget(self, action: #selector(didTapLoginButton), for: .touchUpInside)
         
         // 회원가입 레이블 설정
         configureSignUpLabel()
