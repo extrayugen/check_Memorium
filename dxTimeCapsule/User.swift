@@ -1,7 +1,8 @@
 import Foundation
 import FirebaseFirestore
 import FirebaseAuth
-
+//
+//
 struct User {
     var uid: String
     var email: String
