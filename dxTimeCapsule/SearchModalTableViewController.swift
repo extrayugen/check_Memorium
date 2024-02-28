@@ -2,7 +2,7 @@ import UIKit
 import SnapKit
 import SDWebImage
 
-class SearchModalViewController:
+class SearchModalTableViewController:
     UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, UIViewControllerTransitioningDelegate, UIGestureRecognizerDelegate {
     
     // MARK: - Properties
@@ -31,6 +31,17 @@ class SearchModalViewController:
         searchTextField.delegate = self
         setupUI()
         
+        // 모달 당기는 제스쳐
+        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(handlePanGesture))
+        view.addGestureRecognizer(panGesture)
+        
+        // 모달 외부 탭 제스쳐
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(backgroundTapped))
+        tapGesture.delegate = self
+        view.addGestureRecognizer(tapGesture)
+        
+        setupModalViewDesign()
+        
     }
     
     // MARK: - UI Setup
@@ -58,12 +69,28 @@ class SearchModalViewController:
         
     }
     
+        // MARK: - ModalView Designjj
+    private func setupModalViewDesign(){
+        view.layer.cornerRadius = 25  // 모달 뷰의 모서리를 둥글게
+        view.layer.masksToBounds = true  // 모서리를 둥글게 하기 위해 필요
+        
+        // 그림자 설정
+        view.layer.shadowColor = UIColor.black.cgColor  // 그림자 색상을 검은색으로
+        view.layer.shadowOpacity = 0.5  // 그림자 투명도
+        view.layer.shadowOffset = CGSize(width: 0, height: -3)  // 그림자 방향 (위로 조금 올라가게)
+        view.layer.shadowRadius = 25  // 그림자의 퍼짐 정도
+        
+        // 경계선 설정
+        view.layer.borderWidth = 1  // 경계선 두께
+        view.layer.borderColor = UIColor.lightGray.cgColor  // 경계선 색상
+    }
+    
     // MARK: - Functions
     
     // 친구 검색
     private func performSearch() {
         guard let searchText = searchTextField.text?.lowercased(), !searchText.isEmpty else { return }
-
+        
         friendsViewModel.searchUsersByNickname(nickname: searchText) { [weak self] users, error in
             DispatchQueue.main.async {
                 if let error = error {
@@ -103,21 +130,17 @@ class SearchModalViewController:
         tableView.tableFooterView = noResultsLabel
     }
     
-    // MARK: - gestureRecognizer
+    // UIGestureRecognizerDelegate 메서드 구현
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
         let location = touch.location(in: self.view)
-        
-        // Only dismiss if touch is outside of searchTextField and tableView
-        if !searchTextField.frame.contains(location) && !tableView.frame.contains(location) {
-            return true
-        }
-        return false
+        // searchTextField와 tableView의 프레임이 location을 포함하지 않는 경우에만 true 반환
+        return !searchTextField.frame.contains(location) && !tableView.frame.contains(location)
     }
     
     // MARK: - Actions
     
+    // 텍스트필드가 바뀔때마다 검색을 수행하는 메서드
     @objc private func textFieldDidChange(_ textField: UITextField) {
-        // 텍스트필드가 바뀔때마다 검색을 수행합니다.
         performSearch()
     }
     
@@ -125,6 +148,42 @@ class SearchModalViewController:
     @objc func backgroundTapped() {
         dismiss(animated: true, completion: nil)
     }
+    
+    // 모달 당기는 제스쳐
+    @objc func handlePanGesture(gesture: UIPanGestureRecognizer) {
+        let translation = gesture.translation(in: view)
+        let velocity = gesture.velocity(in: view)
+        
+        switch gesture.state {
+        case .changed:
+            // 드래그에 따른 뷰의 위치 변경 로직
+            if translation.y > 0 { // 위로 드래그하지 않도록
+                view.transform = CGAffineTransform(translationX: 0, y: translation.y)
+            }
+        case .ended:
+            if translation.y > 100 || velocity.y > 1000 {
+                // 드래그 거리 또는 속도가 임계값을 초과하면 모달 닫기
+                dismiss(animated: true, completion: nil)
+            } else {
+                // 애니메이션으로 원래 위치로 복귀
+                UIView.animate(withDuration: 0.3) {
+                    self.view.transform = .identity
+                }
+            }
+        default:
+            break
+        }
+    }
+    
+    // Tap to Dismiss
+    @objc func handleTapToDismiss(gesture: UITapGestureRecognizer) {
+        let location = gesture.location(in: view)
+        // searchTextField와 tableView의 프레임이 location을 포함하지 않는 경우에만 dismiss 실행
+        if !searchTextField.frame.contains(location) && !tableView.frame.contains(location) {
+            dismiss(animated: true, completion: nil)
+        }
+    }
+    
     
     // MARK: - TextField Delegate
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -148,7 +207,7 @@ class SearchModalViewController:
         }
         let user = searchResults[indexPath.row]
         cell.configure(with: user)
-
+        
         cell.addUserAction = {
             // Firestore에 친구 추가 요청 로직 구현
             print("친구 추가 요청: \(user.nickname)")
@@ -163,8 +222,8 @@ class SearchModalViewController:
 class HalfSizePresentationController: UIPresentationController {
     override var frameOfPresentedViewInContainerView: CGRect {
         guard let containerView = containerView else { return CGRect.zero }
-        let originY = containerView.bounds.height / 3 // 화면의 1/3 위치에서 모달이 시작되도록 설정
-        return CGRect(x: 0, y: originY, width: containerView.bounds.width, height: containerView.bounds.height * 2 / 3) // 화면의 2/3 만큼의 높이로 모달 크기 설정
+        let originY = containerView.bounds.height / 3 // 화면의 1/3 위치에서 모달이 시작되도록 설정 // 시작 위치
+        return CGRect(x: 0, y: originY, width: containerView.bounds.width, height: containerView.bounds.height * 2 / 3) // 화면의 2/3 만큼의 높이로 모달 크기 설정 /// 사이즈
     }
     
     override func containerViewWillLayoutSubviews() {
