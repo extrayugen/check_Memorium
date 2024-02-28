@@ -19,12 +19,12 @@ class LoginViewController: UIViewController {
         setupViews()
         setupLayouts()
         
-        // Test 자동기입
-//        let testEmail = "admin@time.co.kr"
-//        let testPassword = "123456"
-//        
-//        emailTextField.text = testEmail
-//        passwordTextField.text = testPassword
+//         Test 자동기입
+        let testEmail = "admin@time.co.kr"
+        let testPassword = "123456"
+        
+        emailTextField.text = testEmail
+        passwordTextField.text = testPassword
     }
     
     override func viewDidLayoutSubviews() {
@@ -149,7 +149,7 @@ class LoginViewController: UIViewController {
                     alert.addAction(UIAlertAction(title: "확인", style: .default) { [weak self] _ in
                         guard let self = self else { return }
                         
-                        let mainFeedVC = SearchUserViewController()
+                        let mainFeedVC = HomeViewController()
                         // 네비게이션 컨트롤러가 있는 경우
                         self.navigationController?.pushViewController(mainFeedVC, animated: true)
                         // 네비게이션 컨트롤러가 없는 경우
