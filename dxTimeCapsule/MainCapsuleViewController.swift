@@ -217,9 +217,21 @@ class MainCapsuleViewController: UIViewController {
             self.capsuleImageView.alpha = 0
             // x,y 값으로 확대값 설정
             self.capsuleImageView.transform = self.capsuleImageView.transform.scaledBy(x: 5.0, y: 5.0)
-        }) { _ in
-            // 애니메이션이 완료된 후 필요한 동작
+        }) { [weak self] _ in
+            guard let strongSelf = self else { return }
+            // 애니메이션이 완료된 인터렉션뷰로 전환
+            self?.navigateToOpenInteractionViewController()
         }
+    }
+    
+    // OpenInteractionViewController로 네비게이션
+    private func navigateToOpenInteractionViewController() {
+        let openInteractionVC = OpenInteractionViewController()
+        
+        openInteractionVC.modalPresentationStyle = .custom // 커스텀 모달 스타일 사용
+        openInteractionVC.transitioningDelegate = self // 트랜지션 델리게이트 지정
+        openInteractionVC.modalPresentationStyle = .fullScreen
+         self.present(openInteractionVC, animated: true, completion: nil)
     }
 
     //현재 날짜와 타임캡슐의 개봉일을 비교하는 로직을 가져와 디데이에 신호를 주는것으로 변경 (아직 모르겟음)
@@ -242,5 +254,11 @@ class MainCapsuleViewController: UIViewController {
     @objc private func openTimeCapsule() {
         // 여기에 타임캡슐을 오픈할 때의 애니메이션과 로직을 구현
         print("타임캡슐 오픈 로직을 구현")
+    }
+}
+
+extension MainCapsuleViewController: UIViewControllerTransitioningDelegate {
+    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return FadeInAnimator() // 모달 표시시 사용할 애니메이터를 반환
     }
 }

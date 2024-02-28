@@ -44,6 +44,8 @@
 		460FE7672B8A200D00AF8086 /* LockedCapsuleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 460FE7662B8A200D00AF8086 /* LockedCapsuleCell.swift */; };
 		46380ED32B8DFC2B00D8D8AF /* CustomCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46380ED22B8DFC2B00D8D8AF /* CustomCollection.swift */; };
 		46EA9BAE2B89A27E00633EC4 /* CapsuleMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46EA9BAD2B89A27E00633EC4 /* CapsuleMapViewController.swift */; };
+		4E2A09C82B8F755C00911390 /* OpenInteractionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2A09C72B8F755C00911390 /* OpenInteractionViewController.swift */; };
+		4E2A09CA2B8F86C600911390 /* FadeInAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2A09C92B8F86C600911390 /* FadeInAnimator.swift */; };
 		4EC308DE2B8A200300EEE54C /* MainCapsuleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC308DD2B8A200300EEE54C /* MainCapsuleViewModel.swift */; };
 		D25B20EB2B89CD02006CEED8 /* LaunchScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25B20EA2B89CD02006CEED8 /* LaunchScreenViewController.swift */; };
 		FFC457642B8F0F36000761E9 /* UserProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC457632B8F0F36000761E9 /* UserProfileViewModel.swift */; };
@@ -91,6 +93,8 @@
 		460FE7662B8A200D00AF8086 /* LockedCapsuleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockedCapsuleCell.swift; sourceTree = "<group>"; };
 		46380ED22B8DFC2B00D8D8AF /* CustomCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCollection.swift; sourceTree = "<group>"; };
 		46EA9BAD2B89A27E00633EC4 /* CapsuleMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapsuleMapViewController.swift; sourceTree = "<group>"; };
+		4E2A09C72B8F755C00911390 /* OpenInteractionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenInteractionViewController.swift; sourceTree = "<group>"; };
+		4E2A09C92B8F86C600911390 /* FadeInAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FadeInAnimator.swift; sourceTree = "<group>"; };
 		4EC308DD2B8A200300EEE54C /* MainCapsuleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCapsuleViewModel.swift; sourceTree = "<group>"; };
 		9E53E63672B22459B20786B7 /* Pods_dxTimeCapsule.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_dxTimeCapsule.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D25B20EA2B89CD02006CEED8 /* LaunchScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenViewController.swift; sourceTree = "<group>"; };
@@ -250,6 +254,8 @@
 			children = (
 				1FB387382B8863DE00054816 /* HomeViewController.swift */,
 				1F0854312B8F254B00711660 /* MainCapsuleViewController.swift */,
+				4E2A09C72B8F755C00911390 /* OpenInteractionViewController.swift */,
+				4E2A09C92B8F86C600911390 /* FadeInAnimator.swift */,
 			);
 			name = Main;
 			sourceTree = "<group>";
@@ -427,6 +433,7 @@
 				46EA9BAE2B89A27E00633EC4 /* CapsuleMapViewController.swift in Sources */,
 				1F0854322B8F254B00711660 /* MainCapsuleViewController.swift in Sources */,
 				460FE7672B8A200D00AF8086 /* LockedCapsuleCell.swift in Sources */,
+				4E2A09CA2B8F86C600911390 /* FadeInAnimator.swift in Sources */,
 				1F5786D92B849AF800C40B08 /* AppDelegate.swift in Sources */,
 				1FB387352B87A0B300054816 /* SignUpViewController.swift in Sources */,
 				4EC308DE2B8A200300EEE54C /* MainCapsuleViewModel.swift in Sources */,
@@ -444,6 +451,7 @@
 				1F9DA7B12B8C93BD00A74D84 /* SerachUserTableViewCell.swift in Sources */,
 				46380ED32B8DFC2B00D8D8AF /* CustomCollection.swift in Sources */,
 				1F0854152B8EF4F400711660 /* TestLoginViewController.swift in Sources */,
+				4E2A09C82B8F755C00911390 /* OpenInteractionViewController.swift in Sources */,
 				1FB3873E2B88791A00054816 /* TimeCapsuleCreationViewModel.swift in Sources */,
 				27865AD42B8DFCA900DB8DB6 /* NotificationViewController.swift in Sources */,
 				1F9DA7AF2B8C922800A74D84 /* SearchUserViewController.swift in Sources */,
