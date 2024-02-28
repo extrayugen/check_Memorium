@@ -20,11 +20,11 @@ class LoginViewController: UIViewController {
         setupLayouts()
         
         // Test 자동기입
-//        let testEmail = "admin@time.co.kr"
-//        let testPassword = "123456"
-//        
-//        emailTextField.text = testEmail
-//        passwordTextField.text = testPassword
+        let testEmail = "admin@time.co.kr"
+        let testPassword = "123456"
+        
+        emailTextField.text = testEmail
+        passwordTextField.text = testPassword
     }
     
     override func viewDidLayoutSubviews() {
