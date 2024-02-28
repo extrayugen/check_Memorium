@@ -95,8 +95,10 @@ iOSInjectionProject/
 
 ### Xcode ###
 *.xcconfig
-.DS_Store
+*.DS_Store
 *.pbxproj
+SceneDelegate.swift
+*.xcuserstate
 
 ## Xcode 8 and earlier
 
