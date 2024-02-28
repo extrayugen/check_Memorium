@@ -513,6 +513,11 @@ class HomeViewController: UIViewController {
     
     @objc func menuButtonTapped() {
         print("메뉴 버튼이 클릭되었습니다")
+       // let userProfileData = // 사용자의 프로필 데이터
+       // let userProfileViewModel = UserProfileViewModel(profileData: userProfileData)
+       // let userProfileVC = UserProfileViewController(viewModel: userProfileViewModel
+        // let navController = UINavigationController(rootViewController: userProfileVC)
+        // present(navController, animated: true, completion: nil)
     }
     
     @objc func notificationButtonTapped() {
@@ -531,10 +536,16 @@ class HomeViewController: UIViewController {
     
     @objc func addNewTCButtonTapped() {
         print("새로운 타임캡슐 만들기 버튼이 클릭되었습니다")
+        let createTCVC = CreateTimeCapsuleViewController()
+        let navController = UINavigationController(rootViewController: createTCVC)
+        present(navController, animated: true, completion: nil)
     }
     
     @objc func openedTCButtonTapped(){
         print("열어본 타임캡슐 열기 버튼이 클릭되었습니다")
+        let openedVC = OpenedTCViewController()
+        let navController = UINavigationController(rootViewController: openedVC)
+        present(navController, animated: true, completion: nil)
         
     }
     
