@@ -8,8 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		0650E25C14207B6941E876DD /* Pods_dxTimeCapsule.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E53E63672B22459B20786B7 /* Pods_dxTimeCapsule.framework */; };
-		1F0D3B2C2B89AA2B00A31E82 /* PhotoUploadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0D3B2B2B89AA2B00A31E82 /* PhotoUploadViewController.swift */; };
-		1F0D3B322B89D85500A31E82 /* PhotoDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0D3B312B89D85500A31E82 /* PhotoDetailViewController.swift */; };
 		1F0854152B8EF4F400711660 /* TestLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0854142B8EF4F400711660 /* TestLoginViewController.swift */; };
 		1F0854172B8F091500711660 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1F0854162B8F091500711660 /* GoogleService-Info.plist */; };
 		1F0854232B8F0F7300711660 /* proximanova_light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 1F08541A2B8F0F7300711660 /* proximanova_light.otf */; };
@@ -21,6 +19,7 @@
 		1F0854292B8F0F7300711660 /* proximanova_black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1F0854202B8F0F7300711660 /* proximanova_black.ttf */; };
 		1F08542A2B8F0F7300711660 /* proximanova_bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 1F0854212B8F0F7300711660 /* proximanova_bold.otf */; };
 		1F08542B2B8F0F7300711660 /* proximanova_black.otf in Resources */ = {isa = PBXBuildFile; fileRef = 1F0854222B8F0F7300711660 /* proximanova_black.otf */; };
+		1F0854322B8F254B00711660 /* MainCapsuleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0854312B8F254B00711660 /* MainCapsuleViewController.swift */; };
 		1F0D3B2C2B89AA2B00A31E82 /* UploadPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0D3B2B2B89AA2B00A31E82 /* UploadPhotoViewController.swift */; };
 		1F0D3B322B89D85500A31E82 /* UploadDeatilViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0D3B312B89D85500A31E82 /* UploadDeatilViewController.swift */; };
 		1F5786D92B849AF800C40B08 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5786D82B849AF800C40B08 /* AppDelegate.swift */; };
@@ -47,7 +46,6 @@
 		46380ED32B8DFC2B00D8D8AF /* CustomCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46380ED22B8DFC2B00D8D8AF /* CustomCollection.swift */; };
 		46EA9BAE2B89A27E00633EC4 /* CapsuleMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46EA9BAD2B89A27E00633EC4 /* CapsuleMapViewController.swift */; };
 		4EC308DE2B8A200300EEE54C /* MainCapsuleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC308DD2B8A200300EEE54C /* MainCapsuleViewModel.swift */; };
-		4EC308E02B8A202400EEE54C /* MainCapsuleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC308DF2B8A202400EEE54C /* MainCapsuleViewController.swift */; };
 		D25B20EB2B89CD02006CEED8 /* LaunchScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25B20EA2B89CD02006CEED8 /* LaunchScreenViewController.swift */; };
 		FFC457642B8F0F36000761E9 /* UserProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC457632B8F0F36000761E9 /* UserProfileViewModel.swift */; };
 		FFC457662B8F0F74000761E9 /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC457652B8F0F74000761E9 /* UserProfileViewController.swift */; };
@@ -66,6 +64,7 @@
 		1F0854202B8F0F7300711660 /* proximanova_black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = proximanova_black.ttf; sourceTree = "<group>"; };
 		1F0854212B8F0F7300711660 /* proximanova_bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = proximanova_bold.otf; sourceTree = "<group>"; };
 		1F0854222B8F0F7300711660 /* proximanova_black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = proximanova_black.otf; sourceTree = "<group>"; };
+		1F0854312B8F254B00711660 /* MainCapsuleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCapsuleViewController.swift; sourceTree = "<group>"; };
 		1F0D3B2B2B89AA2B00A31E82 /* UploadPhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadPhotoViewController.swift; sourceTree = "<group>"; };
 		1F0D3B312B89D85500A31E82 /* UploadDeatilViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadDeatilViewController.swift; sourceTree = "<group>"; };
 		1F5786D52B849AF800C40B08 /* dxTimeCapsule.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = dxTimeCapsule.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -93,11 +92,9 @@
 		4096504136FE62FB0887CFD8 /* Pods-dxTimeCapsule.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dxTimeCapsule.debug.xcconfig"; path = "Target Support Files/Pods-dxTimeCapsule/Pods-dxTimeCapsule.debug.xcconfig"; sourceTree = "<group>"; };
 		460FE7642B8A1FE500AF8086 /* APIKey.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = APIKey.xcconfig; sourceTree = "<group>"; };
 		460FE7662B8A200D00AF8086 /* LockedCapsuleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockedCapsuleCell.swift; sourceTree = "<group>"; };
-		460FE7662B8A200D00AF8086 /* LockedCapsuleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockedCapsuleCell.swift; sourceTree = "<group>"; };
 		46380ED22B8DFC2B00D8D8AF /* CustomCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCollection.swift; sourceTree = "<group>"; };
 		46EA9BAD2B89A27E00633EC4 /* CapsuleMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapsuleMapViewController.swift; sourceTree = "<group>"; };
 		4EC308DD2B8A200300EEE54C /* MainCapsuleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCapsuleViewModel.swift; sourceTree = "<group>"; };
-		4EC308DF2B8A202400EEE54C /* MainCapsuleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCapsuleViewController.swift; sourceTree = "<group>"; };
 		9E53E63672B22459B20786B7 /* Pods_dxTimeCapsule.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_dxTimeCapsule.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D25B20EA2B89CD02006CEED8 /* LaunchScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenViewController.swift; sourceTree = "<group>"; };
 		FFC457632B8F0F36000761E9 /* UserProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewModel.swift; sourceTree = "<group>"; };
@@ -173,7 +170,6 @@
 				1F5786E92B849AFA00C40B08 /* Info.plist */,
 				1F0854162B8F091500711660 /* GoogleService-Info.plist */,
 				460FE7642B8A1FE500AF8086 /* APIKey.xcconfig */,
-				1FAB4DF92B8C59210054618A /* GoogleService-Info.plist */,
 			);
 			path = dxTimeCapsule;
 			sourceTree = "<group>";
@@ -195,12 +191,10 @@
 			children = (
 				27C81E412B8A39E9001E3623 /* HomeView */,
 				D25B20EA2B89CD02006CEED8 /* LaunchScreenViewController.swift */,
-				1F5787122B86DBF900C40B08 /* AuthenticationViewController.swift */,
+				1F5787122B86DBF900C40B08 /* LoginViewController.swift */,
 				1FB387342B87A0B300054816 /* SignUpViewController.swift */,
 				46EA9BAD2B89A27E00633EC4 /* CapsuleMapViewController.swift */,
 				1FB387362B8862AF00054816 /* MainFeedViewController.swift */,
-				4EC308DF2B8A202400EEE54C /* MainCapsuleViewController.swift */,
-				1FB3873C2B886EDA00054816 /* TimeCapsuleUpload */,
 				27865AD32B8DFCA900DB8DB6 /* NotificationViewController.swift */,
 				1FAB4DED2B8C2AEB0054618A /* Main */,
 				1FAB4DEC2B8C29D80054618A /* Authentication */,
@@ -249,8 +243,6 @@
 		1FAB4DEC2B8C29D80054618A /* Authentication */ = {
 			isa = PBXGroup;
 			children = (
-				1F5787122B86DBF900C40B08 /* LoginViewController.swift */,
-				1FB387342B87A0B300054816 /* SignUpViewController.swift */,
 				1F0854142B8EF4F400711660 /* TestLoginViewController.swift */,
 				FFC457652B8F0F74000761E9 /* UserProfileViewController.swift */,
 			);
@@ -260,10 +252,8 @@
 		1FAB4DED2B8C2AEB0054618A /* Main */ = {
 			isa = PBXGroup;
 			children = (
-				D25B20EA2B89CD02006CEED8 /* LaunchScreenViewController.swift */,
 				1FB387382B8863DE00054816 /* HomeViewController.swift */,
-				1FB387362B8862AF00054816 /* MainFeedViewController.swift */,
-				4EC308DF2B8A202400EEE54C /* MainCapsuleViewController.swift */,
+				1F0854312B8F254B00711660 /* MainCapsuleViewController.swift */,
 			);
 			name = Main;
 			sourceTree = "<group>";
@@ -272,7 +262,6 @@
 			isa = PBXGroup;
 			children = (
 				460FE7662B8A200D00AF8086 /* LockedCapsuleCell.swift */,
-				46EA9BAD2B89A27E00633EC4 /* CapsuleMapViewController.swift */,
 				46380ED22B8DFC2B00D8D8AF /* CustomCollection.swift */,
 			);
 			name = Capsule;
@@ -293,8 +282,6 @@
 				4096504136FE62FB0887CFD8 /* Pods-dxTimeCapsule.debug.xcconfig */,
 				24940157E90C825F0AF8F6E7 /* Pods-dxTimeCapsule.release.xcconfig */,
 				FFC457672B8F0FE9000761E9 /* APIKey.xcconfig */,
-				A8720466EB6EDC06CD2D3BB6 /* Pods-dxTimeCapsule.debug.xcconfig */,
-				7CBEAD0AD7208A95F503F7F0 /* Pods-dxTimeCapsule.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -302,7 +289,6 @@
 		27C81E412B8A39E9001E3623 /* HomeView */ = {
 			isa = PBXGroup;
 			children = (
-				1FB387382B8863DE00054816 /* HomeViewController.swift */,
 				27C81E442B8A3A39001E3623 /* OpenedTCCollectionViewCell.swift */,
 				27C81E462B8A3A4C001E3623 /* UpcomingTCCollectionViewCell.swift */,
 			);
@@ -390,7 +376,6 @@
 				460FE7652B8A1FE500AF8086 /* APIKey.xcconfig in Resources */,
 				1F0854262B8F0F7300711660 /* proximanova_boldit.otf in Resources */,
 				FFC457682B8F0FE9000761E9 /* APIKey.xcconfig in Resources */,
-				1FAB4DFA2B8C59210054618A /* GoogleService-Info.plist in Resources */,
 				1F5786E52B849AFA00C40B08 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -446,8 +431,8 @@
 			files = (
 				FFC457642B8F0F36000761E9 /* UserProfileViewModel.swift in Sources */,
 				FFC457662B8F0F74000761E9 /* UserProfileViewController.swift in Sources */,
-				4EC308E02B8A202400EEE54C /* MainCapsuleViewController.swift in Sources */,
 				46EA9BAE2B89A27E00633EC4 /* CapsuleMapViewController.swift in Sources */,
+				1F0854322B8F254B00711660 /* MainCapsuleViewController.swift in Sources */,
 				460FE7672B8A200D00AF8086 /* LockedCapsuleCell.swift in Sources */,
 				1F5786D92B849AF800C40B08 /* AppDelegate.swift in Sources */,
 				1FB387352B87A0B300054816 /* SignUpViewController.swift in Sources */,
