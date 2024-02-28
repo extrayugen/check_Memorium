@@ -105,8 +105,8 @@ class MainCapsuleViewController: UIViewController {
         view.addSubview(backLightImageView)
         backLightImageView.snp.makeConstraints { make in
             make.centerX.equalToSuperview() // X축은 중앙
-            make.centerY.equalToSuperview().offset(-20) // Y축은 중앙에서 0만큼 위로 올림
-            make.width.equalTo(400) // backLight 이미지 너비
+            make.centerY.equalToSuperview().offset(-25) // Y축은 중앙에서 0만큼 위로 올림
+            make.width.equalTo(420) // backLight 이미지 너비
             make.height.equalTo(360) // backLight 이미지 높이
         }
     }
