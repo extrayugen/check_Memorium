@@ -12,7 +12,7 @@ class SearchModalTableViewController:
     
     private let searchTextField: UITextField = {
         let textField = UITextField()
-        textField.placeholder = "닉네임으로 검색"
+        textField.placeholder = "유저네임으로 검색"
         textField.borderStyle = .roundedRect
         textField.autocorrectionType = .no
         textField.spellCheckingType = .no
@@ -30,11 +30,7 @@ class SearchModalTableViewController:
         super.viewDidLoad()
         searchTextField.delegate = self
         setupUI()
-        
-        // 모달 당기는 제스쳐
-        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(handlePanGesture))
-        view.addGestureRecognizer(panGesture)
-        
+
         // 모달 외부 탭 제스쳐
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(backgroundTapped))
         tapGesture.delegate = self
@@ -88,29 +84,26 @@ class SearchModalTableViewController:
     // MARK: - Functions
     
     // 친구 검색
-    private func performSearch() {
-        guard let searchText = searchTextField.text?.lowercased(), !searchText.isEmpty else { return }
-        
-        friendsViewModel.searchUsersByNickname(nickname: searchText) { [weak self] users, error in
-            DispatchQueue.main.async {
-                if let error = error {
-                    // 에러 처리 로직 (예: 사용자에게 에러 메시지 표시)
-                    print("Error searching users: \(error.localizedDescription)")
-                } else {
-                    self?.tableView.tableFooterView = nil  // 기존에 표시된 푸터 뷰 제거
-                    if let users = users, users.isEmpty {
-                        // 검색 결과가 없을 때, "검색 결과 없음" 메시지 표시
-                        self?.showNoResultsMessage()
-                    } else {
-                        // 검색 결과가 있을 때, 테이블 뷰 리로드
-                        self?.searchResults = users ?? []
-                        self?.tableView.reloadData()
-                    }
+    private func performSearch(_ textField: UITextField) {
+            guard let searchText = textField.text, !searchText.isEmpty else {
+                searchResults = []
+                tableView.reloadData()
+                return
+            }
+            
+            // 검색 실행
+            friendsViewModel.searchUsersByUsername(username: searchText) { [weak self] (users, error) in
+                guard let self = self, let users = users else {
+                    // 에러 처리 또는 결과가 없을 경우의 로직
+                    return
                 }
+                
+                // 검색 결과 업데이트 및 테이블 뷰 리로드
+                self.searchResults = users
+                self.tableView.reloadData()
             }
         }
-    }
-    
+
     // 검색 결과 없음 메시지 표시
     private func showNoResultsMessage() {
         
@@ -141,38 +134,13 @@ class SearchModalTableViewController:
     
     // 텍스트필드가 바뀔때마다 검색을 수행하는 메서드
     @objc private func textFieldDidChange(_ textField: UITextField) {
-        performSearch()
+        print("performSearch")
+        performSearch(textField)
     }
     
     // 배경을 탭할 때 호출되는 메서드
     @objc func backgroundTapped() {
         dismiss(animated: true, completion: nil)
-    }
-    
-    // 모달 당기는 제스쳐
-    @objc func handlePanGesture(gesture: UIPanGestureRecognizer) {
-        let translation = gesture.translation(in: view)
-        let velocity = gesture.velocity(in: view)
-        
-        switch gesture.state {
-        case .changed:
-            // 드래그에 따른 뷰의 위치 변경 로직
-            if translation.y > 0 { // 위로 드래그하지 않도록
-                view.transform = CGAffineTransform(translationX: 0, y: translation.y)
-            }
-        case .ended:
-            if translation.y > 100 || velocity.y > 1000 {
-                // 드래그 거리 또는 속도가 임계값을 초과하면 모달 닫기
-                dismiss(animated: true, completion: nil)
-            } else {
-                // 애니메이션으로 원래 위치로 복귀
-                UIView.animate(withDuration: 0.3) {
-                    self.view.transform = .identity
-                }
-            }
-        default:
-            break
-        }
     }
     
     // Tap to Dismiss
@@ -188,7 +156,7 @@ class SearchModalTableViewController:
     // MARK: - TextField Delegate
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder() // 키보드 숨김
-        performSearch()
+        performSearch(textField)
         return true
     }
     
@@ -210,7 +178,7 @@ class SearchModalTableViewController:
         
         cell.addUserAction = {
             // Firestore에 친구 추가 요청 로직 구현
-            print("친구 추가 요청: \(user.nickname)")
+            print("친구 추가 요청: \(user.username)")
         }
         
         return cell

@@ -8,9 +8,6 @@
 import UIKit
 import SnapKit
 
-#Preview{
-   HomeViewController()
-}
 
 class HomeViewController: UIViewController {
     
@@ -41,6 +38,15 @@ class HomeViewController: UIViewController {
         let imageView = UIImageView(image: UIImage(named: "pagelogo"))
         imageView.contentMode = .scaleAspectFit
         return imageView
+    }()
+    
+    // 친구 찾기 버튼
+    let findFriendButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setImage(UIImage(named: "State=true"), for: .normal)
+        button.addTarget(self, action: #selector(findFriendButtonTapped), for: .touchUpInside)
+        button.isUserInteractionEnabled = true
+        return button
     }()
     
     //알림 버튼 생성
@@ -513,6 +519,9 @@ class HomeViewController: UIViewController {
     
     @objc func menuButtonTapped() {
         print("메뉴 버튼이 클릭되었습니다")
+        let userProfileVC = UserProfileViewController()
+        let navController = UINavigationController(rootViewController: userProfileVC)
+        present(navController, animated: true, completion: nil)
     }
     
     @objc func notificationButtonTapped() {
@@ -531,10 +540,16 @@ class HomeViewController: UIViewController {
     
     @objc func addNewTCButtonTapped() {
         print("새로운 타임캡슐 만들기 버튼이 클릭되었습니다")
+        let createTCVC = CreateTimeCapsuleViewController()
+        let navController = UINavigationController(rootViewController: createTCVC)
+        present(navController, animated: true, completion: nil)
     }
     
     @objc func openedTCButtonTapped(){
         print("열어본 타임캡슐 열기 버튼이 클릭되었습니다")
+        let openedVC = OpenedTCViewController()
+        let navController = UINavigationController(rootViewController: openedVC)
+        present(navController, animated: true, completion: nil)
         
     }
     
@@ -542,6 +557,13 @@ class HomeViewController: UIViewController {
         print("다가오는 타임캡슐 열기 버튼이 클릭되었습니다")
         let upcomingVC = CapsuleMapViewController()
         let navController = UINavigationController(rootViewController: upcomingVC)
+        present(navController, animated: true, completion: nil)
+    }
+    
+    @objc func findFriendButtonTapped(){
+        print("다가오는 타임캡슐 열기 버튼이 클릭되었습니다")
+        let serarchUserVC = SearchUserViewController()
+        let navController = UINavigationController(rootViewController: serarchUserVC)
         present(navController, animated: true, completion: nil)
     }
 }

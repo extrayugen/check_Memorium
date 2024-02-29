@@ -105,6 +105,7 @@ class PhotoUploadViewController: UIViewController, UIImagePickerControllerDelega
         imagePickerController.sourceType = sourceType
         
         present(imagePickerController, animated: true, completion: nil)
+    
     }
     
     
