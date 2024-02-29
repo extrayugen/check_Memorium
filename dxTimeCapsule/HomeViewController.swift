@@ -8,9 +8,6 @@
 import UIKit
 import SnapKit
 
-#Preview{
-   HomeViewController()
-}
 
 class HomeViewController: UIViewController {
     
@@ -522,11 +519,9 @@ class HomeViewController: UIViewController {
     
     @objc func menuButtonTapped() {
         print("메뉴 버튼이 클릭되었습니다")
-       // let userProfileData = // 사용자의 프로필 데이터
-       // let userProfileViewModel = UserProfileViewModel(profileData: userProfileData)
-       // let userProfileVC = UserProfileViewController(viewModel: userProfileViewModel
-        // let navController = UINavigationController(rootViewController: userProfileVC)
-        // present(navController, animated: true, completion: nil)
+        let userProfileVC = UserProfileViewController()
+        let navController = UINavigationController(rootViewController: userProfileVC)
+        present(navController, animated: true, completion: nil)
     }
     
     @objc func notificationButtonTapped() {
