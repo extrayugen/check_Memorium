@@ -23,6 +23,7 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
+        
         setupViews()
         setupLayouts()
         
@@ -32,6 +33,15 @@ class LoginViewController: UIViewController {
         // Test 자동기입
         emailTextField.text =  "karina_goodbye@naver.com"
         passwordTextField.text = "123456"
+        
+        // 폰트 체크 하기
+        UIFont.familyNames.sorted().forEach { familyName in
+            print("*** \(familyName) ***")
+            UIFont.fontNames(forFamilyName: familyName).forEach { fontName in
+                print("\(fontName)")
+            }
+            print("---------------------")
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -64,14 +74,13 @@ class LoginViewController: UIViewController {
         //        loginButton.applyGradient(colors: [#colorLiteral(red: 1, green: 0.8862745098, blue: 0.3490196078, alpha: 1), #colorLiteral(red: 1, green: 0.6549019608, blue: 0.3176470588, alpha: 1)])
         
     }
+    
     deinit {
         // 리스너 제거
         if let handle = authHandle {
             Auth.auth().removeStateDidChangeListener(handle)
         }
     }
-    
-    
     
     private func setupViews() {
         view.addSubview(logoImageView)
@@ -185,6 +194,7 @@ class LoginViewController: UIViewController {
         //        labelsContainerView.backgroundColor = .green // labelsContainerView의 배경색 설정
         //        noAccountLabel.backgroundColor = .red // noAccountLabel의 배경색 설정
         //        signUpActionLabel.backgroundColor = .blue // signUpActionLabel의 배경색 설정
+        
     }
     
     /// 인증 상태 리스너를 설정합니다.
@@ -197,7 +207,6 @@ class LoginViewController: UIViewController {
         }
     }
     
-    
     private func navigateToMainFeed() {
         DispatchQueue.main.async {
             let mainTabBarView = MainTabBarView()
@@ -207,7 +216,6 @@ class LoginViewController: UIViewController {
         }
     }
 
-    
     // MARK: - Actions
     
     // 로그인 버튼 탭 처리
@@ -242,16 +250,15 @@ class LoginViewController: UIViewController {
                         guard let self = self else { return }
                         self.navigateToMainFeed()
                         
-                        
 //                        let mainFeedVC = MainTabBarView()
 //                        //                        let mainFeedVC = SearchUserViewController()
 //                        // 네비게이션 컨트롤러가 있는 경우
 //                        self.navigationController?.pushViewController(mainFeedVC, animated: true)
 //                        // 네비게이션 컨트롤러가 없는 경우
 //                        //                         self.present(mainFeedVC, animated: true, completion: nil)
+                        
                     })
                     self.present(alert, animated: true)
-                    
                 }
             }
         }

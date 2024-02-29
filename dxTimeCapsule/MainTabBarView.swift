@@ -28,7 +28,6 @@ class MainTabBarView: UITabBarController {
         
         self.viewControllers = viewControllers.map { UINavigationController(rootViewController: $0) }
         self.tabBar.tintColor = UIColor(hex: "#D28488")
-
     }
 
     private func resizeImage(imageName: String, targetSize: CGSize) -> UIImage? {
@@ -54,5 +53,7 @@ class MainTabBarView: UITabBarController {
         UIGraphicsEndImageContext()
 
         return newImage
+        
     }
+    
 }

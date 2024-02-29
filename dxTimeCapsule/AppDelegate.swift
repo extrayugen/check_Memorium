@@ -19,6 +19,8 @@ import NMapsMap
         window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
         
+ 
+        
         return true
     }
     

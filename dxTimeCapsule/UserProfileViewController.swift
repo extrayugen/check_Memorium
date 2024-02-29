@@ -44,7 +44,6 @@ class UserProfileViewController: UIViewController {
         // 이미지 뷰의 크기에 따라 cornerRadius를 동적으로 설정합니다.
         let imageSize: CGFloat = profileImageView.frame.width
         profileImageView.layer.cornerRadius = imageSize / 2
-        
         logoutButton.applyGradient(colors: [#colorLiteral(red: 0.831372549, green: 0.2, blue: 0.4117647059, alpha: 1), #colorLiteral(red: 0.7960784314, green: 0.6784313725, blue: 0.4274509804, alpha: 1)])
     }
     
@@ -60,21 +59,21 @@ class UserProfileViewController: UIViewController {
         
         // Profile Image View Setup
         profileImageView.contentMode = .scaleAspectFill
-        profileImageView.clipsToBounds = true // 이 부분을 추가합니다.
+        profileImageView.clipsToBounds = true
         let imageSize: CGFloat = 220 // 원하는 이미지 크기로 설정
         profileImageView.layer.cornerRadius = imageSize / 2 // 이미지 뷰를 둥글게 처리하기 위해 반지름을 이미지 크기의 절반으로 설정
     
         // Nickname Label Setup
-        nicknameLabel.font = .systemFont(ofSize: 24, weight: .bold)
+        nicknameLabel.font = .proximaNovaBlack(ofSize: 24)
         nicknameLabel.textAlignment = .center
         
         // Email Label Setup
-        emailLabel.font = .systemFont(ofSize: 18, weight: .regular)
+        logoutButton.titleLabel?.font = .proximaNovaBlack(ofSize: 24)
         emailLabel.textAlignment = .center
                
         // Logout Button Setup
-        logoutButton.setTitle("로그아웃", for: .normal)
-        logoutButton.titleLabel?.font = .systemFont(ofSize: 14)
+        logoutButton.setTitle("Logout", for: .normal)
+        logoutButton.titleLabel?.font = .proximaNovaBlack(ofSize: 14)
         logoutButton.addTarget(self, action: #selector(logoutTapped), for: .touchUpInside)
         logoutButton.layer.cornerRadius = 12
         
@@ -82,13 +81,13 @@ class UserProfileViewController: UIViewController {
         dividerView.backgroundColor = .lightGray
         
         // "계정이 없으신가요?" 라벨 설정
-        areYouSerious.text = "정말 탈퇴하실 건가요..?"
+        areYouSerious.text = "Are you really going to leave?"
         areYouSerious.font = .systemFont(ofSize: 14)
         areYouSerious.textColor = .black
         
         // Delete Account Label Setup
-        deleteAccountLabel.text = "탈퇴하기"
-        deleteAccountLabel.font = .systemFont(ofSize: 14, weight: .bold)
+        deleteAccountLabel.text = "Leave account"
+        deleteAccountLabel.font = .proximaNovaBlack(ofSize: 14)
         deleteAccountLabel.textColor = UIColor(hex: "#D28488")
         deleteAccountLabel.textAlignment = .center
         
@@ -103,26 +102,29 @@ class UserProfileViewController: UIViewController {
     private func setupConstraints() {
         // Profile Image View Constraints
         profileImageView.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(100)
             make.centerX.equalToSuperview()
+            make.centerY.equalToSuperview().offset(-130)
             make.width.height.equalTo(220)
             profileImageView.setRoundedImage()
         }
         
         // Nickname Label Constraints
         nicknameLabel.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
             make.top.equalTo(profileImageView.snp.bottom).offset(20)
             make.left.right.equalToSuperview().inset(20)
         }
         
         // Email Label Constraints
         emailLabel.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
             make.top.equalTo(nicknameLabel.snp.bottom).offset(10)
             make.left.right.equalToSuperview().inset(20)
         }
         
         // Logout Button Constraints
         logoutButton.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
             make.top.equalTo(emailLabel.snp.bottom).offset(20)
             make.left.right.equalToSuperview().inset(50)
             make.height.equalTo(50)
@@ -130,6 +132,7 @@ class UserProfileViewController: UIViewController {
         
         // Ensure dividerView is added to the view before setting constraints
         dividerView.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
             make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(-70)
             make.left.right.equalToSuperview().inset(20)
             make.height.equalTo(1)
@@ -137,8 +140,8 @@ class UserProfileViewController: UIViewController {
         
         // labelsContainerView에 대한 높이 제약 조건 추가
         labelsContainerView.snp.makeConstraints { make in
-            make.top.equalTo(dividerView.snp.bottom).offset(15)
             make.centerX.equalToSuperview()
+            make.top.equalTo(dividerView.snp.bottom).offset(15)
             // 높이를 명시적으로 설정
             make.height.equalTo(20)
         }
@@ -155,6 +158,7 @@ class UserProfileViewController: UIViewController {
             make.left.equalTo(areYouSerious.snp.right).offset(5)
         }
     }
+
     
     // MARK: - Binding
     private func bindViewModel() {
