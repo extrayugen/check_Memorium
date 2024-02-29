@@ -20,8 +20,6 @@
 		1F0B913F2B908A690022EDD9 /* TaskListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0B913E2B908A690022EDD9 /* TaskListViewController.swift */; };
 		1F0B91412B908A730022EDD9 /* FollowTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0B91402B908A730022EDD9 /* FollowTabViewController.swift */; };
 		1F0B91432B908A7A0022EDD9 /* ProfileTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0B91422B908A7A0022EDD9 /* ProfileTabViewController.swift */; };
-		1F0B91452B90903C0022EDD9 /* APIKey.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 1F0B91442B90903C0022EDD9 /* APIKey.xcconfig */; };
-		1F0B91482B909AD90022EDD9 /* SwiftSVG in Frameworks */ = {isa = PBXBuildFile; productRef = 1F0B91472B909AD90022EDD9 /* SwiftSVG */; };
 		1F0D3B2C2B89AA2B00A31E82 /* CapsuleUploadPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0D3B2B2B89AA2B00A31E82 /* CapsuleUploadPhotoViewController.swift */; };
 		1F0D3B322B89D85500A31E82 /* CapsuleUploadDeatilViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0D3B312B89D85500A31E82 /* CapsuleUploadDeatilViewController.swift */; };
 		1F367EA62B8F803A00563908 /* UIColor+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F367EA52B8F803A00563908 /* UIColor+Hex.swift */; };
@@ -148,7 +146,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				0650E25C14207B6941E876DD /* Pods_dxTimeCapsule.framework in Frameworks */,
-				1F0B91482B909AD90022EDD9 /* SwiftSVG in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -476,7 +473,6 @@
 			);
 			name = dxTimeCapsule;
 			packageProductDependencies = (
-				1F0B91472B909AD90022EDD9 /* SwiftSVG */,
 			);
 			productName = dxTimeCapsule;
 			productReference = 1F5786D52B849AF800C40B08 /* dxTimeCapsule.app */;
@@ -508,6 +504,7 @@
 			mainGroup = 1F5786CC2B849AF800C40B08;
 			packageReferences = (
 				1F0B91462B909AD90022EDD9 /* XCRemoteSwiftPackageReference "SwiftSVG" */,
+				1F47AB7F2B90ADC6000DB508 /* XCRemoteSwiftPackageReference "SVGKit" */,
 			);
 			productRefGroup = 1F5786D62B849AF800C40B08 /* Products */;
 			projectDirPath = "";
@@ -528,7 +525,6 @@
 				1F5786E82B849AFA00C40B08 /* LaunchScreen.storyboard in Resources */,
 				1FF869242B8F503D007B5112 /* proximanova_black.otf in Resources */,
 				1FF869222B8F503D007B5112 /* proximanova_extrabold.otf in Resources */,
-				1F0B91452B90903C0022EDD9 /* APIKey.xcconfig in Resources */,
 				1F0854172B8F091500711660 /* GoogleService-Info.plist in Resources */,
 				1FF8691D2B8F503D007B5112 /* proximanova_boldit.otf in Resources */,
 				1FF8691C2B8F503D007B5112 /* proximanova_light.otf in Resources */,
@@ -862,15 +858,15 @@
 				kind = branch;
 			};
 		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		1F0B91472B909AD90022EDD9 /* SwiftSVG */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 1F0B91462B909AD90022EDD9 /* XCRemoteSwiftPackageReference "SwiftSVG" */;
-			productName = SwiftSVG;
+		1F47AB7F2B90ADC6000DB508 /* XCRemoteSwiftPackageReference "SVGKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SVGKit/SVGKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.0;
+			};
 		};
-/* End XCSwiftPackageProductDependency section */
+/* End XCRemoteSwiftPackageReference section */
 	};
 	rootObject = 1F5786CD2B849AF800C40B08 /* Project object */;
 }

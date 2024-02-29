@@ -40,9 +40,12 @@ class UserProfileViewController: UIViewController {
     }
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
+
+        // 이미지 뷰의 크기에 따라 cornerRadius를 동적으로 설정합니다.
+        let imageSize: CGFloat = profileImageView.frame.width
+        profileImageView.layer.cornerRadius = imageSize / 2
         
         logoutButton.applyGradient(colors: [#colorLiteral(red: 0.831372549, green: 0.2, blue: 0.4117647059, alpha: 1), #colorLiteral(red: 0.7960784314, green: 0.6784313725, blue: 0.4274509804, alpha: 1)])
-        
     }
     
     // MARK: - Setup
@@ -57,9 +60,10 @@ class UserProfileViewController: UIViewController {
         
         // Profile Image View Setup
         profileImageView.contentMode = .scaleAspectFill
-        profileImageView.clipsToBounds = true
-        profileImageView.layer.cornerRadius = 50
-        
+        profileImageView.clipsToBounds = true // 이 부분을 추가합니다.
+        let imageSize: CGFloat = 220 // 원하는 이미지 크기로 설정
+        profileImageView.layer.cornerRadius = imageSize / 2 // 이미지 뷰를 둥글게 처리하기 위해 반지름을 이미지 크기의 절반으로 설정
+    
         // Nickname Label Setup
         nicknameLabel.font = .systemFont(ofSize: 24, weight: .bold)
         nicknameLabel.textAlignment = .center
@@ -70,9 +74,12 @@ class UserProfileViewController: UIViewController {
                
         // Logout Button Setup
         logoutButton.setTitle("로그아웃", for: .normal)
-        logoutButton.backgroundColor = .systemMint
-        logoutButton.layer.cornerRadius = 5
+        logoutButton.titleLabel?.font = .systemFont(ofSize: 14)
         logoutButton.addTarget(self, action: #selector(logoutTapped), for: .touchUpInside)
+        logoutButton.layer.cornerRadius = 12
+        
+        // Divider View Setup
+        dividerView.backgroundColor = .lightGray
         
         // "계정이 없으신가요?" 라벨 설정
         areYouSerious.text = "정말 탈퇴하실 건가요..?"
@@ -92,13 +99,14 @@ class UserProfileViewController: UIViewController {
         deleteAccountLabel.isUserInteractionEnabled = true // 사용자 인터랙션 활성화
         deleteAccountLabel.addGestureRecognizer(tapGesture)
     }
-    
+
     private func setupConstraints() {
         // Profile Image View Constraints
         profileImageView.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(100)
             make.centerX.equalToSuperview()
-            make.width.height.equalTo(100)
+            make.width.height.equalTo(220)
+            profileImageView.setRoundedImage()
         }
         
         // Nickname Label Constraints
@@ -238,4 +246,13 @@ class UserProfileViewController: UIViewController {
 }
 
 
+
+func configureButton(_ button: UIButton, title: String) {
+    button.setTitle(title, for: .normal)
+    button.setTitleColor(.white, for: .normal)
+    button.layer.cornerRadius = 12
+    button.snp.makeConstraints { make in
+        make.height.equalTo(44)
+    }
+}
 
