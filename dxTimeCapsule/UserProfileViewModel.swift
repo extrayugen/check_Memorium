@@ -43,11 +43,13 @@ class UserProfileViewModel {
                         self?.email = document.get("email") as? String
                         self?.nickname = document.get("nickname") as? String
                         self?.profileImageUrl = document.get("profileImageUrl") as? String
+                        print("User data fetched successfully")
                     } else {
                         self?.uid = "123456"
                         self?.email = "pandaruss@example.com"
                         self?.nickname = "PANDA RUSS"
                         self?.profileImageUrl = "https://example.com/profile/pandaruss.jpg"
+                        print("User data not found")
                     }
                     completion()
                 }
