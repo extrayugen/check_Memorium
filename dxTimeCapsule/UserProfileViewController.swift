@@ -128,6 +128,7 @@ class UserProfileViewController: UIViewController {
         do {
             try Auth.auth().signOut()
             
+            
             guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene else { return }
             guard let sceneDelegate = windowScene.delegate as? SceneDelegate else { return }
             

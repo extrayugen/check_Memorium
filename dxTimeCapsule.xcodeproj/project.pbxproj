@@ -225,13 +225,13 @@
 		1F5786F02B849C2F00C40B08 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				1FAB4DEC2B8C29D80054618A /* Authentication */,
 				27C81E412B8A39E9001E3623 /* HomeView */,
 				D25B20EA2B89CD02006CEED8 /* LaunchScreenViewController.swift */,
 				46EA9BAD2B89A27E00633EC4 /* CapsuleMapViewController.swift */,
 				1FB387362B8862AF00054816 /* MainFeedViewController.swift */,
 				27865AD32B8DFCA900DB8DB6 /* NotificationViewController.swift */,
 				1FAB4DED2B8C2AEB0054618A /* Main */,
-				1FAB4DEC2B8C29D80054618A /* Authentication */,
 				1FB3873C2B886EDA00054816 /* TimeCapsuleUpload */,
 				1FAB4DEE2B8C2B800054618A /* Capsule */,
 				1F9DA7AD2B8C921900A74D84 /* SearchUser */,

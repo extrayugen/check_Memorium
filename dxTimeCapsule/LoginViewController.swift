@@ -4,6 +4,8 @@ import FirebaseAuth
 
 class LoginViewController: UIViewController {
     
+    // 리스너 핸들을 저장하기 위한 변수 선언
+    private var authHandle: AuthStateDidChangeListenerHandle?
     
     private let labelsContainerView = UIView()
     private let logoImageView = UIImageView()
@@ -24,14 +26,25 @@ class LoginViewController: UIViewController {
         setupViews()
         setupLayouts()
         
-        //         Test 자동기입
-        let testEmail = "admin@time.co.kr"
-        let testPassword = "123456"
+        // 인증 리스너 설정
+        setupAuthStateListener()
         
-        emailTextField.text = testEmail
-        passwordTextField.text = testPassword
+        // Test 자동기입
+        emailTextField.text =  "karina_goodbye@naver.com"
+        passwordTextField.text = "123456"
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        // 사용자가 로그인되어 있지 않다면 로그인 화면을 유지
+        if Auth.auth().currentUser == nil {
+            // 로그인 화면 유지
+        } else {
+            // 이미 로그인되어 있다면 메인 페이지로 이동
+            navigateToMainFeed()
+        }
+    }
+
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
@@ -51,6 +64,14 @@ class LoginViewController: UIViewController {
         //        loginButton.applyGradient(colors: [#colorLiteral(red: 1, green: 0.8862745098, blue: 0.3490196078, alpha: 1), #colorLiteral(red: 1, green: 0.6549019608, blue: 0.3176470588, alpha: 1)])
         
     }
+    deinit {
+        // 리스너 제거
+        if let handle = authHandle {
+            Auth.auth().removeStateDidChangeListener(handle)
+        }
+    }
+    
+    
     
     private func setupViews() {
         view.addSubview(logoImageView)
@@ -101,7 +122,7 @@ class LoginViewController: UIViewController {
         dividerView.backgroundColor = .lightGray
         
     }
-
+    
     private func setupLayouts() {
         logoImageView.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(80)
@@ -113,33 +134,33 @@ class LoginViewController: UIViewController {
             make.top.equalTo(logoImageView.snp.bottom).offset(10)
             make.centerX.equalToSuperview()
         }
-
+        
         emailTextField.snp.makeConstraints { make in
             make.top.equalTo(appNameLabel.snp.bottom).offset(40)
             make.left.right.equalToSuperview().inset(30)
             make.height.equalTo(44)
         }
-
+        
         passwordTextField.snp.makeConstraints { make in
             make.top.equalTo(emailTextField.snp.bottom).offset(20)
             make.left.right.equalTo(emailTextField)
             make.height.equalTo(44)
         }
-
+        
         // Add the loginButton constraints
         loginButton.snp.makeConstraints { make in
             make.top.equalTo(passwordTextField.snp.bottom).offset(20)
             make.left.right.equalTo(passwordTextField)
             make.height.equalTo(44)
         }
-
+        
         // Ensure dividerView is added to the view before setting constraints
         dividerView.snp.makeConstraints { make in
             make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(-70)
             make.left.right.equalToSuperview().inset(20)
             make.height.equalTo(1)
         }
-
+        
         // labelsContainerView에 대한 높이 제약 조건 추가
         labelsContainerView.snp.makeConstraints { make in
             make.top.equalTo(dividerView.snp.bottom).offset(15)
@@ -147,27 +168,49 @@ class LoginViewController: UIViewController {
             // 높이를 명시적으로 설정
             make.height.equalTo(20)
         }
-
+        
         // noAccountLabel 및 signUpActionLabel에 대한 레이아웃 설정
         noAccountLabel.snp.makeConstraints { make in
             make.left.equalTo(labelsContainerView.snp.left)
             make.centerY.equalTo(labelsContainerView.snp.centerY)
         }
-
+        
         signUpActionLabel.snp.makeConstraints { make in
             make.right.equalTo(labelsContainerView.snp.right)
             make.centerY.equalTo(labelsContainerView.snp.centerY)
             make.left.equalTo(noAccountLabel.snp.right).offset(5)
         }
-
+        
         // 디버깅을 위한 배경색 설정
-//        labelsContainerView.backgroundColor = .green // labelsContainerView의 배경색 설정
-//        noAccountLabel.backgroundColor = .red // noAccountLabel의 배경색 설정
-//        signUpActionLabel.backgroundColor = .blue // signUpActionLabel의 배경색 설정
+        //        labelsContainerView.backgroundColor = .green // labelsContainerView의 배경색 설정
+        //        noAccountLabel.backgroundColor = .red // noAccountLabel의 배경색 설정
+        //        signUpActionLabel.backgroundColor = .blue // signUpActionLabel의 배경색 설정
     }
-
-
-
+    
+    /// 인증 상태 리스너를 설정합니다.
+    private func setupAuthStateListener() {
+        authHandle = Auth.auth().addStateDidChangeListener { [weak self] (auth, user) in
+            if user != nil {
+                self?.navigateToMainFeed()
+            }
+            // 사용자가 로그인하지 않은 상태면 로그인 화면 유지
+        }
+    }
+    
+    
+    private func navigateToMainFeed() {
+        DispatchQueue.main.async {
+            // 메인 피드 뷰 컨트롤러로의 이동 로직 구현
+            // 예: 네비게이션 컨트롤러를 사용하는 경우
+            let mainFeedVC = HomeViewController() // 메인 피드 뷰 컨트롤러 인스턴스 생성
+            mainFeedVC.modalPresentationStyle = .fullScreen
+            self.present(mainFeedVC, animated: true, completion: nil)
+            
+            // 또는 네비게이션 컨트롤러가 있다면 push를 사용
+            // self.navigationController?.pushViewController(mainFeedVC, animated: true)
+        }
+    }
+    
     // MARK: - Actions
     
     // 로그인 버튼 탭 처리
@@ -194,8 +237,8 @@ class LoginViewController: UIViewController {
                     alert.addAction(UIAlertAction(title: "확인", style: .default) { [weak self] _ in
                         guard let self = self else { return }
                         
-//                        let mainFeedVC = HomeViewController()
-                        let mainFeedVC = SearchUserViewController()
+                        let mainFeedVC = HomeViewController()
+                        //                        let mainFeedVC = SearchUserViewController()
                         // 네비게이션 컨트롤러가 있는 경우
                         self.navigationController?.pushViewController(mainFeedVC, animated: true)
                         // 네비게이션 컨트롤러가 없는 경우
