@@ -22,13 +22,13 @@ class SearchUserTableViewCell: UITableViewCell {
     // MARK: - UI Setup
     private func setupUI() {
         userProfileImageView = UIImageView()
-        userProfileImageView.contentMode = .scaleAspectFill // 이미지 콘텐츠 모드 설정
+//        userProfileImageView.contentMode = .scaleAspectFill // 이미지 콘텐츠 모드 설정
         userProfileImageView.layer.cornerRadius = 25
-        userProfileImageView.clipsToBounds = true
+        userProfileImageView.setRoundedImage()
         addSubview(userProfileImageView)
         
         userNameLabel = UILabel()
-        userNameLabel.font = UIFont.boldSystemFont(ofSize: 25) // 닉네임 폰트를 볼드체로 설정
+        userNameLabel.font = UIFont.boldSystemFont(ofSize: 20) // 닉네임 폰트를 볼드체로 설정
         addSubview(userNameLabel)
         
         // 친구 추가 또는 요청 수락 버튼 설정

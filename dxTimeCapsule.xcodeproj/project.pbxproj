@@ -13,6 +13,8 @@
 		1F0854322B8F254B00711660 /* MainCapsuleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0854312B8F254B00711660 /* MainCapsuleViewController.swift */; };
 		1F0854342B8F25A200711660 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0854332B8F25A200711660 /* SceneDelegate.swift */; };
 		1F0854362B8F27D100711660 /* APIKey.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 1F0854352B8F27D100711660 /* APIKey.xcconfig */; };
+		1F0B91062B901D170022EDD9 /* Etc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0B91052B901D170022EDD9 /* Etc.swift */; };
+		1F0B91082B9026020022EDD9 /* UIImageView+RoundImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0B91072B9026020022EDD9 /* UIImageView+RoundImage.swift */; };
 		1F0D3B2C2B89AA2B00A31E82 /* CapsuleUploadPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0D3B2B2B89AA2B00A31E82 /* CapsuleUploadPhotoViewController.swift */; };
 		1F0D3B322B89D85500A31E82 /* CapsuleUploadDeatilViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0D3B312B89D85500A31E82 /* CapsuleUploadDeatilViewController.swift */; };
 		1F367EA62B8F803A00563908 /* UIColor+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F367EA52B8F803A00563908 /* UIColor+Hex.swift */; };
@@ -25,7 +27,7 @@
 		1F9DA7B12B8C93BD00A74D84 /* SerachUserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F9DA7B02B8C93BD00A74D84 /* SerachUserTableViewCell.swift */; };
 		1F9DA7B52B8CA75900A74D84 /* SearchModalTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F9DA7B42B8CA75900A74D84 /* SearchModalTableViewController.swift */; };
 		1FA11BF22B8F8C440014002F /* UITextField+Padding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA11BF12B8F8C440014002F /* UITextField+Padding.swift */; };
-		1FAACDE12B8FAA520005B993 /* UIImage+RoundedImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FAACDE02B8FAA520005B993 /* UIImage+RoundedImage.swift */; };
+		1FAACDE12B8FAA520005B993 /* UIImage+RoundImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FAACDE02B8FAA520005B993 /* UIImage+RoundImage.swift */; };
 		1FAB4DF62B8C48AF0054618A /* FriendsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FAB4DF52B8C48AF0054618A /* FriendsViewModel.swift */; };
 		1FAB4DF82B8C49590054618A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FAB4DF72B8C49590054618A /* User.swift */; };
 		1FB387352B87A0B300054816 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB387342B87A0B300054816 /* SignUpViewController.swift */; };
@@ -73,6 +75,8 @@
 		1F0854312B8F254B00711660 /* MainCapsuleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCapsuleViewController.swift; sourceTree = "<group>"; };
 		1F0854332B8F25A200711660 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		1F0854352B8F27D100711660 /* APIKey.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = APIKey.xcconfig; sourceTree = "<group>"; };
+		1F0B91052B901D170022EDD9 /* Etc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Etc.swift; sourceTree = "<group>"; };
+		1F0B91072B9026020022EDD9 /* UIImageView+RoundImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+RoundImage.swift"; sourceTree = "<group>"; };
 		1F0D3B2B2B89AA2B00A31E82 /* CapsuleUploadPhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapsuleUploadPhotoViewController.swift; sourceTree = "<group>"; };
 		1F0D3B312B89D85500A31E82 /* CapsuleUploadDeatilViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapsuleUploadDeatilViewController.swift; sourceTree = "<group>"; };
 		1F367EA52B8F803A00563908 /* UIColor+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Hex.swift"; sourceTree = "<group>"; };
@@ -87,7 +91,7 @@
 		1F9DA7B02B8C93BD00A74D84 /* SerachUserTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SerachUserTableViewCell.swift; sourceTree = "<group>"; };
 		1F9DA7B42B8CA75900A74D84 /* SearchModalTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchModalTableViewController.swift; sourceTree = "<group>"; };
 		1FA11BF12B8F8C440014002F /* UITextField+Padding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Padding.swift"; sourceTree = "<group>"; };
-		1FAACDE02B8FAA520005B993 /* UIImage+RoundedImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+RoundedImage.swift"; sourceTree = "<group>"; };
+		1FAACDE02B8FAA520005B993 /* UIImage+RoundImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+RoundImage.swift"; sourceTree = "<group>"; };
 		1FAB4DF52B8C48AF0054618A /* FriendsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsViewModel.swift; sourceTree = "<group>"; };
 		1FAB4DF72B8C49590054618A /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		1FB387342B87A0B300054816 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
@@ -157,6 +161,14 @@
 				1F0854222B8F0F7300711660 /* proximanova_black.otf */,
 			);
 			path = "Proxima Nova";
+			sourceTree = "<group>";
+		};
+		1F0B91092B90262A0022EDD9 /* UIImageView */ = {
+			isa = PBXGroup;
+			children = (
+				1F0B91072B9026020022EDD9 /* UIImageView+RoundImage.swift */,
+			);
+			name = UIImageView;
 			sourceTree = "<group>";
 		};
 		1F5786CC2B849AF800C40B08 = {
@@ -241,6 +253,7 @@
 			isa = PBXGroup;
 			children = (
 				1F0854142B8EF4F400711660 /* TestLoginViewController.swift */,
+				1F0B91052B901D170022EDD9 /* Etc.swift */,
 			);
 			name = Legercy;
 			sourceTree = "<group>";
@@ -283,7 +296,7 @@
 		1FAACDDF2B8FAA400005B993 /* UIImage */ = {
 			isa = PBXGroup;
 			children = (
-				1FAACDE02B8FAA520005B993 /* UIImage+RoundedImage.swift */,
+				1FAACDE02B8FAA520005B993 /* UIImage+RoundImage.swift */,
 			);
 			name = UIImage;
 			sourceTree = "<group>";
@@ -382,6 +395,7 @@
 				1FA11BF32B8F8C740014002F /* UIButtion */,
 				1FA11BF42B8F8C7F0014002F /* UIColor */,
 				1FA11BF52B8F8C850014002F /* UITextField */,
+				1F0B91092B90262A0022EDD9 /* UIImageView */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -551,12 +565,13 @@
 				1F0D3B322B89D85500A31E82 /* CapsuleUploadDeatilViewController.swift in Sources */,
 				1FAB4DF82B8C49590054618A /* User.swift in Sources */,
 				1FAB4DF62B8C48AF0054618A /* FriendsViewModel.swift in Sources */,
-				1FAACDE12B8FAA520005B993 /* UIImage+RoundedImage.swift in Sources */,
+				1FAACDE12B8FAA520005B993 /* UIImage+RoundImage.swift in Sources */,
 				1F5787132B86DBF900C40B08 /* LoginViewController.swift in Sources */,
 				1FF869172B8F4B87007B5112 /* CapsuleUploadMainViewController.swift in Sources */,
 				27D241B02B8F32C5000F8F16 /* CreateTimeCapsuleViewController.swift in Sources */,
 				1FB387402B8881DB00054816 /* TimeCapsule.swift in Sources */,
 				1FB387392B8863DE00054816 /* HomeViewController.swift in Sources */,
+				1F0B91082B9026020022EDD9 /* UIImageView+RoundImage.swift in Sources */,
 				27C81E452B8A3A39001E3623 /* OpenedTCCollectionViewCell.swift in Sources */,
 				1F0854342B8F25A200711660 /* SceneDelegate.swift in Sources */,
 				1FF8691B2B8F4D81007B5112 /* UIButton+Gradient.swift in Sources */,
@@ -569,6 +584,7 @@
 				1FB3873E2B88791A00054816 /* TimeCapsuleCreationViewModel.swift in Sources */,
 				27865AD42B8DFCA900DB8DB6 /* NotificationViewController.swift in Sources */,
 				1F9DA7AF2B8C922800A74D84 /* SearchUserViewController.swift in Sources */,
+				1F0B91062B901D170022EDD9 /* Etc.swift in Sources */,
 				D25B20EB2B89CD02006CEED8 /* LaunchScreenViewController.swift in Sources */,
 				1F9DA7B52B8CA75900A74D84 /* SearchModalTableViewController.swift in Sources */,
 				1F0D3B2C2B89AA2B00A31E82 /* CapsuleUploadPhotoViewController.swift in Sources */,
