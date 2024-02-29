@@ -27,7 +27,7 @@ class MainTabBarView: UITabBarController {
         let viewControllers = [homeTabViewController, findTabViewController, taskListViewController, followViewController, profileViewController]
         
         self.viewControllers = viewControllers.map { UINavigationController(rootViewController: $0) }
-        self.tabBar.tintColor = .black
+        self.tabBar.tintColor = UIColor(hex: "#D28488")
 
     }
 
