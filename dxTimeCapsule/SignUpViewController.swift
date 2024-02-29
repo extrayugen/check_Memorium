@@ -2,6 +2,7 @@ import UIKit
 import SnapKit
 import FirebaseAuth
 import FirebaseFirestore
+import FirebaseStorage
 
 class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     // MARK: - UI Components
@@ -222,74 +223,82 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
     @objc private func signUpButtonPressed() {
         guard let email = emailTextField.text, !email.isEmpty,
               let password = passwordTextField.text, !password.isEmpty,
-              let username = usernameTextField.text, !username.isEmpty
-//              let profileImageView = profileImageView, !profileImageView.image!.isEqualToImage(UIImage(named: "defaultProfileImage")!)
-        else {
+              let username = usernameTextField.text, !username.isEmpty,
+              let profileImage = profileImageView.image else {
             presentAlert(title: "입력 오류", message: "모든 필드를 채워주세요.")
             return
         }
-        
+
+        // Firebase Authentication을 사용하여 사용자를 생성합니다.
         Auth.auth().createUser(withEmail: email, password: password) { [weak self] authResult, error in
             guard let self = self else { return }
-            
             if let error = error {
                 self.presentAlert(title: "회원가입 실패", message: error.localizedDescription)
                 return
             }
-            
             guard let uid = authResult?.user.uid else { return }
-            let userDocument = Firestore.firestore().collection("users").document(uid)
-            
-            // 사용자 정보를 Firestore에 저장합니다.
-            var userData: [String: Any] = [
-                "uid": uid,
-                "email": email,
-                "nickname": username,
-                "friends": [],
-                "friendRequestsSent": [],
-                "friendRequestsReceived": []
-            ]
-            
-            if let profileImageUrl = self.profileImageView.image?.roundedImage()?.pngData() {
-                userData["profileImageUrl"] = profileImageUrl
-            } else {
-                // 프로필 이미지가 없는 경우 기본 이미지로 설정
-                let defaultProfileImageUrl = "defaultProfileImage"
-                userData["profileImageUrl"] = defaultProfileImageUrl
-            }
-            
-            userDocument.setData(userData) { error in
+
+            // Firebase Storage에 프로필 이미지 업로드 로직을 여기에 추가합니다.
+            let fileName = "profileImage_\(uid)_\(Int(Date().timeIntervalSince1970)).jpg"
+            let storageRef = Storage.storage().reference().child("userProfileImages/\(uid)/\(fileName)")
+            guard let imageData = profileImage.jpegData(compressionQuality: 0.75) else { return }
+
+            storageRef.putData(imageData, metadata: nil) { metadata, error in
                 if let error = error {
-                    self.presentAlert(title: "정보 저장 실패", message: error.localizedDescription)
-                } else {
-                    // 회원가입 성공 알림 후 이전 화면으로 돌아가기
-                    DispatchQueue.main.async {
-                        let alert = UIAlertController(title: "회원가입 성공", message: "회원가입이 완료되었습니다.", preferredStyle: .alert)
-                        print("----------------------------")
-                        print("가입한 userData: \(userData)")
-                        print("----------------------------\n")
-                        alert.addAction(UIAlertAction(title: "확인", style: .default) { _ in
-                            self.dismiss(animated: true, completion: nil)
-                        })
-                        self.present(alert, animated: true)
+                    self.presentAlert(title: "이미지 업로드 실패", message: error.localizedDescription)
+                    return
+                }
+                storageRef.downloadURL { url, error in
+                    guard let downloadURL = url else {
+                        self.presentAlert(title: "이미지 URL 가져오기 실패", message: error?.localizedDescription ?? "알 수 없는 오류")
+                        return
+                    }
+                    // Firestore에 사용자 정보와 프로필 이미지 URL 저장
+                    let userData: [String: Any] = [
+                        "uid": uid,
+                        "email": email,
+                        "username": username,
+                        "profileImageUrl": downloadURL.absoluteString,
+                        "friends": [],
+                        "friendRequestsSent": [],
+                        "friendRequestsReceived": []
+                    ]
+                    Firestore.firestore().collection("users").document(uid).setData(userData) { error in
+                        if let error = error {
+                            self.presentAlert(title: "정보 저장 실패", message: error.localizedDescription)
+                        } else {
+                            // 회원가입 성공 알림 후 이전 화면으로 돌아가기
+                            DispatchQueue.main.async {
+                                let alert = UIAlertController(title: "회원가입 성공", message: "회원가입이 완료되었습니다.", preferredStyle: .alert)
+                                alert.addAction(UIAlertAction(title: "확인", style: .default) { _ in
+                                    self.dismiss(animated: true, completion: nil)
+                                })
+                                self.present(alert, animated: true)
+                            }
+                        }
                     }
                 }
             }
         }
     }
+
     
+    // MARK: - Image Picker Delegate
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        if let editedImage = info[.editedImage] as? UIImage {
-            profileImageView.image = editedImage.roundedImage()
-        } else if let originalImage = info[.originalImage] as? UIImage {
-            profileImageView.image = originalImage.roundedImage()
+        guard let image = info[.editedImage] as? UIImage ?? info[.originalImage] as? UIImage else {
+            dismiss(animated: true)
+            return
         }
-        
+        // 선택된 이미지를 임시로 저장합니다. profileImageView는 UIImageView 타입의 아웃렛 변수입니다.
+        profileImageView.image = image
         dismiss(animated: true)
     }
+
 
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         dismiss(animated: true)
         
     }
+    
+    
 }

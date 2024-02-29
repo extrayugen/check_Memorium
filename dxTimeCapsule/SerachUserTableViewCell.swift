@@ -79,7 +79,7 @@ class SearchUserTableViewCell: UITableViewCell {
             userProfileImageView.sd_setImage(with: URL(string: profileImageUrl), placeholderImage: UIImage(named: "defaultProfileImage"))
         } else {
             // 기본 이미지 설정
-            userProfileImageView.image = UIImage(named: "defaultProfileImage")
+//            profileImageUrl = user.profileImageView
         }
     }
 }
