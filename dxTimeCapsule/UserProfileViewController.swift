@@ -19,11 +19,15 @@ class UserProfileViewController: UIViewController {
     private let userProfileViewModel = UserProfileViewModel()
     
     // MARK: - UI Components
+    private let labelsContainerView = UIView()
     private let profileImageView = UIImageView()
     private let nicknameLabel = UILabel()
     private let emailLabel = UILabel()
     private let logoutButton = UIButton()
-    private let deleteAccountButton = UIButton()
+    
+    private let areYouSerious = UILabel()
+    private let deleteAccountLabel = UILabel()
+    private let dividerView = UIView()
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -34,40 +38,59 @@ class UserProfileViewController: UIViewController {
             self?.bindViewModel()
         }
     }
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        logoutButton.applyGradient(colors: [#colorLiteral(red: 0.831372549, green: 0.2, blue: 0.4117647059, alpha: 1), #colorLiteral(red: 0.7960784314, green: 0.6784313725, blue: 0.4274509804, alpha: 1)])
+        
+    }
     
     // MARK: - Setup
     private func setupViews() {
         view.backgroundColor = .white
+        view.addSubview(profileImageView)
+        view.addSubview(nicknameLabel)
+        view.addSubview(logoutButton)
+        view.addSubview(dividerView)
+        view.addSubview(emailLabel)
+        view.addSubview(labelsContainerView)
         
         // Profile Image View Setup
         profileImageView.contentMode = .scaleAspectFill
         profileImageView.clipsToBounds = true
         profileImageView.layer.cornerRadius = 50
-        view.addSubview(profileImageView)
         
         // Nickname Label Setup
         nicknameLabel.font = .systemFont(ofSize: 24, weight: .bold)
         nicknameLabel.textAlignment = .center
-        view.addSubview(nicknameLabel)
         
         // Email Label Setup
         emailLabel.font = .systemFont(ofSize: 18, weight: .regular)
         emailLabel.textAlignment = .center
-        view.addSubview(emailLabel)
-        
+               
         // Logout Button Setup
         logoutButton.setTitle("로그아웃", for: .normal)
         logoutButton.backgroundColor = .systemMint
         logoutButton.layer.cornerRadius = 5
         logoutButton.addTarget(self, action: #selector(logoutTapped), for: .touchUpInside)
-        view.addSubview(logoutButton)
         
-        // Delete Button Setup
-        deleteAccountButton.setTitle("회원탈퇴하기", for: .normal)
-        deleteAccountButton.backgroundColor = .systemMint
-        deleteAccountButton.layer.cornerRadius = 5
-        deleteAccountButton.addTarget(self, action: #selector(deleteProfileTapped), for: .touchUpInside)
-        view.addSubview(deleteAccountButton)
+        // "계정이 없으신가요?" 라벨 설정
+        areYouSerious.text = "정말 탈퇴하실 건가요..?"
+        areYouSerious.font = .systemFont(ofSize: 14)
+        areYouSerious.textColor = .black
+        
+        // Delete Account Label Setup
+        deleteAccountLabel.text = "탈퇴하기"
+        deleteAccountLabel.font = .systemFont(ofSize: 14, weight: .bold)
+        deleteAccountLabel.textColor = UIColor(hex: "#D28488")
+        deleteAccountLabel.textAlignment = .center
+        
+        labelsContainerView.addSubview(areYouSerious)
+        labelsContainerView.addSubview(deleteAccountLabel)
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(deleteProfileTapped))
+        deleteAccountLabel.isUserInteractionEnabled = true // 사용자 인터랙션 활성화
+        deleteAccountLabel.addGestureRecognizer(tapGesture)
     }
     
     private func setupConstraints() {
@@ -97,24 +120,44 @@ class UserProfileViewController: UIViewController {
             make.height.equalTo(50)
         }
         
-        // Delete Button Constraints
-        deleteAccountButton.snp.makeConstraints { make in
-            make.top.equalTo(logoutButton.snp.bottom).offset(20)
-            make.left.right.equalToSuperview().inset(50)
-            make.height.equalTo(50)
+        // Ensure dividerView is added to the view before setting constraints
+        dividerView.snp.makeConstraints { make in
+            make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(-70)
+            make.left.right.equalToSuperview().inset(20)
+            make.height.equalTo(1)
+        }
+        
+        // labelsContainerView에 대한 높이 제약 조건 추가
+        labelsContainerView.snp.makeConstraints { make in
+            make.top.equalTo(dividerView.snp.bottom).offset(15)
+            make.centerX.equalToSuperview()
+            // 높이를 명시적으로 설정
+            make.height.equalTo(20)
+        }
+        
+        // Delete Account Label Constraints
+        areYouSerious.snp.makeConstraints { make in
+            make.left.equalTo(labelsContainerView.snp.left)
+            make.centerY.equalTo(labelsContainerView.snp.centerY)
+        }
+
+        deleteAccountLabel.snp.makeConstraints { make in
+            make.right.equalTo(labelsContainerView.snp.right)
+            make.centerY.equalTo(labelsContainerView.snp.centerY)
+            make.left.equalTo(areYouSerious.snp.right).offset(5)
         }
     }
     
     // MARK: - Binding
     private func bindViewModel() {
-        if let profileImageUrl = userProfileViewModel.profileImageUrl, let image = UIImage(named: profileImageUrl) {
-            profileImageView.sd_setImage(with: URL(string: profileImageUrl), placeholderImage: UIImage(named: "MainCapsule"))
-            profileImageView.image = image
+        // 프로필 이미지 URL이 nil이거나 비어있는 경우 기본 이미지 사용
+        if let profileImageUrl = userProfileViewModel.profileImageUrl, !profileImageUrl.isEmpty {
+            profileImageView.sd_setImage(with: URL(string: profileImageUrl), placeholderImage: UIImage(named: "defaultProfileImage"))
         } else {
             // 기본 이미지를 사용하거나 이미지가 없는 경우를 처리할 수 있습니다.
             profileImageView.image = UIImage(named: "LoginLogo")
         }
-        
+
         // 닉네임 설정
         nicknameLabel.text = userProfileViewModel.nickname
         
