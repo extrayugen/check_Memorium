@@ -291,6 +291,11 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
         }
         // 선택된 이미지를 임시로 저장합니다. profileImageView는 UIImageView 타입의 아웃렛 변수입니다.
         profileImageView.image = image
+        
+        // 이미지를 둥글게 처리합니다.
+        if let roundedImage = image.roundedImage() {
+            profileImageView.image = roundedImage
+        }
         dismiss(animated: true)
     }
 

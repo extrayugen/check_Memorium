@@ -12,7 +12,7 @@ class SearchModalTableViewController:
     
     private let searchTextField: UITextField = {
         let textField = UITextField()
-        textField.placeholder = "닉네임으로 검색"
+        textField.placeholder = "유저네임으로 검색"
         textField.borderStyle = .roundedRect
         textField.autocorrectionType = .no
         textField.spellCheckingType = .no
@@ -91,25 +91,29 @@ class SearchModalTableViewController:
     private func performSearch() {
         guard let searchText = searchTextField.text?.lowercased(), !searchText.isEmpty else { return }
         
-        friendsViewModel.searchUsersByNickname(nickname: searchText) { [weak self] users, error in
+        friendsViewModel.searchUsersByUsername(username: searchText) { [weak self] users, error in // 클로저 캡처 리스트에서 weak self 사용
             DispatchQueue.main.async {
                 if let error = error {
                     // 에러 처리 로직 (예: 사용자에게 에러 메시지 표시)
                     print("Error searching users: \(error.localizedDescription)")
+                    return
+                }
+                
+                if let users = users, users.isEmpty {
+                    // 검색 결과가 없을 때, "검색 결과 없음" 메시지 표시
+                    self?.showNoResultsMessage()
+                    print("No search results found.")
                 } else {
-                    self?.tableView.tableFooterView = nil  // 기존에 표시된 푸터 뷰 제거
-                    if let users = users, users.isEmpty {
-                        // 검색 결과가 없을 때, "검색 결과 없음" 메시지 표시
-                        self?.showNoResultsMessage()
-                    } else {
-                        // 검색 결과가 있을 때, 테이블 뷰 리로드
-                        self?.searchResults = users ?? []
-                        self?.tableView.reloadData()
-                    }
+                    // 검색 결과가 있을 때, 테이블 뷰 리로드
+                    self?.searchResults = users ?? []
+                    self?.tableView.reloadData()
+                    print("Search results found: \(String(describing: users?.count)) users.")
                 }
             }
         }
     }
+
+
     
     // 검색 결과 없음 메시지 표시
     private func showNoResultsMessage() {
@@ -141,6 +145,7 @@ class SearchModalTableViewController:
     
     // 텍스트필드가 바뀔때마다 검색을 수행하는 메서드
     @objc private func textFieldDidChange(_ textField: UITextField) {
+        print("performSearch")
         performSearch()
     }
     
@@ -210,7 +215,7 @@ class SearchModalTableViewController:
         
         cell.addUserAction = {
             // Firestore에 친구 추가 요청 로직 구현
-            print("친구 추가 요청: \(user.nickname)")
+            print("친구 추가 요청: \(user.username)")
         }
         
         return cell

@@ -5,7 +5,7 @@ import SDWebImage
 class SearchUserTableViewCell: UITableViewCell {
     var actionButton: UIButton! // 친구 추가 또는 요청 수락 버튼
     var userProfileImageView: UIImageView!
-    var nicknameLabel: UILabel!
+    var userNameLabel: UILabel!
     
     var addUserAction: (() -> Void)? // 추가할 속성
 
@@ -27,9 +27,9 @@ class SearchUserTableViewCell: UITableViewCell {
         userProfileImageView.clipsToBounds = true
         addSubview(userProfileImageView)
         
-        nicknameLabel = UILabel()
-        nicknameLabel.font = UIFont.boldSystemFont(ofSize: 25) // 닉네임 폰트를 볼드체로 설정
-        addSubview(nicknameLabel)
+        userNameLabel = UILabel()
+        userNameLabel.font = UIFont.boldSystemFont(ofSize: 25) // 닉네임 폰트를 볼드체로 설정
+        addSubview(userNameLabel)
         
         // 친구 추가 또는 요청 수락 버튼 설정
         actionButton = UIButton(type: .system)
@@ -50,7 +50,7 @@ class SearchUserTableViewCell: UITableViewCell {
             make.width.height.equalTo(80) // 이미지뷰 크기 설정
         }
         
-        nicknameLabel.snp.makeConstraints { make in
+        userNameLabel.snp.makeConstraints { make in
             make.centerY.equalToSuperview() // 상하 중앙 정렬
             make.leading.equalTo(userProfileImageView.snp.trailing).offset(16) // 이미지 오른쪽에 붙이고 여백 추가
         }
@@ -70,8 +70,8 @@ class SearchUserTableViewCell: UITableViewCell {
     
     // MARK: - Configuration
     func configure(with user: User) {
-        nicknameLabel.text = user.nickname
-        nicknameLabel.textColor = .black
+        userNameLabel.text = user.username
+        userNameLabel.textColor = .black
 
         
         // 프로필 이미지 URL이 nil이거나 비어있는 경우 기본 이미지 사용
@@ -81,6 +81,7 @@ class SearchUserTableViewCell: UITableViewCell {
             // 기본 이미지 설정
 //            profileImageUrl = user.profileImageView
         }
+        print("user.profileImageUrl: \(user.profileImageUrl)")
     }
 }
 

@@ -194,8 +194,8 @@ class LoginViewController: UIViewController {
                     alert.addAction(UIAlertAction(title: "확인", style: .default) { [weak self] _ in
                         guard let self = self else { return }
                         
-                        let mainFeedVC = HomeViewController()
-//                        let mainFeedVC = SearchUserViewController()
+//                        let mainFeedVC = HomeViewController()
+                        let mainFeedVC = SearchUserViewController()
                         // 네비게이션 컨트롤러가 있는 경우
                         self.navigationController?.pushViewController(mainFeedVC, animated: true)
                         // 네비게이션 컨트롤러가 없는 경우
