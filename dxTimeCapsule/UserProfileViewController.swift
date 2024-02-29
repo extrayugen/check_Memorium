@@ -23,7 +23,7 @@ class UserProfileViewController: UIViewController {
     private let nicknameLabel = UILabel()
     private let emailLabel = UILabel()
     private let logoutButton = UIButton()
-    private let deleteAccountButton = UIButton()
+    private let deleteAccountLabel = UILabel()
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -62,12 +62,16 @@ class UserProfileViewController: UIViewController {
         logoutButton.addTarget(self, action: #selector(logoutTapped), for: .touchUpInside)
         view.addSubview(logoutButton)
         
-        // Delete Button Setup
-        deleteAccountButton.setTitle("회원탈퇴하기", for: .normal)
-        deleteAccountButton.backgroundColor = .systemMint
-        deleteAccountButton.layer.cornerRadius = 5
-        deleteAccountButton.addTarget(self, action: #selector(deleteProfileTapped), for: .touchUpInside)
-        view.addSubview(deleteAccountButton)
+        // Delete Account Label Setup
+        deleteAccountLabel.font = .systemFont(ofSize: 12, weight: .regular)
+        deleteAccountLabel.text = "정말 탈퇴하시겠어요..? 회원탈퇴하기"
+        deleteAccountLabel.textColor = .systemMint
+        deleteAccountLabel.textAlignment = .center
+        view.addSubview(deleteAccountLabel)
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(deleteProfileTapped))
+        deleteAccountLabel.isUserInteractionEnabled = true // 사용자 인터랙션 활성화
+        deleteAccountLabel.addGestureRecognizer(tapGesture)
     }
     
     private func setupConstraints() {
@@ -97,24 +101,25 @@ class UserProfileViewController: UIViewController {
             make.height.equalTo(50)
         }
         
-        // Delete Button Constraints
-        deleteAccountButton.snp.makeConstraints { make in
+        // Delete Account Label Constraints
+        deleteAccountLabel.snp.makeConstraints { make in
             make.top.equalTo(logoutButton.snp.bottom).offset(20)
             make.left.right.equalToSuperview().inset(50)
             make.height.equalTo(50)
+
         }
     }
     
     // MARK: - Binding
     private func bindViewModel() {
-        if let profileImageUrl = userProfileViewModel.profileImageUrl, let image = UIImage(named: profileImageUrl) {
-            profileImageView.sd_setImage(with: URL(string: profileImageUrl), placeholderImage: UIImage(named: "MainCapsule"))
-            profileImageView.image = image
+        // 프로필 이미지 URL이 nil이거나 비어있는 경우 기본 이미지 사용
+        if let profileImageUrl = userProfileViewModel.profileImageUrl, !profileImageUrl.isEmpty {
+            profileImageView.sd_setImage(with: URL(string: profileImageUrl), placeholderImage: UIImage(named: "defaultProfileImage"))
         } else {
             // 기본 이미지를 사용하거나 이미지가 없는 경우를 처리할 수 있습니다.
             profileImageView.image = UIImage(named: "LoginLogo")
         }
-        
+
         // 닉네임 설정
         nicknameLabel.text = userProfileViewModel.nickname
         

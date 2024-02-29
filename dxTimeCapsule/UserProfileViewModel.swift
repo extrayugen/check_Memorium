@@ -41,7 +41,7 @@ class UserProfileViewModel {
                     if let document = document, document.exists {
                         self?.uid = document.get("uid") as? String
                         self?.email = document.get("email") as? String
-                        self?.nickname = document.get("nickname") as? String
+                        self?.nickname = document.get("username") as? String
                         self?.profileImageUrl = document.get("profileImageUrl") as? String
                         print("User data fetched successfully")
                     } else {
@@ -52,6 +52,7 @@ class UserProfileViewModel {
                         print("User data not found")
                     }
                     completion()
+                    print("document exists: \(document?.exists ?? false)")
                 }
             }
         }
