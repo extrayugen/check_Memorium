@@ -43,6 +43,15 @@ class HomeViewController: UIViewController {
         return imageView
     }()
     
+    // 친구 찾기 버튼
+    let findFriendButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setImage(UIImage(named: "State=true"), for: .normal)
+        button.addTarget(self, action: #selector(findFriendButtonTapped), for: .touchUpInside)
+        button.isUserInteractionEnabled = true
+        return button
+    }()
+    
     //알림 버튼 생성
     let notificationButton: UIButton = {
         let button = UIButton(type: .system)
@@ -553,6 +562,13 @@ class HomeViewController: UIViewController {
         print("다가오는 타임캡슐 열기 버튼이 클릭되었습니다")
         let upcomingVC = CapsuleMapViewController()
         let navController = UINavigationController(rootViewController: upcomingVC)
+        present(navController, animated: true, completion: nil)
+    }
+    
+    @objc func findFriendButtonTapped(){
+        print("다가오는 타임캡슐 열기 버튼이 클릭되었습니다")
+        let serarchUserVC = SearchUserViewController()
+        let navController = UINavigationController(rootViewController: serarchUserVC)
         present(navController, animated: true, completion: nil)
     }
 }
