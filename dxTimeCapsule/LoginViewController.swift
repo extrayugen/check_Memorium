@@ -200,16 +200,13 @@ class LoginViewController: UIViewController {
     
     private func navigateToMainFeed() {
         DispatchQueue.main.async {
-            // 메인 피드 뷰 컨트롤러로의 이동 로직 구현
-            // 예: 네비게이션 컨트롤러를 사용하는 경우
-            let mainFeedVC = HomeViewController() // 메인 피드 뷰 컨트롤러 인스턴스 생성
-            mainFeedVC.modalPresentationStyle = .fullScreen
-            self.present(mainFeedVC, animated: true, completion: nil)
-            
-            // 또는 네비게이션 컨트롤러가 있다면 push를 사용
-            // self.navigationController?.pushViewController(mainFeedVC, animated: true)
+            let mainTabBarView = MainTabBarView()
+            let navigationController = UINavigationController(rootViewController: mainTabBarView)
+            navigationController.modalPresentationStyle = .fullScreen
+            self.view.window?.rootViewController = navigationController
         }
     }
+
     
     // MARK: - Actions
     
@@ -229,20 +226,29 @@ class LoginViewController: UIViewController {
                 if let error = error {
                     // 로그인 실패: 에러 메시지 처리 및 알림 표시
                     let alert = UIAlertController(title: "로그인 실패", message: error.localizedDescription, preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: "확인", style: .default))
-                    self.present(alert, animated: true)
+                    alert.addAction(UIAlertAction(title: "확인", style: .default) { [weak self] _ in
+                        guard let self = self else { return }
+                        
+                        let mainFeedVC = MainTabBarView()
+                        let navigationController = UINavigationController(rootViewController: mainFeedVC)
+                        navigationController.modalPresentationStyle = .fullScreen
+                        self.view.window?.rootViewController = navigationController
+                    })
+
                 } else {
                     // 로그인 성공: 성공 메시지 표시 및 메인 피드 화면으로 전환
                     let alert = UIAlertController(title: "로그인 성공", message: "로그인 되었습니다", preferredStyle: .alert)
                     alert.addAction(UIAlertAction(title: "확인", style: .default) { [weak self] _ in
                         guard let self = self else { return }
+                        self.navigateToMainFeed()
                         
-                        let mainFeedVC = HomeViewController()
-                        //                        let mainFeedVC = SearchUserViewController()
-                        // 네비게이션 컨트롤러가 있는 경우
-                        self.navigationController?.pushViewController(mainFeedVC, animated: true)
-                        // 네비게이션 컨트롤러가 없는 경우
-                        //                         self.present(mainFeedVC, animated: true, completion: nil)
+                        
+//                        let mainFeedVC = MainTabBarView()
+//                        //                        let mainFeedVC = SearchUserViewController()
+//                        // 네비게이션 컨트롤러가 있는 경우
+//                        self.navigationController?.pushViewController(mainFeedVC, animated: true)
+//                        // 네비게이션 컨트롤러가 없는 경우
+//                        //                         self.present(mainFeedVC, animated: true, completion: nil)
                     })
                     self.present(alert, animated: true)
                     
