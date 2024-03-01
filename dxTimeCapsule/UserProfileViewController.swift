@@ -64,16 +64,16 @@ class UserProfileViewController: UIViewController {
         profileImageView.layer.cornerRadius = imageSize / 2 // 이미지 뷰를 둥글게 처리하기 위해 반지름을 이미지 크기의 절반으로 설정
     
         // Nickname Label Setup
-        nicknameLabel.font = .proximaNovaBlack(ofSize: 24)
+        nicknameLabel.font = .pretendardSemiBold(ofSize: 24)
         nicknameLabel.textAlignment = .center
         
         // Email Label Setup
-        logoutButton.titleLabel?.font = .proximaNovaBlack(ofSize: 24)
+        logoutButton.titleLabel?.font = .pretendardSemiBold(ofSize: 24)
         emailLabel.textAlignment = .center
                
         // Logout Button Setup
         logoutButton.setTitle("Logout", for: .normal)
-        logoutButton.titleLabel?.font = .proximaNovaBlack(ofSize: 14)
+        logoutButton.titleLabel?.font = .pretendardSemiBold(ofSize: 14)
         logoutButton.addTarget(self, action: #selector(logoutTapped), for: .touchUpInside)
         logoutButton.layer.cornerRadius = 12
         
@@ -82,12 +82,12 @@ class UserProfileViewController: UIViewController {
         
         // "계정이 없으신가요?" 라벨 설정
         areYouSerious.text = "Are you really going to leave?"
-        areYouSerious.font = .systemFont(ofSize: 14)
+        areYouSerious.font = .pretendardSemiBold(ofSize: 14)
         areYouSerious.textColor = .black
         
         // Delete Account Label Setup
-        deleteAccountLabel.text = "Leave account"
-        deleteAccountLabel.font = .proximaNovaBlack(ofSize: 14)
+        deleteAccountLabel.text = "Leave Account"
+        deleteAccountLabel.font = .pretendardSemiBold(ofSize: 14)
         deleteAccountLabel.textColor = UIColor(hex: "#D28488")
         deleteAccountLabel.textAlignment = .center
         
