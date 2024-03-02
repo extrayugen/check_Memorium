@@ -6,13 +6,15 @@ class FriendsViewModel {
     
     // 친구 검색 (닉네임 기준 영어 2글자만 입력해도 검색되게)
     func searchUsersByUsername(username: String, completion: @escaping ([User]?, Error?) -> Void) {
+        // 검색어의 첫 글자를 대문자로 변환합니다.
+        let firstLetter = username.prefix(1).uppercased()
+        let remainingString = username.dropFirst().lowercased()
+        let searchQuery = firstLetter + remainingString
+
         let query = db.collection("users")
-        
-        // 검색어로 시작하는 사용자를 검색합니다.
-        let end = username + "\u{f8ff}"
-        query.whereField("username", isGreaterThanOrEqualTo: username)
-            .whereField("username", isLessThan: end)
-        
+                     .whereField("username", isGreaterThanOrEqualTo: searchQuery)
+                     .whereField("username", isLessThan: searchQuery + "\u{f8ff}")
+
         query.getDocuments { (snapshot, error) in
             if let error = error {
                 completion(nil, error)

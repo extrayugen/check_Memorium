@@ -12,7 +12,7 @@ class MainTabBarView: UITabBarController {
         let homeTabViewController = HomeViewController()
         homeTabViewController.tabBarItem = UITabBarItem(title: nil, image: resizeImage(imageName: "Light=Home_Deselect", targetSize: CGSize(width: 24, height: 24)), selectedImage: resizeImage(imageName: "Light=Home_Select", targetSize: CGSize(width: 24, height: 24)))
 
-        let findTabViewController = SearchUserViewController()
+        let findTabViewController = SearchModalTableViewController()
         findTabViewController.tabBarItem = UITabBarItem(title: nil, image: resizeImage(imageName: "Light=Search_Deselect", targetSize: CGSize(width: 24, height: 24)), selectedImage: resizeImage(imageName: "Light=Search_Select", targetSize: CGSize(width: 24, height: 24)))
         
         let taskListViewController = MainCreateCapsuleViewController()
