@@ -52,7 +52,10 @@ class SerachUserTableViewController: UIViewController, UITableViewDelegate, UITa
     
     func setupTableView() {
         tableView = UITableView()
-        
+        tableView.register(SearchUserTableViewCell.self, forCellReuseIdentifier: "SearchUserCell")
+        tableView.rowHeight = 100
+
+
         view.addSubview(tableView)
         
         tableView.snp.makeConstraints { make in
@@ -69,16 +72,29 @@ class SerachUserTableViewController: UIViewController, UITableViewDelegate, UITa
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // 반환할 row 수 설정
-        return 100 // 예시 값
+        return 30 // 예시 값
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        // cell 설정
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.textLabel?.text = "친구 \(indexPath.row)"
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "SearchUserCell", for: indexPath) as? SearchUserTableViewCell else {
+            return UITableViewCell()
+        }
+        
+        // 예시 User 데이터
+        let user = User(uid: "uid\(indexPath.row)",
+                        email: "user\(indexPath.row)@example.com",
+                        username: "User \(indexPath.row)",
+                        profileImageUrl: "https://example.com/image.png")
+        cell.configure(with: user)
+        
+        // 버튼 액션 설정
+        cell.addUserAction = {
+            print("친구 추가 요청: \(user.username)")
+        }
+        
         return cell
     }
-    
+
     // MARK: - UISearchBarDelegate methods
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
