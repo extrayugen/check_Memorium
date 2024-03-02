@@ -267,11 +267,15 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
                         if let error = error {
                             self.presentAlert(title: "정보 저장 실패", message: error.localizedDescription)
                         } else {
-                            // 회원가입 성공 알림 후 이전 화면으로 돌아가기
+                            // 회원가입 성공 시 알림 창 표시 및 홈 화면으로 이동
                             DispatchQueue.main.async {
                                 let alert = UIAlertController(title: "회원가입 성공", message: "회원가입이 완료되었습니다.", preferredStyle: .alert)
                                 alert.addAction(UIAlertAction(title: "확인", style: .default) { _ in
-                                    self.dismiss(animated: true, completion: nil)
+                                    // 홈 화면으로 이동
+                                    if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+                                       let sceneDelegate = windowScene.delegate as? SceneDelegate {
+                                        sceneDelegate.window?.rootViewController = MainTabBarView()
+                                    }
                                 })
                                 self.present(alert, animated: true)
                             }
@@ -282,7 +286,7 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
         }
     }
 
-    
+
     // MARK: - Image Picker Delegate
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         guard let image = info[.editedImage] as? UIImage ?? info[.originalImage] as? UIImage else {

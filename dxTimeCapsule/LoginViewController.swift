@@ -28,8 +28,9 @@ class LoginViewController: UIViewController {
         setupLayouts()
         
         // Test 자동기입
-        emailTextField.text =  "karina_goodbye@naver.com"
+        emailTextField.text =  "bebe@google.com"
         passwordTextField.text = "123456"
+
         
         //        // 폰트 체크 하기
         //        UIFont.familyNames.sorted().forEach { familyName in
@@ -109,7 +110,7 @@ class LoginViewController: UIViewController {
         // 로그인 버튼 설정 및 액션 연결ㅐ
         configureButton(loginButton, title: "Login")
         loginButton.addTarget(self, action: #selector(didTapLoginButton), for: .touchUpInside)
-        
+
         // "계정이 없으신가요?" 라벨 설정
         noAccountLabel.text = "Do not have an account?"
         noAccountLabel.font = .systemFont(ofSize: 14)
@@ -152,6 +153,8 @@ class LoginViewController: UIViewController {
             make.left.right.equalTo(emailTextField)
             make.height.equalTo(44)
         }
+        passwordTextField.isSecureTextEntry = true
+
         
         // Add the loginButton constraints
         loginButton.snp.makeConstraints { make in
@@ -196,8 +199,6 @@ class LoginViewController: UIViewController {
     
     
     // MARK: - Actions
-
-    // 로그인 버튼 탭 처리
     // 로그인 버튼 탭 처리
     @objc private func didTapLoginButton() {
         guard let email = emailTextField.text, !email.isEmpty,
@@ -211,47 +212,34 @@ class LoginViewController: UIViewController {
         Auth.auth().signIn(withEmail: email, password: password) { [weak self] (authResult, error) in
             guard let self = self else { return }
             DispatchQueue.main.async {
-                if let error = error as NSError? {
-                    let errorMessage: String
-                    
-                    if let errorCode = AuthErrorCode(rawValue: error.code) {
-                        switch errorCode {
-                        case .networkError:
-                            errorMessage = "네트워크 연결에 문제가 있습니다."
-                        case .userNotFound:
-                            errorMessage = "사용자를 찾을 수 없습니다. 이메일 또는 비밀번호를 확인해주세요."
-                        case .wrongPassword:
-                            errorMessage = "잘못된 비밀번호입니다. 다시 시도해주세요."
-                        case .invalidEmail:
-                            errorMessage = "유효하지 않은 이메일 형식입니다. 이메일을 확인해주세요."
-                        default:
-                            errorMessage = "알 수 없는 오류가 발생했습니다. 다시 시도해주세요."
-                        }
-                    } else {
-                        errorMessage = "알 수 없는 오류가 발생했습니다. 다시 시도해주세요."
-                    }
-                    
-                    let alert = UIAlertController(title: "로그인 실패", message: errorMessage, preferredStyle: .alert)
+                if let error = error {
+                    print("Login failed with error: \(error.localizedDescription)") // Debug print
+                    // 로그인 실패: 에러 메시지 처리 및 알림 표시
+                    let alert = UIAlertController(title: "로그인 실패", message: error.localizedDescription, preferredStyle: .alert)
                     alert.addAction(UIAlertAction(title: "확인", style: .default))
                     self.present(alert, animated: true)
                 } else {
+                    print("Login succeeded") // Debug print
                     // 로그인 성공: 성공 메시지 표시 및 메인 피드 화면으로 전환
                     let alert = UIAlertController(title: "로그인 성공", message: "로그인 되었습니다", preferredStyle: .alert)
                     alert.addAction(UIAlertAction(title: "확인", style: .default) { [weak self] _ in
                         guard let self = self else { return }
-                        
-                        // 로그인에 성공한 경우, 메인 탭 바 화면으로 이동
-                        let mainTabBarController = MainTabBarView()
-                        self.view.window?.rootViewController = mainTabBarController
-                        self.view.window?.makeKeyAndVisible()
+                        let mainTabVC = MainTabBarView()
+                        // Assuming MainTabBarView is your main application's entry point after login
+                        if let navigationController = self.navigationController {
+                            navigationController.pushViewController(mainTabVC, animated: true)
+                        } else {
+                            let navigationController = UINavigationController(rootViewController: mainTabVC)
+                            navigationController.modalPresentationStyle = .fullScreen
+                            self.view.window?.rootViewController = navigationController
+                            self.view.window?.makeKeyAndVisible()
+                        }
                     })
-                    self.present(alert, animated: true)
+                    self.present(alert, animated: true) // This needs to be outside the UIAlertAction's handler.
                 }
             }
         }
     }
-
-
 
 
     
