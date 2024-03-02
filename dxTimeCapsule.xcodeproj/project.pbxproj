@@ -59,7 +59,7 @@
 		4E2A09C82B8F755C00911390 /* OpenInteractionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2A09C72B8F755C00911390 /* OpenInteractionViewController.swift */; };
 		4E2A09CA2B8F86C600911390 /* FadeInAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2A09C92B8F86C600911390 /* FadeInAnimator.swift */; };
 		4EC308DE2B8A200300EEE54C /* MainCapsuleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC308DD2B8A200300EEE54C /* MainCapsuleViewModel.swift */; };
-		D25B20EB2B89CD02006CEED8 /* LaunchScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25B20EA2B89CD02006CEED8 /* LaunchScreenViewController.swift */; };
+		D25B20EB2B89CD02006CEED8 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25B20EA2B89CD02006CEED8 /* SplashViewController.swift */; };
 		FFC457642B8F0F36000761E9 /* UserProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC457632B8F0F36000761E9 /* UserProfileViewModel.swift */; };
 		FFC457662B8F0F74000761E9 /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC457652B8F0F74000761E9 /* UserProfileViewController.swift */; };
 /* End PBXBuildFile section */
@@ -132,7 +132,7 @@
 		4E2A09C92B8F86C600911390 /* FadeInAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FadeInAnimator.swift; sourceTree = "<group>"; };
 		4EC308DD2B8A200300EEE54C /* MainCapsuleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCapsuleViewModel.swift; sourceTree = "<group>"; };
 		9E53E63672B22459B20786B7 /* Pods_dxTimeCapsule.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_dxTimeCapsule.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		D25B20EA2B89CD02006CEED8 /* LaunchScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenViewController.swift; sourceTree = "<group>"; };
+		D25B20EA2B89CD02006CEED8 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		FFC457632B8F0F36000761E9 /* UserProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewModel.swift; sourceTree = "<group>"; };
 		FFC457652B8F0F74000761E9 /* UserProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -224,6 +224,7 @@
 				1F5786F52B849D0D00C40B08 /* Model */,
 				1F5786EF2B849C2200C40B08 /* ViewModel */,
 				1F5786F02B849C2F00C40B08 /* View */,
+				1FAB4DEB2B8C238F0054618A /* Resource */,
 				1FF869182B8F4D3E007B5112 /* Utilities */,
 				1FF868C72B8F4775007B5112 /* Resourses */,
 				1F5786D82B849AF800C40B08 /* AppDelegate.swift */,
@@ -253,9 +254,9 @@
 		1F5786F02B849C2F00C40B08 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				1F722F0D2B938CB500407850 /* SplashVew */,
 				1FAB4DEC2B8C29D80054618A /* Authentication */,
 				27C81E412B8A39E9001E3623 /* HomeView */,
-				D25B20EA2B89CD02006CEED8 /* LaunchScreenViewController.swift */,
 				46EA9BAD2B89A27E00633EC4 /* CapsuleMapViewController.swift */,
 				1FB387362B8862AF00054816 /* MainFeedViewController.swift */,
 				27865AD32B8DFCA900DB8DB6 /* NotificationViewController.swift */,
@@ -285,13 +286,20 @@
 			name = Legercy;
 			sourceTree = "<group>";
 		};
+		1F722F0D2B938CB500407850 /* SplashVew */ = {
+			isa = PBXGroup;
+			children = (
+				D25B20EA2B89CD02006CEED8 /* SplashViewController.swift */,
+			);
+			name = SplashVew;
+			sourceTree = "<group>";
+		};
 		1F9DA7AD2B8C921900A74D84 /* SearchUser */ = {
 			isa = PBXGroup;
 			children = (
 				1F9DA7AE2B8C922700A74D84 /* SearchUserViewController.swift */,
 				1F9DA7B42B8CA75900A74D84 /* SearchModalTableViewController.swift */,
 				1F9DA7B02B8C93BD00A74D84 /* SerachUserTableViewCell.swift */,
-				1FAB4DEB2B8C238F0054618A /* Resource */,
 			);
 			name = SearchUser;
 			sourceTree = "<group>";
@@ -643,7 +651,7 @@
 				1F9DA7AF2B8C922800A74D84 /* SearchUserViewController.swift in Sources */,
 				1F0B91062B901D170022EDD9 /* Etc.swift in Sources */,
 				1F0B91432B908A7A0022EDD9 /* ProfileTabViewController.swift in Sources */,
-				D25B20EB2B89CD02006CEED8 /* LaunchScreenViewController.swift in Sources */,
+				D25B20EB2B89CD02006CEED8 /* SplashViewController.swift in Sources */,
 				1F9DA7B52B8CA75900A74D84 /* SearchModalTableViewController.swift in Sources */,
 				1F0D3B2C2B89AA2B00A31E82 /* MainCreateCapsuleViewController.swift in Sources */,
 			);
