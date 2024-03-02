@@ -226,7 +226,6 @@
 				1F5786F02B849C2F00C40B08 /* View */,
 				1FF869182B8F4D3E007B5112 /* Utilities */,
 				1FF868C72B8F4775007B5112 /* Resourses */,
-				1F5786FA2B84D26000C40B08 /* Legercy */,
 				1F5786D82B849AF800C40B08 /* AppDelegate.swift */,
 				1F0854332B8F25A200711660 /* SceneDelegate.swift */,
 				1F5786D62B849AF800C40B08 /* Products */,
@@ -412,8 +411,9 @@
 		1FF868C72B8F4775007B5112 /* Resourses */ = {
 			isa = PBXGroup;
 			children = (
-				1FC44F0B2B933544002A75AF /* ErrorMessages */,
 				1FF868DB2B8F4A51007B5112 /* Font */,
+				1FC44F0B2B933544002A75AF /* ErrorMessages */,
+				1F5786FA2B84D26000C40B08 /* Legercy */,
 			);
 			name = Resourses;
 			sourceTree = "<group>";

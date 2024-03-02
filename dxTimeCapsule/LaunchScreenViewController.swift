@@ -15,7 +15,7 @@ class LaunchScreenViewController: UIViewController {
 
         view.backgroundColor = .white
 
-        let logoImageView = UIImageView(image: UIImage(named: "launchLogo")) // 로고 이미지 뷰 생성
+        let logoImageView = UIImageView(image: UIImage(named: "AdobeBox_Open")) // 로고 이미지 뷰 생성
         logoImageView.contentMode = .scaleAspectFit // 이미지 사이즈를 뷰에 맞춤
 
         view.addSubview(logoImageView) // 로고 이미지 뷰를 뷰에 추가
@@ -23,7 +23,7 @@ class LaunchScreenViewController: UIViewController {
         // SnapKit을 사용하여 로고 이미지 뷰 위치와 크기 설정
         logoImageView.snp.makeConstraints { make in
             make.center.equalToSuperview()
-            make.width.height.equalTo(200)
+            make.width.height.equalTo(220)
         }
     }
 }

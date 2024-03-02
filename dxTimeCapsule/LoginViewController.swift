@@ -24,6 +24,7 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
         
+        setupSignUpButtonAction() // 회원가입 버튼의 액션을 설정하는 메서드 호출
         setupViews()
         setupLayouts()
         
@@ -52,15 +53,22 @@ class LoginViewController: UIViewController {
     //            navigateToMainFeed()
     //        }
     //    }
-    
+
+    private func setupSignUpButtonAction() {
+        // 회원가입 버튼의 액션 설정
+        signUpActionLabel.isUserInteractionEnabled = true
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(didTapSignUpLabel))
+        signUpActionLabel.addGestureRecognizer(tapGesture)
+    }
+
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
         // 기존 색상
-        //        loginButton.applyGradient(colors: [#colorLiteral(red: 0.7882352941, green: 0.2941176471, blue: 0.2941176471, alpha: 1), #colorLiteral(red: 0.2941176471, green: 0.07450980392, blue: 0.3098039216, alpha: 1)])
+//                loginButton.applyGradient(colors: [#colorLiteral(red: 0.7882352941, green: 0.2941176471, blue: 0.2941176471, alpha: 1), #colorLiteral(red: 0.2941176471, green: 0.07450980392, blue: 0.3098039216, alpha: 1)])
         
         // BlurryBeach
-        loginButton.applyGradient(colors: [#colorLiteral(red: 0.831372549, green: 0.2, blue: 0.4117647059, alpha: 1), #colorLiteral(red: 0.7960784314, green: 0.6784313725, blue: 0.4274509804, alpha: 1)])
+//        loginButton.applyGradient(colors: [#colorLiteral(red: 0.831372549, green: 0.2, blue: 0.4117647059, alpha: 1), #colorLiteral(red: 0.7960784314, green: 0.6784313725, blue: 0.4274509804, alpha: 1)])
         
         //         AzurLane
         //        loginButton.applyGradient(colors: [#colorLiteral(red: 0.4980392157, green: 0.4980392157, blue: 0.8352941176, alpha: 1), #colorLiteral(red: 0.5254901961, green: 0.6588235294, blue: 0.9058823529, alpha: 1), #colorLiteral(red: 0.568627451, green: 0.9176470588, blue: 0.8941176471, alpha: 1)])
@@ -69,7 +77,9 @@ class LoginViewController: UIViewController {
         //        loginButton.applyGradient(colors: [#colorLiteral(red: 0.2039215686, green: 0.5803921569, blue: 0.9019607843, alpha: 1), #colorLiteral(red: 0.9254901961, green: 0.431372549, blue: 0.6784313725, alpha: 1)])
         
         // Mango
-        //        loginButton.applyGradient(colors: [#colorLiteral(red: 1, green: 0.8862745098, blue: 0.3490196078, alpha: 1), #colorLiteral(red: 1, green: 0.6549019608, blue: 0.3176470588, alpha: 1)])
+//                loginButton.applyGradient(colors: [#colorLiteral(red: 1, green: 0.8862745098, blue: 0.3490196078, alpha: 1), #colorLiteral(red: 1, green: 0.6549019608, blue: 0.3176470588, alpha: 1)])
+        // Custom-1
+                loginButton.applyGradient(colors: [#colorLiteral(red: 1, green: 0.8862745098, blue: 0.3490196078, alpha: 1), #colorLiteral(red: 0.7894003391, green: 0.2963732481, blue: 0.2954288721, alpha: 1)])
         
     }
     
@@ -214,17 +224,20 @@ class LoginViewController: UIViewController {
             DispatchQueue.main.async {
                 if let error = error {
                     print("Login failed with error: \(error.localizedDescription)") // Debug print
+                    
                     // 로그인 실패: 에러 메시지 처리 및 알림 표시
                     let alert = UIAlertController(title: "로그인 실패", message: error.localizedDescription, preferredStyle: .alert)
                     alert.addAction(UIAlertAction(title: "확인", style: .default))
                     self.present(alert, animated: true)
                 } else {
                     print("Login succeeded") // Debug print
+                    
                     // 로그인 성공: 성공 메시지 표시 및 메인 피드 화면으로 전환
                     let alert = UIAlertController(title: "로그인 성공", message: "로그인 되었습니다", preferredStyle: .alert)
                     alert.addAction(UIAlertAction(title: "확인", style: .default) { [weak self] _ in
                         guard let self = self else { return }
                         let mainTabVC = MainTabBarView()
+                        
                         // Assuming MainTabBarView is your main application's entry point after login
                         if let navigationController = self.navigationController {
                             navigationController.pushViewController(mainTabVC, animated: true)
@@ -233,6 +246,7 @@ class LoginViewController: UIViewController {
                             navigationController.modalPresentationStyle = .fullScreen
                             self.view.window?.rootViewController = navigationController
                             self.view.window?.makeKeyAndVisible()
+                            
                         }
                     })
                     self.present(alert, animated: true) // This needs to be outside the UIAlertAction's handler.
@@ -241,12 +255,9 @@ class LoginViewController: UIViewController {
         }
     }
 
-
-    
     // 회원가입 버튼 탭 처리
     @objc private func didTapSignUpLabel() {
         let signUpViewController = SignUpViewController()
-        //        let navigationController = UINavigationController(rootViewController: signUpViewController)
         self.navigationController?.pushViewController(signUpViewController, animated: true)
 
     }

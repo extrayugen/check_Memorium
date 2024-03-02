@@ -190,6 +190,10 @@ class UserProfileViewController: UIViewController {
             let loginViewController = LoginViewController()
             sceneDelegate.window?.rootViewController = loginViewController
             sceneDelegate.window?.makeKeyAndVisible()
+            
+            print("로그아웃 성공")
+
+            
         } catch let signOutError as NSError {
             print("로그아웃 실패: \(signOutError.localizedDescription)")
         }
