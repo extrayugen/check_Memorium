@@ -540,7 +540,7 @@ class HomeViewController: UIViewController {
     
     @objc func addNewTCButtonTapped() {
         print("새로운 타임캡슐 만들기 버튼이 클릭되었습니다")
-        let createTCVC = CreateTimeCapsuleViewController()
+        let createTCVC = MainCreateCapsuleViewController()
         let navController = UINavigationController(rootViewController: createTCVC)
         present(navController, animated: true, completion: nil)
     }
