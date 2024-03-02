@@ -28,8 +28,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         // 스플래시 화면 2초 노출
         DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
-            let navigationController = UINavigationController(rootViewController: rootVC)
-            self.window?.rootViewController = navigationController
+//            let navigationController = UINavigationController(rootViewController: rootVC)
+            self.window?.rootViewController = rootVC
         }
 
     }

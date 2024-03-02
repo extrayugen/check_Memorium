@@ -30,6 +30,7 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
         super.viewDidLoad()
         setupViews()
         setupLayouts()
+        print("SignUpViewController - viewDidLoad() called")
     }
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
@@ -173,6 +174,7 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
          button.setTitleColor(.white, for: .normal)
          button.titleLabel?.font = UIFont.systemFont(ofSize: 14) // 텍스트 크기 및 폰트 설정
          button.layer.cornerRadius = 10
+        
          button.snp.makeConstraints { make in
              make.height.equalTo(44)
          }
@@ -215,8 +217,9 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
     }
     
     @objc private func alreadyHaveAccountTapped() {
-        // Go back to login view controller
-        navigationController?.popViewController(animated: true)
+        let loginViewController = LoginViewController()
+        self.present(loginViewController, animated: true, completion: nil)
+
     }
     
     // 회원가입 함수
@@ -310,4 +313,17 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
     }
     
     
+}
+
+private extension LoginViewController {
+    func configureButton(_ button: UIButton, title: String) {
+        button.setTitle(title, for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        button.layer.cornerRadius = 8
+        
+        // Set a consistent height constraint for the button
+        button.snp.makeConstraints { make in
+            make.height.equalTo(44)
+        }
+    }
 }

@@ -12,7 +12,7 @@ class SearchModalTableViewController:
     
     private let searchTextField: UITextField = {
         let textField = UITextField()
-        textField.placeholder = "유저네임으로 검색"
+        textField.placeholder = "Search UserName"
         textField.borderStyle = .roundedRect
         textField.autocorrectionType = .no
         textField.spellCheckingType = .no
