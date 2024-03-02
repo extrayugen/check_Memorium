@@ -42,9 +42,11 @@ class UserProfileViewController: UIViewController, UIImagePickerControllerDelega
     }
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        
+
+        // 이미지 뷰의 크기에 따라 cornerRadius를 동적으로 설정합니다.
+        let imageSize: CGFloat = profileImageView.frame.width
+        profileImageView.layer.cornerRadius = imageSize / 2
         logoutButton.applyGradient(colors: [#colorLiteral(red: 0.831372549, green: 0.2, blue: 0.4117647059, alpha: 1), #colorLiteral(red: 0.7960784314, green: 0.6784313725, blue: 0.4274509804, alpha: 1)])
-        
     }
     
     // MARK: - Setup
@@ -73,28 +75,34 @@ class UserProfileViewController: UIViewController, UIImagePickerControllerDelega
         selectImageLabel.isUserInteractionEnabled = true
         selectImageLabel.addGestureRecognizer(labelTapGesture)
         
+        let imageSize: CGFloat = 220 // 원하는 이미지 크기로 설정
+        profileImageView.layer.cornerRadius = imageSize / 2 // 이미지 뷰를 둥글게 처리하기 위해 반지름을 이미지 크기의 절반으로 설정
+    
         // Nickname Label Setup
-        nicknameLabel.font = .systemFont(ofSize: 24, weight: .bold)
+        nicknameLabel.font = .pretendardSemiBold(ofSize: 24)
         nicknameLabel.textAlignment = .center
         
         // Email Label Setup
-        emailLabel.font = .systemFont(ofSize: 18, weight: .regular)
+        logoutButton.titleLabel?.font = .pretendardSemiBold(ofSize: 24)
         emailLabel.textAlignment = .center
         
         // Logout Button Setup
-        logoutButton.setTitle("로그아웃", for: .normal)
-        logoutButton.backgroundColor = .systemMint
-        logoutButton.layer.cornerRadius = 5
+        logoutButton.setTitle("Logout", for: .normal)
+        logoutButton.titleLabel?.font = .pretendardSemiBold(ofSize: 14)
         logoutButton.addTarget(self, action: #selector(logoutTapped), for: .touchUpInside)
+        logoutButton.layer.cornerRadius = 12
+        
+        // Divider View Setup
+        dividerView.backgroundColor = .lightGray
         
         // "계정이 없으신가요?" 라벨 설정
-        areYouSerious.text = "정말 탈퇴하실 건가요..?"
-        areYouSerious.font = .systemFont(ofSize: 14)
+        areYouSerious.text = "Are you really going to leave?"
+        areYouSerious.font = .pretendardSemiBold(ofSize: 14)
         areYouSerious.textColor = .black
         
         // Delete Account Label Setup
-        deleteAccountLabel.text = "탈퇴하기"
-        deleteAccountLabel.font = .systemFont(ofSize: 14, weight: .bold)
+        deleteAccountLabel.text = "Leave Account"
+        deleteAccountLabel.font = .pretendardSemiBold(ofSize: 14)
         deleteAccountLabel.textColor = UIColor(hex: "#D28488")
         deleteAccountLabel.textAlignment = .center
         
@@ -105,13 +113,14 @@ class UserProfileViewController: UIViewController, UIImagePickerControllerDelega
         deleteAccountLabel.isUserInteractionEnabled = true // 사용자 인터랙션 활성화
         deleteAccountLabel.addGestureRecognizer(tapGesture)
     }
-    
+
     private func setupConstraints() {
         // Profile Image View Constraints
         profileImageView.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(100)
             make.centerX.equalToSuperview()
-            make.width.height.equalTo(100)
+            make.centerY.equalToSuperview().offset(-130)
+            make.width.height.equalTo(220)
+            profileImageView.setRoundedImage()
         }
         
         // Select Image Label Constraints
@@ -122,18 +131,21 @@ class UserProfileViewController: UIViewController, UIImagePickerControllerDelega
         
         // Nickname Label Constraints
         nicknameLabel.snp.makeConstraints { make in
-            make.top.equalTo(selectImageLabel.snp.bottom).offset(20)
+            make.centerX.equalToSuperview()
+            make.top.equalTo(profileImageView.snp.bottom).offset(20)
             make.left.right.equalToSuperview().inset(20)
         }
         
         // Email Label Constraints
         emailLabel.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
             make.top.equalTo(nicknameLabel.snp.bottom).offset(10)
             make.left.right.equalToSuperview().inset(20)
         }
         
         // Logout Button Constraints
         logoutButton.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
             make.top.equalTo(emailLabel.snp.bottom).offset(20)
             make.left.right.equalToSuperview().inset(50)
             make.height.equalTo(50)
@@ -141,6 +153,7 @@ class UserProfileViewController: UIViewController, UIImagePickerControllerDelega
         
         // Ensure dividerView is added to the view before setting constraints
         dividerView.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
             make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(-70)
             make.left.right.equalToSuperview().inset(20)
             make.height.equalTo(1)
@@ -148,8 +161,8 @@ class UserProfileViewController: UIViewController, UIImagePickerControllerDelega
         
         // labelsContainerView에 대한 높이 제약 조건 추가
         labelsContainerView.snp.makeConstraints { make in
-            make.top.equalTo(dividerView.snp.bottom).offset(15)
             make.centerX.equalToSuperview()
+            make.top.equalTo(dividerView.snp.bottom).offset(15)
             // 높이를 명시적으로 설정
             make.height.equalTo(20)
         }
@@ -166,6 +179,7 @@ class UserProfileViewController: UIViewController, UIImagePickerControllerDelega
             make.left.equalTo(areYouSerious.snp.right).offset(5)
         }
     }
+
     
     // MARK: - Binding
     private func bindViewModel() {
@@ -223,7 +237,7 @@ class UserProfileViewController: UIViewController, UIImagePickerControllerDelega
             }
             
             // Firebase Storage에서 사용자 이미지 삭제
-            let storageRef = Storage.storage().reference().child("userProfileImages/\(userId)/profileImage.jpg")
+            let storageRef = Storage.storage().reference().child("userProfileImages/\(userId)")
             storageRef.delete { error in
                 if let error = error as NSError? {
                     // Storage 오류 코드 확인
@@ -322,4 +336,13 @@ class UserProfileViewController: UIViewController, UIImagePickerControllerDelega
 }
 
 
+
+func configureButton(_ button: UIButton, title: String) {
+    button.setTitle(title, for: .normal)
+    button.setTitleColor(.white, for: .normal)
+    button.layer.cornerRadius = 12
+    button.snp.makeConstraints { make in
+        make.height.equalTo(44)
+    }
+}
 
