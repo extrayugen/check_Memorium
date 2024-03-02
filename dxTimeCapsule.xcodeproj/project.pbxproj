@@ -14,12 +14,11 @@
 		1F0B91062B901D170022EDD9 /* Etc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0B91052B901D170022EDD9 /* Etc.swift */; };
 		1F0B91082B9026020022EDD9 /* UIImageView+RoundImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0B91072B9026020022EDD9 /* UIImageView+RoundImage.swift */; };
 		1F0B91392B9089BB0022EDD9 /* MainTabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0B91382B9089BB0022EDD9 /* MainTabBarView.swift */; };
-		1F0B913B2B908A530022EDD9 /* HomeTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0B913A2B908A530022EDD9 /* HomeTabViewController.swift */; };
 		1F0B913D2B908A5F0022EDD9 /* FindTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0B913C2B908A5F0022EDD9 /* FindTabViewController.swift */; };
 		1F0B913F2B908A690022EDD9 /* TaskListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0B913E2B908A690022EDD9 /* TaskListViewController.swift */; };
 		1F0B91412B908A730022EDD9 /* FollowTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0B91402B908A730022EDD9 /* FollowTabViewController.swift */; };
 		1F0B91432B908A7A0022EDD9 /* ProfileTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0B91422B908A7A0022EDD9 /* ProfileTabViewController.swift */; };
-		1F0D3B2C2B89AA2B00A31E82 /* CapsuleUploadPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0D3B2B2B89AA2B00A31E82 /* CapsuleUploadPhotoViewController.swift */; };
+		1F0D3B2C2B89AA2B00A31E82 /* MainCreateCapsuleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0D3B2B2B89AA2B00A31E82 /* MainCreateCapsuleViewController.swift */; };
 		1F0D3B322B89D85500A31E82 /* CapsuleUploadDeatilViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0D3B312B89D85500A31E82 /* CapsuleUploadDeatilViewController.swift */; };
 		1F367EA62B8F803A00563908 /* UIColor+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F367EA52B8F803A00563908 /* UIColor+Hex.swift */; };
 		1F47AB862B90BAFC000DB508 /* UIFont+CustomFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F47AB852B90BAFC000DB508 /* UIFont+CustomFont.swift */; };
@@ -50,12 +49,10 @@
 		1FC44EFB2B90C491002A75AF /* ProximaNova-Extrabld.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1FC44EF42B90C491002A75AF /* ProximaNova-Extrabld.ttf */; };
 		1FC44F042B90C87F002A75AF /* Pretendard-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 1FC44EFE2B90C87E002A75AF /* Pretendard-Regular.otf */; };
 		1FC44F052B90C87F002A75AF /* Pretendard-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 1FC44F002B90C87E002A75AF /* Pretendard-SemiBold.otf */; };
-		1FF869172B8F4B87007B5112 /* CapsuleUploadMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF869162B8F4B87007B5112 /* CapsuleUploadMainViewController.swift */; };
 		1FF8691B2B8F4D81007B5112 /* UIButton+Gradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF8691A2B8F4D81007B5112 /* UIButton+Gradient.swift */; };
 		27865AD42B8DFCA900DB8DB6 /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27865AD32B8DFCA900DB8DB6 /* NotificationViewController.swift */; };
 		27C81E452B8A3A39001E3623 /* OpenedTCCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27C81E442B8A3A39001E3623 /* OpenedTCCollectionViewCell.swift */; };
 		27C81E472B8A3A4C001E3623 /* UpcomingTCCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27C81E462B8A3A4C001E3623 /* UpcomingTCCollectionViewCell.swift */; };
-		27D241B02B8F32C5000F8F16 /* CreateTimeCapsuleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27D241AF2B8F32C5000F8F16 /* CreateTimeCapsuleViewController.swift */; };
 		27D241B22B8F33A5000F8F16 /* OpenedTCViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27D241B12B8F33A5000F8F16 /* OpenedTCViewController.swift */; };
 		460FE7672B8A200D00AF8086 /* LockedCapsuleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 460FE7662B8A200D00AF8086 /* LockedCapsuleCell.swift */; };
 		46EA9BAE2B89A27E00633EC4 /* CapsuleMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46EA9BAD2B89A27E00633EC4 /* CapsuleMapViewController.swift */; };
@@ -84,13 +81,12 @@
 		1F0B91052B901D170022EDD9 /* Etc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Etc.swift; sourceTree = "<group>"; };
 		1F0B91072B9026020022EDD9 /* UIImageView+RoundImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+RoundImage.swift"; sourceTree = "<group>"; };
 		1F0B91382B9089BB0022EDD9 /* MainTabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarView.swift; sourceTree = "<group>"; };
-		1F0B913A2B908A530022EDD9 /* HomeTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTabViewController.swift; sourceTree = "<group>"; };
 		1F0B913C2B908A5F0022EDD9 /* FindTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindTabViewController.swift; sourceTree = "<group>"; };
 		1F0B913E2B908A690022EDD9 /* TaskListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListViewController.swift; sourceTree = "<group>"; };
 		1F0B91402B908A730022EDD9 /* FollowTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowTabViewController.swift; sourceTree = "<group>"; };
 		1F0B91422B908A7A0022EDD9 /* ProfileTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTabViewController.swift; sourceTree = "<group>"; };
 		1F0B91442B90903C0022EDD9 /* APIKey.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = APIKey.xcconfig; sourceTree = "<group>"; };
-		1F0D3B2B2B89AA2B00A31E82 /* CapsuleUploadPhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapsuleUploadPhotoViewController.swift; sourceTree = "<group>"; };
+		1F0D3B2B2B89AA2B00A31E82 /* MainCreateCapsuleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCreateCapsuleViewController.swift; sourceTree = "<group>"; };
 		1F0D3B312B89D85500A31E82 /* CapsuleUploadDeatilViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapsuleUploadDeatilViewController.swift; sourceTree = "<group>"; };
 		1F367EA52B8F803A00563908 /* UIColor+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Hex.swift"; sourceTree = "<group>"; };
 		1F47AB852B90BAFC000DB508 /* UIFont+CustomFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+CustomFont.swift"; sourceTree = "<group>"; };
@@ -122,13 +118,12 @@
 		1FC44EF42B90C491002A75AF /* ProximaNova-Extrabld.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ProximaNova-Extrabld.ttf"; sourceTree = "<group>"; };
 		1FC44EFE2B90C87E002A75AF /* Pretendard-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Regular.otf"; sourceTree = "<group>"; };
 		1FC44F002B90C87E002A75AF /* Pretendard-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-SemiBold.otf"; sourceTree = "<group>"; };
-		1FF869162B8F4B87007B5112 /* CapsuleUploadMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapsuleUploadMainViewController.swift; sourceTree = "<group>"; };
+		1FC44F0C2B933568002A75AF /* Firebase-ErrorMessages.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "Firebase-ErrorMessages.json"; sourceTree = "<group>"; };
 		1FF8691A2B8F4D81007B5112 /* UIButton+Gradient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Gradient.swift"; sourceTree = "<group>"; };
 		24940157E90C825F0AF8F6E7 /* Pods-dxTimeCapsule.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dxTimeCapsule.release.xcconfig"; path = "Target Support Files/Pods-dxTimeCapsule/Pods-dxTimeCapsule.release.xcconfig"; sourceTree = "<group>"; };
 		27865AD32B8DFCA900DB8DB6 /* NotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
 		27C81E442B8A3A39001E3623 /* OpenedTCCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenedTCCollectionViewCell.swift; sourceTree = "<group>"; };
 		27C81E462B8A3A4C001E3623 /* UpcomingTCCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingTCCollectionViewCell.swift; sourceTree = "<group>"; };
-		27D241AF2B8F32C5000F8F16 /* CreateTimeCapsuleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTimeCapsuleViewController.swift; sourceTree = "<group>"; };
 		27D241B12B8F33A5000F8F16 /* OpenedTCViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenedTCViewController.swift; sourceTree = "<group>"; };
 		4096504136FE62FB0887CFD8 /* Pods-dxTimeCapsule.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dxTimeCapsule.debug.xcconfig"; path = "Target Support Files/Pods-dxTimeCapsule/Pods-dxTimeCapsule.debug.xcconfig"; sourceTree = "<group>"; };
 		460FE7662B8A200D00AF8086 /* LockedCapsuleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockedCapsuleCell.swift; sourceTree = "<group>"; };
@@ -189,9 +184,7 @@
 		1F0B91372B9089A50022EDD9 /* TabBar */ = {
 			isa = PBXGroup;
 			children = (
-				1F0B91382B9089BB0022EDD9 /* MainTabBarView.swift */,
-				1F0B913A2B908A530022EDD9 /* HomeTabViewController.swift */,
-				1F0B913C2B908A5F0022EDD9 /* FindTabViewController.swift */,
+				1FC44F0A2B932E9F002A75AF /* CreateCapsule */,
 				1F0B913E2B908A690022EDD9 /* TaskListViewController.swift */,
 				1F0B91402B908A730022EDD9 /* FollowTabViewController.swift */,
 				1F0B91422B908A7A0022EDD9 /* ProfileTabViewController.swift */,
@@ -261,7 +254,6 @@
 		1F5786F02B849C2F00C40B08 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				1F0B91372B9089A50022EDD9 /* TabBar */,
 				1FAB4DEC2B8C29D80054618A /* Authentication */,
 				27C81E412B8A39E9001E3623 /* HomeView */,
 				D25B20EA2B89CD02006CEED8 /* LaunchScreenViewController.swift */,
@@ -269,7 +261,6 @@
 				1FB387362B8862AF00054816 /* MainFeedViewController.swift */,
 				27865AD32B8DFCA900DB8DB6 /* NotificationViewController.swift */,
 				1FAB4DED2B8C2AEB0054618A /* Main */,
-				1FB3873C2B886EDA00054816 /* TimeCapsuleUpload */,
 				1FAB4DEE2B8C2B800054618A /* Capsule */,
 				1F9DA7AD2B8C921900A74D84 /* SearchUser */,
 				27D241B12B8F33A5000F8F16 /* OpenedTCViewController.swift */,
@@ -359,6 +350,8 @@
 		1FAB4DED2B8C2AEB0054618A /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				1F0B91382B9089BB0022EDD9 /* MainTabBarView.swift */,
+				1F0B91372B9089A50022EDD9 /* TabBar */,
 				1FB387382B8863DE00054816 /* HomeViewController.swift */,
 				1F0854312B8F254B00711660 /* MainCapsuleViewController.swift */,
 				4E2A09C72B8F755C00911390 /* OpenInteractionViewController.swift */,
@@ -373,17 +366,6 @@
 				460FE7662B8A200D00AF8086 /* LockedCapsuleCell.swift */,
 			);
 			name = Capsule;
-			sourceTree = "<group>";
-		};
-		1FB3873C2B886EDA00054816 /* TimeCapsuleUpload */ = {
-			isa = PBXGroup;
-			children = (
-				27D241AF2B8F32C5000F8F16 /* CreateTimeCapsuleViewController.swift */,
-				1FF869162B8F4B87007B5112 /* CapsuleUploadMainViewController.swift */,
-				1F0D3B2B2B89AA2B00A31E82 /* CapsuleUploadPhotoViewController.swift */,
-				1F0D3B312B89D85500A31E82 /* CapsuleUploadDeatilViewController.swift */,
-			);
-			name = TimeCapsuleUpload;
 			sourceTree = "<group>";
 		};
 		1FC44F082B90C882002A75AF /* Pretendard */ = {
@@ -409,9 +391,28 @@
 			path = ProximaNova;
 			sourceTree = "<group>";
 		};
+		1FC44F0A2B932E9F002A75AF /* CreateCapsule */ = {
+			isa = PBXGroup;
+			children = (
+				1F0D3B2B2B89AA2B00A31E82 /* MainCreateCapsuleViewController.swift */,
+				1F0B913C2B908A5F0022EDD9 /* FindTabViewController.swift */,
+				1F0D3B312B89D85500A31E82 /* CapsuleUploadDeatilViewController.swift */,
+			);
+			name = CreateCapsule;
+			sourceTree = "<group>";
+		};
+		1FC44F0B2B933544002A75AF /* ErrorMessages */ = {
+			isa = PBXGroup;
+			children = (
+				1FC44F0C2B933568002A75AF /* Firebase-ErrorMessages.json */,
+			);
+			path = ErrorMessages;
+			sourceTree = "<group>";
+		};
 		1FF868C72B8F4775007B5112 /* Resourses */ = {
 			isa = PBXGroup;
 			children = (
+				1FC44F0B2B933544002A75AF /* ErrorMessages */,
 				1FF868DB2B8F4A51007B5112 /* Font */,
 			);
 			name = Resourses;
@@ -623,8 +624,6 @@
 				1FAB4DF62B8C48AF0054618A /* FriendsViewModel.swift in Sources */,
 				1FAACDE12B8FAA520005B993 /* UIImage+RoundImage.swift in Sources */,
 				1F5787132B86DBF900C40B08 /* LoginViewController.swift in Sources */,
-				1FF869172B8F4B87007B5112 /* CapsuleUploadMainViewController.swift in Sources */,
-				27D241B02B8F32C5000F8F16 /* CreateTimeCapsuleViewController.swift in Sources */,
 				1FB387402B8881DB00054816 /* TimeCapsule.swift in Sources */,
 				1FB387392B8863DE00054816 /* HomeViewController.swift in Sources */,
 				1F0B913D2B908A5F0022EDD9 /* FindTabViewController.swift in Sources */,
@@ -635,7 +634,6 @@
 				27C81E472B8A3A4C001E3623 /* UpcomingTCCollectionViewCell.swift in Sources */,
 				1F5786F22B849CA900C40B08 /* AuthenticationViewModel.swift in Sources */,
 				1FB387372B8862AF00054816 /* MainFeedViewController.swift in Sources */,
-				1F0B913B2B908A530022EDD9 /* HomeTabViewController.swift in Sources */,
 				1F9DA7B12B8C93BD00A74D84 /* SerachUserTableViewCell.swift in Sources */,
 				1F0854152B8EF4F400711660 /* TestLoginViewController.swift in Sources */,
 				4E2A09C82B8F755C00911390 /* OpenInteractionViewController.swift in Sources */,
@@ -647,7 +645,7 @@
 				1F0B91432B908A7A0022EDD9 /* ProfileTabViewController.swift in Sources */,
 				D25B20EB2B89CD02006CEED8 /* LaunchScreenViewController.swift in Sources */,
 				1F9DA7B52B8CA75900A74D84 /* SearchModalTableViewController.swift in Sources */,
-				1F0D3B2C2B89AA2B00A31E82 /* CapsuleUploadPhotoViewController.swift in Sources */,
+				1F0D3B2C2B89AA2B00A31E82 /* MainCreateCapsuleViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

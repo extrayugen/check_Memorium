@@ -210,7 +210,7 @@ class UserProfileViewController: UIViewController {
             }
             
             // Firebase Storage에서 사용자 이미지 삭제
-            let storageRef = Storage.storage().reference().child("userProfileImages/\(userId)/profileImage.jpg")
+            let storageRef = Storage.storage().reference().child("userProfileImages/\(userId)")
             storageRef.delete { error in
                 if let error = error as NSError? {
                     // Storage 오류 코드 확인

@@ -27,34 +27,31 @@ class LoginViewController: UIViewController {
         setupViews()
         setupLayouts()
         
-        // 인증 리스너 설정
-        setupAuthStateListener()
-        
         // Test 자동기입
         emailTextField.text =  "karina_goodbye@naver.com"
         passwordTextField.text = "123456"
         
-        // 폰트 체크 하기
-        UIFont.familyNames.sorted().forEach { familyName in
-            print("*** \(familyName) ***")
-            UIFont.fontNames(forFamilyName: familyName).forEach { fontName in
-                print("\(fontName)")
-            }
-            print("---------------------")
-        }
+        //        // 폰트 체크 하기
+        //        UIFont.familyNames.sorted().forEach { familyName in
+        //            print("*** \(familyName) ***")
+        //            UIFont.fontNames(forFamilyName: familyName).forEach { fontName in
+        //                print("\(fontName)")
+        //            }
+        //            print("---------------------")
+        //        }
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        // 사용자가 로그인되어 있지 않다면 로그인 화면을 유지
-        if Auth.auth().currentUser == nil {
-            // 로그인 화면 유지
-        } else {
-            // 이미 로그인되어 있다면 메인 페이지로 이동
-            navigateToMainFeed()
-        }
-    }
-
+    //    override func viewWillAppear(_ animated: Bool) {
+    //        super.viewWillAppear(animated)
+    //        // 사용자가 로그인되어 있지 않다면 로그인 화면을 유지
+    //        if Auth.auth().currentUser == nil {
+    //            // 로그인 화면 유지
+    //        } else {
+    //            // 이미 로그인되어 있다면 메인 페이지로 이동
+    //            navigateToMainFeed()
+    //        }
+    //    }
+    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
@@ -197,27 +194,10 @@ class LoginViewController: UIViewController {
         
     }
     
-    /// 인증 상태 리스너를 설정합니다.
-    private func setupAuthStateListener() {
-        authHandle = Auth.auth().addStateDidChangeListener { [weak self] (auth, user) in
-            if user != nil {
-                self?.navigateToMainFeed()
-            }
-            // 사용자가 로그인하지 않은 상태면 로그인 화면 유지
-        }
-    }
     
-    private func navigateToMainFeed() {
-        DispatchQueue.main.async {
-            let mainTabBarView = MainTabBarView()
-            let navigationController = UINavigationController(rootViewController: mainTabBarView)
-            navigationController.modalPresentationStyle = .fullScreen
-            self.view.window?.rootViewController = navigationController
-        }
-    }
-
     // MARK: - Actions
-    
+
+    // 로그인 버튼 탭 처리
     // 로그인 버튼 탭 처리
     @objc private func didTapLoginButton() {
         guard let email = emailTextField.text, !email.isEmpty,
@@ -231,46 +211,56 @@ class LoginViewController: UIViewController {
         Auth.auth().signIn(withEmail: email, password: password) { [weak self] (authResult, error) in
             guard let self = self else { return }
             DispatchQueue.main.async {
-                if let error = error {
-                    // 로그인 실패: 에러 메시지 처리 및 알림 표시
-                    let alert = UIAlertController(title: "로그인 실패", message: error.localizedDescription, preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: "확인", style: .default) { [weak self] _ in
-                        guard let self = self else { return }
-                        
-                        let mainFeedVC = MainTabBarView()
-                        let navigationController = UINavigationController(rootViewController: mainFeedVC)
-                        navigationController.modalPresentationStyle = .fullScreen
-                        self.view.window?.rootViewController = navigationController
-                    })
-
+                if let error = error as NSError? {
+                    let errorMessage: String
+                    
+                    if let errorCode = AuthErrorCode(rawValue: error.code) {
+                        switch errorCode {
+                        case .networkError:
+                            errorMessage = "네트워크 연결에 문제가 있습니다."
+                        case .userNotFound:
+                            errorMessage = "사용자를 찾을 수 없습니다. 이메일 또는 비밀번호를 확인해주세요."
+                        case .wrongPassword:
+                            errorMessage = "잘못된 비밀번호입니다. 다시 시도해주세요."
+                        case .invalidEmail:
+                            errorMessage = "유효하지 않은 이메일 형식입니다. 이메일을 확인해주세요."
+                        default:
+                            errorMessage = "알 수 없는 오류가 발생했습니다. 다시 시도해주세요."
+                        }
+                    } else {
+                        errorMessage = "알 수 없는 오류가 발생했습니다. 다시 시도해주세요."
+                    }
+                    
+                    let alert = UIAlertController(title: "로그인 실패", message: errorMessage, preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "확인", style: .default))
+                    self.present(alert, animated: true)
                 } else {
                     // 로그인 성공: 성공 메시지 표시 및 메인 피드 화면으로 전환
                     let alert = UIAlertController(title: "로그인 성공", message: "로그인 되었습니다", preferredStyle: .alert)
                     alert.addAction(UIAlertAction(title: "확인", style: .default) { [weak self] _ in
                         guard let self = self else { return }
-                        self.navigateToMainFeed()
                         
-//                        let mainFeedVC = MainTabBarView()
-//                        //                        let mainFeedVC = SearchUserViewController()
-//                        // 네비게이션 컨트롤러가 있는 경우
-//                        self.navigationController?.pushViewController(mainFeedVC, animated: true)
-//                        // 네비게이션 컨트롤러가 없는 경우
-//                        //                         self.present(mainFeedVC, animated: true, completion: nil)
-                        
+                        // 로그인에 성공한 경우, 메인 탭 바 화면으로 이동
+                        let mainTabBarController = MainTabBarView()
+                        self.view.window?.rootViewController = mainTabBarController
+                        self.view.window?.makeKeyAndVisible()
                     })
                     self.present(alert, animated: true)
                 }
             }
         }
     }
+
+
+
+
     
     // 회원가입 버튼 탭 처리
     @objc private func didTapSignUpLabel() {
         let signUpViewController = SignUpViewController()
         //        let navigationController = UINavigationController(rootViewController: signUpViewController)
         self.navigationController?.pushViewController(signUpViewController, animated: true)
-        //        navigationController.modalPresentationStyle = .fullScreen
-        //        present(navigationController, animated: true, completion: nil)
+
     }
 }
 

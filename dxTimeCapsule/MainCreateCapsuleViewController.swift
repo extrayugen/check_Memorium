@@ -1,7 +1,7 @@
 import UIKit
 import SnapKit
 
-class PhotoUploadViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class MainCreateCapsuleViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     // MARK: - Properties
     
