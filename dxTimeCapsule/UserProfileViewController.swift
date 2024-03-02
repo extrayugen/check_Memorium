@@ -162,21 +162,25 @@ class UserProfileViewController: UIViewController {
     
     // MARK: - Binding
     private func bindViewModel() {
-        // 프로필 이미지 URL이 nil이거나 비어있는 경우 기본 이미지 사용
-        if let profileImageUrl = userProfileViewModel.profileImageUrl, !profileImageUrl.isEmpty {
-            profileImageView.sd_setImage(with: URL(string: profileImageUrl), placeholderImage: UIImage(named: "defaultProfileImage"))
-        } else {
-            // 기본 이미지를 사용하거나 이미지가 없는 경우를 처리할 수 있습니다.
-            profileImageView.image = UIImage(named: "LoginLogo")
-        }
-
         // 닉네임 설정
         nicknameLabel.text = userProfileViewModel.nickname
         
         // 이메일 설정
         emailLabel.text = userProfileViewModel.email
+        
+        // 프로필 이미지 설정
+        if let profileImageUrl = userProfileViewModel.profileImageUrl, !profileImageUrl.isEmpty {
+            profileImageView.sd_setImage(with: URL(string: profileImageUrl), placeholderImage: UIImage(named: "defaultProfileImage")) { [weak self] _, _, _, _ in
+                // 이미지가 로드된 후에 실행되는 클로저
+                self?.profileImageView.setNeedsLayout() // 이미지뷰를 레이아웃 갱신 요청
+                self?.profileImageView.layoutIfNeeded() // 이미지뷰의 레이아웃 갱신
+            }
+        } else {
+            // 기본 이미지를 사용하거나 이미지가 없는 경우를 처리할 수 있습니다.
+            profileImageView.image = UIImage(named: "LoginLogo")
+        }
     }
-    
+
     // MARK: - Actions
     
     @objc private func logoutTapped() {
@@ -190,6 +194,10 @@ class UserProfileViewController: UIViewController {
             let loginViewController = LoginViewController()
             sceneDelegate.window?.rootViewController = loginViewController
             sceneDelegate.window?.makeKeyAndVisible()
+            
+            print("로그아웃 성공")
+
+            
         } catch let signOutError as NSError {
             print("로그아웃 실패: \(signOutError.localizedDescription)")
         }

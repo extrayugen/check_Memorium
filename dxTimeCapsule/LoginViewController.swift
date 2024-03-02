@@ -24,13 +24,14 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
         
+        setupSignUpButtonAction() // 회원가입 버튼의 액션을 설정하는 메서드 호출
         setupViews()
         setupLayouts()
         
         // Test 자동기입
         emailTextField.text =  "bebe@google.com"
         passwordTextField.text = "123456"
-
+        
         
         //        // 폰트 체크 하기
         //        UIFont.familyNames.sorted().forEach { familyName in
@@ -53,11 +54,18 @@ class LoginViewController: UIViewController {
     //        }
     //    }
     
+    private func setupSignUpButtonAction() {
+        // 회원가입 버튼의 액션 설정
+        signUpActionLabel.isUserInteractionEnabled = true
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(didTapSignUpLabel))
+        signUpActionLabel.addGestureRecognizer(tapGesture)
+    }
+    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
         // 기존 색상
-        //        loginButton.applyGradient(colors: [#colorLiteral(red: 0.7882352941, green: 0.2941176471, blue: 0.2941176471, alpha: 1), #colorLiteral(red: 0.2941176471, green: 0.07450980392, blue: 0.3098039216, alpha: 1)])
+        //                loginButton.applyGradient(colors: [#colorLiteral(red: 0.7882352941, green: 0.2941176471, blue: 0.2941176471, alpha: 1), #colorLiteral(red: 0.2941176471, green: 0.07450980392, blue: 0.3098039216, alpha: 1)])
         
         // BlurryBeach
         loginButton.applyGradient(colors: [#colorLiteral(red: 0.831372549, green: 0.2, blue: 0.4117647059, alpha: 1), #colorLiteral(red: 0.7960784314, green: 0.6784313725, blue: 0.4274509804, alpha: 1)])
@@ -69,7 +77,9 @@ class LoginViewController: UIViewController {
         //        loginButton.applyGradient(colors: [#colorLiteral(red: 0.2039215686, green: 0.5803921569, blue: 0.9019607843, alpha: 1), #colorLiteral(red: 0.9254901961, green: 0.431372549, blue: 0.6784313725, alpha: 1)])
         
         // Mango
-        //        loginButton.applyGradient(colors: [#colorLiteral(red: 1, green: 0.8862745098, blue: 0.3490196078, alpha: 1), #colorLiteral(red: 1, green: 0.6549019608, blue: 0.3176470588, alpha: 1)])
+        //                loginButton.applyGradient(colors: [#colorLiteral(red: 1, green: 0.8862745098, blue: 0.3490196078, alpha: 1), #colorLiteral(red: 1, green: 0.6549019608, blue: 0.3176470588, alpha: 1)])
+        // Custom-1
+        //                loginButton.applyGradient(colors: [#colorLiteral(red: 1, green: 0.8862745098, blue: 0.3490196078, alpha: 1), #colorLiteral(red: 0.7894003391, green: 0.2963732481, blue: 0.2954288721, alpha: 1)])
         
     }
     
@@ -97,8 +107,8 @@ class LoginViewController: UIViewController {
         logoImageView.image = UIImage(named: "LoginLogo")
         
         // 앱 이름 설정
-        appNameLabel.text = "dxCapsule"
-        appNameLabel.font = UIFont.boldSystemFont(ofSize: 36) // 적절한 폰트 및 크기로 설정
+        appNameLabel.text = "Memorium"
+        appNameLabel.font = UIFont.pretendardSemiBold(ofSize: 36)
         appNameLabel.textAlignment = .center
         
         // 이메일 텍스트필드 설정
@@ -110,7 +120,7 @@ class LoginViewController: UIViewController {
         // 로그인 버튼 설정 및 액션 연결ㅐ
         configureButton(loginButton, title: "Login")
         loginButton.addTarget(self, action: #selector(didTapLoginButton), for: .touchUpInside)
-
+        
         // "계정이 없으신가요?" 라벨 설정
         noAccountLabel.text = "Do not have an account?"
         noAccountLabel.font = .systemFont(ofSize: 14)
@@ -138,7 +148,7 @@ class LoginViewController: UIViewController {
         }
         
         appNameLabel.snp.makeConstraints { make in
-            make.top.equalTo(logoImageView.snp.bottom).offset(10)
+            make.top.equalTo(logoImageView.snp.bottom)
             make.centerX.equalToSuperview()
         }
         
@@ -154,7 +164,7 @@ class LoginViewController: UIViewController {
             make.height.equalTo(44)
         }
         passwordTextField.isSecureTextEntry = true
-
+        
         
         // Add the loginButton constraints
         loginButton.snp.makeConstraints { make in
@@ -214,41 +224,31 @@ class LoginViewController: UIViewController {
             DispatchQueue.main.async {
                 if let error = error {
                     print("Login failed with error: \(error.localizedDescription)") // Debug print
+                    
                     // 로그인 실패: 에러 메시지 처리 및 알림 표시
                     let alert = UIAlertController(title: "로그인 실패", message: error.localizedDescription, preferredStyle: .alert)
                     alert.addAction(UIAlertAction(title: "확인", style: .default))
                     self.present(alert, animated: true)
                 } else {
                     print("Login succeeded") // Debug print
-                    // 로그인 성공: 성공 메시지 표시 및 메인 피드 화면으로 전환
-                    let alert = UIAlertController(title: "로그인 성공", message: "로그인 되었습니다", preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: "확인", style: .default) { [weak self] _ in
-                        guard let self = self else { return }
-                        let mainTabVC = MainTabBarView()
-                        // Assuming MainTabBarView is your main application's entry point after login
-                        if let navigationController = self.navigationController {
-                            navigationController.pushViewController(mainTabVC, animated: true)
-                        } else {
-                            let navigationController = UINavigationController(rootViewController: mainTabVC)
-                            navigationController.modalPresentationStyle = .fullScreen
-                            self.view.window?.rootViewController = navigationController
-                            self.view.window?.makeKeyAndVisible()
-                        }
-                    })
-                    self.present(alert, animated: true) // This needs to be outside the UIAlertAction's handler.
+                    let mainTabVC = MainTabBarView()
+                    let navigationController = UINavigationController(rootViewController: mainTabVC)
+                       navigationController.modalPresentationStyle = .fullScreen
+                       self.present(navigationController, animated: true, completion: nil)
+
                 }
             }
         }
     }
-
-
+    
+    
     
     // 회원가입 버튼 탭 처리
     @objc private func didTapSignUpLabel() {
         let signUpViewController = SignUpViewController()
-        //        let navigationController = UINavigationController(rootViewController: signUpViewController)
-        self.navigationController?.pushViewController(signUpViewController, animated: true)
-
+        self.present(signUpViewController, animated: true, completion: nil)
+        print("Sign Up Button Tapped")
+        
     }
 }
 
