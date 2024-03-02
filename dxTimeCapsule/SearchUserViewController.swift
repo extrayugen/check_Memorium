@@ -37,4 +37,6 @@ class SearchUserViewController: UIViewController, UIViewControllerTransitioningD
         //        searchModalVC.transitioningDelegate = self // 커스텀 트랜지션 딜리게이트 설정
         present(searchModalVC, animated: true, completion: nil)
     }
+    
+    
 }

@@ -25,11 +25,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let rootVC = LoginViewController()
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
-            UIView.transition(with: window, duration: 0.5, options: .transitionCrossDissolve, animations: {
-                window.rootViewController = rootVC
-            }, completion: nil)
-        }
     }
 
 
