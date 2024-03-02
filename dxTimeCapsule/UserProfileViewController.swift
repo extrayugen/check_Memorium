@@ -132,7 +132,7 @@ class UserProfileViewController: UIViewController, UIImagePickerControllerDelega
         // Nickname Label Constraints
         nicknameLabel.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.top.equalTo(profileImageView.snp.bottom).offset(20)
+            make.top.equalTo(selectImageLabel.snp.bottom).offset(20)
             make.left.right.equalToSuperview().inset(20)
         }
         
