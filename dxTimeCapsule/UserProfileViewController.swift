@@ -44,7 +44,7 @@ class UserProfileViewController: UIViewController {
         // 이미지 뷰의 크기에 따라 cornerRadius를 동적으로 설정합니다.
         let imageSize: CGFloat = profileImageView.frame.width
         profileImageView.layer.cornerRadius = imageSize / 2
-        logoutButton.applyGradient(colors: [#colorLiteral(red: 0.831372549, green: 0.2, blue: 0.4117647059, alpha: 1), #colorLiteral(red: 0.7960784314, green: 0.6784313725, blue: 0.4274509804, alpha: 1)])
+        logoutButton.setGradient(colors: [#colorLiteral(red: 0.831372549, green: 0.2, blue: 0.4117647059, alpha: 1), #colorLiteral(red: 0.7960784314, green: 0.6784313725, blue: 0.4274509804, alpha: 1)])
     }
     
     // MARK: - Setup
