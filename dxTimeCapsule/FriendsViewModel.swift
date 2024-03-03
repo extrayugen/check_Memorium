@@ -84,7 +84,7 @@ import FirebaseAuth
                  completion(false, error)
                  return
              }
-             print("사용자 \(fromUserRef)로부터 사용자 \(targetUserId)에게 친구 요청이 성공적으로 보내졌습니다.")
+             print("사용자 \(currentUserId)로부터 사용자 \(targetUserId)에게 친구 요청이 성공적으로 보내졌습니다.")
              
              // 요청을 받는 사용자의 friendRequestsReceived 배열 업데이트
              let toUserRef = self.db.collection("users").document(targetUserId)
@@ -102,9 +102,16 @@ import FirebaseAuth
          }
      }
 
+
+
+
      
      // 받은 친구 요청 수락하기
     func acceptFriendRequest(fromUser targetUserId: String, forUser currentUserId: String, completion: @escaping (Bool, Error?) -> Void) {
          // Firestore에 친구 요청 수락 데이터 업데이트 로직
      }
+     
+
 }
+
+
