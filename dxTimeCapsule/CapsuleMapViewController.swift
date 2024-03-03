@@ -13,11 +13,11 @@ import SnapKit
 class CapsuleMapViewController: UIViewController {
     
     var timeCapsule = [TimeCapsule]()
-    let dummyTimeCapsules = [
-        TimeCapsule(timeCapsuleId: "1", uid: "user123", mood: "Happy", photoUrl: "SkyImage", location: "서울특별시 양천구 신월동", userLocation: "Namsan Tower", comment: "Great day!", tags: ["tag1", "tag2"], openDate: Date(), creationDate: Date()),
-        TimeCapsule(timeCapsuleId: "2", uid: "user124", mood: "Happy", photoUrl: "snow", location: "서울특별시 양천구 신월동", userLocation: "Namsan Tower", comment: "Great day!", tags: ["tag1", "tag2"], openDate: Date(), creationDate: Date()),
-        TimeCapsule(timeCapsuleId: "3", uid: "user124", mood: "Happy", photoUrl: "rain", location: "경기도 의정부시 의정부동", userLocation: "Namsan Tower", comment: "Great day!", tags: ["tag1", "tag2"], openDate: Date(), creationDate: Date()),
-    ]
+//    let dummyTimeCapsules = [
+//        TimeCapsule(timeCapsuleId: "1", uid: "user123", mood: "Happy", photoUrl: "SkyImage", location: "서울특별시 양천구 신월동", userLocation: "Namsan Tower", comment: "Great day!", tags: ["tag1", "tag2"], openDate: Date(), creationDate: Date()),
+//        TimeCapsule(timeCapsuleId: "2", uid: "user124", mood: "Happy", photoUrl: "snow", location: "서울특별시 양천구 신월동", userLocation: "Namsan Tower", comment: "Great day!", tags: ["tag1", "tag2"], openDate: Date(), creationDate: Date()),
+//        TimeCapsule(timeCapsuleId: "3", uid: "user124", mood: "Happy", photoUrl: "rain", location: "경기도 의정부시 의정부동", userLocation: "Namsan Tower", comment: "Great day!", tags: ["tag1", "tag2"], openDate: Date(), creationDate: Date()),
+//    ]
     private lazy var capsuleMaps: NMFMapView = {
         let map = NMFMapView(frame: view.frame)
         return map
@@ -52,8 +52,8 @@ class CapsuleMapViewController: UIViewController {
 
 extension CapsuleMapViewController {
     private func configCellection() {
-        capsuleCollection.delegate = self
-        capsuleCollection.dataSource = self
+//        capsuleCollection.delegate = self
+//        capsuleCollection.dataSource = self
         capsuleCollection.register(LockedCapsuleCell.self, forCellWithReuseIdentifier: LockedCapsuleCell.identifier)
         capsuleCollection.isPagingEnabled = true
         capsuleCollection.showsHorizontalScrollIndicator = false
@@ -107,27 +107,27 @@ extension CapsuleMapViewController {
         
     }
 }
-
-extension CapsuleMapViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+//
+//extension CapsuleMapViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     // MARK: - UICollectionViewDataSource
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return dummyTimeCapsules.count
-    }
+    /*func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {*/
+//        return dummyTimeCapsules.count
+//}
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: LockedCapsuleCell.identifier, for: indexPath) as? LockedCapsuleCell else {
-            fatalError("Unable to dequeue LockedCapsuleCell")
-        }
-        let timeCapsule = dummyTimeCapsules[indexPath.item]
-        cell.registerImage.image = UIImage(named: timeCapsule.photoUrl ?? "placeholder")
-        cell.dayBadge.text = "D-\(daysUntilOpenDate(timeCapsule.openDate))"
-        cell.registerPlace.text = timeCapsule.location ?? ""
-        cell.registerDay.text = dateFormatter.string(from: timeCapsule.creationDate)
-        print("위치: \(timeCapsule.location ?? ""), 개봉일: \(timeCapsule.openDate), 등록일: \(timeCapsule.creationDate), 사용자 위치: \(timeCapsule.userLocation ?? "") ")
-        return cell
-    }
-    
-}
+//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+//        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: LockedCapsuleCell.identifier, for: indexPath) as? LockedCapsuleCell else {
+//            fatalError("Unable to dequeue LockedCapsuleCell")
+//        }
+//        let timeCapsule = dummyTimeCapsules[indexPath.item]
+//        cell.registerImage.image = UIImage(named: timeCapsule.photoUrl ?? "placeholder")
+//        cell.dayBadge.text = "D-\(daysUntilOpenDate(timeCapsule.openDate))"
+//        cell.registerPlace.text = timeCapsule.location ?? ""
+//        cell.registerDay.text = dateFormatter.string(from: timeCapsule.creationDate)
+//        print("위치: \(timeCapsule.location ?? ""), 개봉일: \(timeCapsule.openDate), 등록일: \(timeCapsule.creationDate), 사용자 위치: \(timeCapsule.userLocation ?? "") ")
+//        return cell
+//    }
+//    
+
 
 extension CapsuleMapViewController {
     // D-Day 남은 일수 계산

@@ -16,7 +16,6 @@
 		1F0B91392B9089BB0022EDD9 /* MainTabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0B91382B9089BB0022EDD9 /* MainTabBarView.swift */; };
 		1F0B913D2B908A5F0022EDD9 /* FindTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0B913C2B908A5F0022EDD9 /* FindTabViewController.swift */; };
 		1F0B913F2B908A690022EDD9 /* TaskListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0B913E2B908A690022EDD9 /* TaskListViewController.swift */; };
-		1F0B91412B908A730022EDD9 /* FollowTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0B91402B908A730022EDD9 /* FollowTabViewController.swift */; };
 		1F0B91432B908A7A0022EDD9 /* ProfileTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0B91422B908A7A0022EDD9 /* ProfileTabViewController.swift */; };
 		1F0D3B2C2B89AA2B00A31E82 /* MainCreateCapsuleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0D3B2B2B89AA2B00A31E82 /* MainCreateCapsuleViewController.swift */; };
 		1F0D3B322B89D85500A31E82 /* CapsuleUploadDeatilViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0D3B312B89D85500A31E82 /* CapsuleUploadDeatilViewController.swift */; };
@@ -67,15 +66,6 @@
 /* Begin PBXFileReference section */
 		1F0854142B8EF4F400711660 /* TestLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestLoginViewController.swift; sourceTree = "<group>"; };
 		1F0854162B8F091500711660 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		1F08541A2B8F0F7300711660 /* proximanova_light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = proximanova_light.otf; sourceTree = "<group>"; };
-		1F08541B2B8F0F7300711660 /* proximanova_blackit.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = proximanova_blackit.otf; sourceTree = "<group>"; };
-		1F08541C2B8F0F7300711660 /* COPYRIGHT.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = COPYRIGHT.txt; sourceTree = "<group>"; };
-		1F08541D2B8F0F7300711660 /* proximanova_boldit.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = proximanova_boldit.otf; sourceTree = "<group>"; };
-		1F08541E2B8F0F7300711660 /* proximanova_extrabold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = proximanova_extrabold.otf; sourceTree = "<group>"; };
-		1F08541F2B8F0F7300711660 /* proximanova_regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = proximanova_regular.ttf; sourceTree = "<group>"; };
-		1F0854202B8F0F7300711660 /* proximanova_black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = proximanova_black.ttf; sourceTree = "<group>"; };
-		1F0854212B8F0F7300711660 /* proximanova_bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = proximanova_bold.otf; sourceTree = "<group>"; };
-		1F0854222B8F0F7300711660 /* proximanova_black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = proximanova_black.otf; sourceTree = "<group>"; };
 		1F0854312B8F254B00711660 /* MainCapsuleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCapsuleViewController.swift; sourceTree = "<group>"; };
 		1F0854332B8F25A200711660 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		1F0B91052B901D170022EDD9 /* Etc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Etc.swift; sourceTree = "<group>"; };
@@ -83,7 +73,6 @@
 		1F0B91382B9089BB0022EDD9 /* MainTabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarView.swift; sourceTree = "<group>"; };
 		1F0B913C2B908A5F0022EDD9 /* FindTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindTabViewController.swift; sourceTree = "<group>"; };
 		1F0B913E2B908A690022EDD9 /* TaskListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListViewController.swift; sourceTree = "<group>"; };
-		1F0B91402B908A730022EDD9 /* FollowTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowTabViewController.swift; sourceTree = "<group>"; };
 		1F0B91422B908A7A0022EDD9 /* ProfileTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTabViewController.swift; sourceTree = "<group>"; };
 		1F0B91442B90903C0022EDD9 /* APIKey.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = APIKey.xcconfig; sourceTree = "<group>"; };
 		1F0D3B2B2B89AA2B00A31E82 /* MainCreateCapsuleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCreateCapsuleViewController.swift; sourceTree = "<group>"; };
@@ -149,30 +138,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		1F0854182B8F0F6B00711660 /* Font */ = {
-			isa = PBXGroup;
-			children = (
-				1F0854192B8F0F7300711660 /* Proxima Nova */,
-			);
-			name = Font;
-			sourceTree = "<group>";
-		};
-		1F0854192B8F0F7300711660 /* Proxima Nova */ = {
-			isa = PBXGroup;
-			children = (
-				1F08541A2B8F0F7300711660 /* proximanova_light.otf */,
-				1F08541B2B8F0F7300711660 /* proximanova_blackit.otf */,
-				1F08541C2B8F0F7300711660 /* COPYRIGHT.txt */,
-				1F08541D2B8F0F7300711660 /* proximanova_boldit.otf */,
-				1F08541E2B8F0F7300711660 /* proximanova_extrabold.otf */,
-				1F08541F2B8F0F7300711660 /* proximanova_regular.ttf */,
-				1F0854202B8F0F7300711660 /* proximanova_black.ttf */,
-				1F0854212B8F0F7300711660 /* proximanova_bold.otf */,
-				1F0854222B8F0F7300711660 /* proximanova_black.otf */,
-			);
-			path = "Proxima Nova";
-			sourceTree = "<group>";
-		};
 		1F0B91092B90262A0022EDD9 /* UIImageView */ = {
 			isa = PBXGroup;
 			children = (
@@ -184,9 +149,11 @@
 		1F0B91372B9089A50022EDD9 /* TabBar */ = {
 			isa = PBXGroup;
 			children = (
+				1F0B91382B9089BB0022EDD9 /* MainTabBarView.swift */,
 				1FC44F0A2B932E9F002A75AF /* CreateCapsule */,
+				1F9DA7AD2B8C921900A74D84 /* SearchUser */,
 				1F0B913E2B908A690022EDD9 /* TaskListViewController.swift */,
-				1F0B91402B908A730022EDD9 /* FollowTabViewController.swift */,
+				27865AD32B8DFCA900DB8DB6 /* NotificationViewController.swift */,
 				1F0B91422B908A7A0022EDD9 /* ProfileTabViewController.swift */,
 			);
 			name = TabBar;
@@ -224,7 +191,6 @@
 				1F5786F52B849D0D00C40B08 /* Model */,
 				1F5786EF2B849C2200C40B08 /* ViewModel */,
 				1F5786F02B849C2F00C40B08 /* View */,
-				1FAB4DEB2B8C238F0054618A /* Resource */,
 				1FF869182B8F4D3E007B5112 /* Utilities */,
 				1FF868C72B8F4775007B5112 /* Resourses */,
 				1F5786D82B849AF800C40B08 /* AppDelegate.swift */,
@@ -259,11 +225,9 @@
 				27C81E412B8A39E9001E3623 /* HomeView */,
 				46EA9BAD2B89A27E00633EC4 /* CapsuleMapViewController.swift */,
 				1FB387362B8862AF00054816 /* MainFeedViewController.swift */,
-				27865AD32B8DFCA900DB8DB6 /* NotificationViewController.swift */,
+				1F0854312B8F254B00711660 /* MainCapsuleViewController.swift */,
 				1FAB4DED2B8C2AEB0054618A /* Main */,
 				1FAB4DEE2B8C2B800054618A /* Capsule */,
-				1F9DA7AD2B8C921900A74D84 /* SearchUser */,
-				27D241B12B8F33A5000F8F16 /* OpenedTCViewController.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -280,6 +244,7 @@
 		1F5786FA2B84D26000C40B08 /* Legercy */ = {
 			isa = PBXGroup;
 			children = (
+				1F9DA7AE2B8C922700A74D84 /* SearchUserViewController.swift */,
 				1F0854142B8EF4F400711660 /* TestLoginViewController.swift */,
 				1F0B91052B901D170022EDD9 /* Etc.swift */,
 			);
@@ -297,7 +262,6 @@
 		1F9DA7AD2B8C921900A74D84 /* SearchUser */ = {
 			isa = PBXGroup;
 			children = (
-				1F9DA7AE2B8C922700A74D84 /* SearchUserViewController.swift */,
 				1F9DA7B42B8CA75900A74D84 /* SearchModalTableViewController.swift */,
 				1F9DA7B02B8C93BD00A74D84 /* SerachUserTableViewCell.swift */,
 			);
@@ -336,14 +300,6 @@
 			name = UIImage;
 			sourceTree = "<group>";
 		};
-		1FAB4DEB2B8C238F0054618A /* Resource */ = {
-			isa = PBXGroup;
-			children = (
-				1F0854182B8F0F6B00711660 /* Font */,
-			);
-			name = Resource;
-			sourceTree = "<group>";
-		};
 		1FAB4DEC2B8C29D80054618A /* Authentication */ = {
 			isa = PBXGroup;
 			children = (
@@ -357,12 +313,8 @@
 		1FAB4DED2B8C2AEB0054618A /* Main */ = {
 			isa = PBXGroup;
 			children = (
-				1F0B91382B9089BB0022EDD9 /* MainTabBarView.swift */,
 				1F0B91372B9089A50022EDD9 /* TabBar */,
 				1FB387382B8863DE00054816 /* HomeViewController.swift */,
-				1F0854312B8F254B00711660 /* MainCapsuleViewController.swift */,
-				4E2A09C72B8F755C00911390 /* OpenInteractionViewController.swift */,
-				4E2A09C92B8F86C600911390 /* FadeInAnimator.swift */,
 			);
 			name = Main;
 			sourceTree = "<group>";
@@ -370,7 +322,10 @@
 		1FAB4DEE2B8C2B800054618A /* Capsule */ = {
 			isa = PBXGroup;
 			children = (
+				4E2A09C72B8F755C00911390 /* OpenInteractionViewController.swift */,
 				460FE7662B8A200D00AF8086 /* LockedCapsuleCell.swift */,
+				4E2A09C92B8F86C600911390 /* FadeInAnimator.swift */,
+				27D241B12B8F33A5000F8F16 /* OpenedTCViewController.swift */,
 			);
 			name = Capsule;
 			sourceTree = "<group>";
@@ -620,7 +575,6 @@
 				4E2A09CA2B8F86C600911390 /* FadeInAnimator.swift in Sources */,
 				1F47AB862B90BAFC000DB508 /* UIFont+CustomFont.swift in Sources */,
 				1F5786D92B849AF800C40B08 /* AppDelegate.swift in Sources */,
-				1F0B91412B908A730022EDD9 /* FollowTabViewController.swift in Sources */,
 				1FB387352B87A0B300054816 /* SignUpViewController.swift in Sources */,
 				1F367EA62B8F803A00563908 /* UIColor+Hex.swift in Sources */,
 				4EC308DE2B8A200300EEE54C /* MainCapsuleViewModel.swift in Sources */,

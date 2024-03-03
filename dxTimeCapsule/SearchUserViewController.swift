@@ -3,6 +3,7 @@ import SnapKit
 
 class SearchUserViewController: UIViewController, UIViewControllerTransitioningDelegate {
     let searchButton = UIButton(type: .system)
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,7 +31,7 @@ class SearchUserViewController: UIViewController, UIViewControllerTransitioningD
         searchButton.setTitleColor(.white, for: .normal)
     }
     
-    // MARK: - Button Action
+    // MARK: - Action
     @objc func searchButtonTapped() {
         let searchModalVC = SearchModalTableViewController()
         searchModalVC.modalPresentationStyle = .fullScreen

@@ -108,7 +108,8 @@ class LoginViewController: UIViewController {
         
         // 앱 이름 설정
         appNameLabel.text = "Memorium"
-        appNameLabel.font = UIFont.pretendardSemiBold(ofSize: 36)
+        appNameLabel.font = UIFont.pretendardSemiBold(ofSize: 40)
+        
         appNameLabel.textAlignment = .center
         
         // 이메일 텍스트필드 설정
