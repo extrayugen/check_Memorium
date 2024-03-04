@@ -62,7 +62,7 @@ import FirebaseAuth
                    } else if sentRequests.contains(userId) {
                        completion("요청 보냄")
                    } else if receivedRequests.contains(userId) {
-                       completion("요청 수락")
+                       completion("요청 받음")
                    } else {
                        completion("친구 추가")
                    }

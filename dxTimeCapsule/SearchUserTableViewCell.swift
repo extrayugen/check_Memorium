@@ -32,7 +32,7 @@ class SearchUserTableViewCell: UITableViewCell {
         userProfileImageView.layer.cornerRadius = 25
         userProfileImageView.clipsToBounds = true
         userProfileImageView.setRoundedImage()
-
+        
         contentView.addSubview(userProfileImageView)
         
         //
@@ -107,6 +107,7 @@ class SearchUserTableViewCell: UITableViewCell {
         friendsViewModel?.checkFriendshipStatus(forUser: user.uid) { status in
             DispatchQueue.main.async {
                 switch status {
+                    
                 case "요청 보냄":
                     self.friendActionButton.isHidden = true
                     self.statusLabel.text = "Requested"
@@ -114,7 +115,7 @@ class SearchUserTableViewCell: UITableViewCell {
                     self.statusLabel.font = UIFont.pretendardSemiBold(ofSize: 14)
                     self.statusLabel.isHidden = false
                     
-                case "요청 수락":
+                case "요청 받음":
                     self.friendActionButton.isHidden = false
                     self.friendActionButton.setThemeBrokenHeart()
                     self.friendActionButton.setTitle("Accept", for: .normal)
@@ -135,53 +136,53 @@ class SearchUserTableViewCell: UITableViewCell {
     }
     
     private func updateUIAsAlreadyFriends() {
-        friendActionButton.isHidden = true
-        statusLabel.text = "Already friend"
-        statusLabel.textColor = UIColor(hex: "D15E6B")
-        statusLabel.font = UIFont.pretendardSemiBold(ofSize: 14)
-        statusLabel.isHidden = false
+        DispatchQueue.main.async {
+            self.friendActionButton.isHidden = true
+            self.statusLabel.text = "Already friend"
+            self.statusLabel.textColor = UIColor(hex: "D15E6B")
+            self.statusLabel.font = UIFont.pretendardSemiBold(ofSize: 14)
+            self.statusLabel.isHidden = false
+        }
     }
+    
+    // MARK: - Actions
+    @objc private func friendActionButtonTapped() {
+        guard let user = user, let currentUserID = Auth.auth().currentUser?.uid else {
+            print("사용자 정보 누락 또는 에러입니다.")
+            return
+        }
         
-        // MARK: - Actions
-        @objc private func friendActionButtonTapped() {
-            guard let user = user, let currentUserID = Auth.auth().currentUser?.uid else {
-                print("사용자 정보 누락 또는 에러입니다.")
-                return
-            }
-            
-            // 친구 상태 확인
-            self.friendsViewModel?.checkFriendshipStatus(forUser: user.uid) { status in
-                DispatchQueue.main.async {
-                    switch status {
-                    case "요청 받음":
-                        // 친구 요청 수락 로직 실행
-                        self.friendsViewModel?.acceptFriendRequest(fromUser: user.uid, forUser: currentUserID) { [weak self] success, error in
-                            DispatchQueue.main.async {
-                                if success {
-                                    // 친구 요청 수락 성공 시, UI를 "Already friend"로 업데이트
-                                    self?.updateUIAsAlreadyFriends()
-                                } else {
-                                    // 에러 처리
-                                    print("친구 요청 수락 실패: \(error?.localizedDescription ?? "알 수 없는 오류")")
-                                }
-                            }
+        // 친구 상태 확인
+        friendsViewModel?.checkFriendshipStatus(forUser: user.uid) { [weak self] status in
+            DispatchQueue.main.async {
+                switch status {
+                case "요청 받음":
+                    // 친구 요청 수락 로직 실행
+                    self?.friendsViewModel?.acceptFriendRequest(fromUser: user.uid, forUser: currentUserID) { success, error in
+                        if success {
+                            // 친구 요청 수락 성공 시, UI를 "Already friend"로 업데이트
+                            self?.updateUIAsAlreadyFriends()
+                        } else {
+                            // 에러 처리
+                            print("친구 요청 수락 실패: \(error?.localizedDescription ?? "알 수 없는 오류")")
                         }
-                    case "친구 추가":
-                        // 친구 요청 보내기 로직 실행
-                        self.friendsViewModel?.sendFriendRequest(toUser: user.uid, fromUser: currentUserID) { success, error in
-                            if success {
-                                // 요청 보내기 성공 시, UI 즉시 업데이트
-                                self.updateFriendshipStatusUI(user: user, currentUserID: currentUserID)
-                            } else {
-                                // 에러 처리
-                                print("친구 요청 보내기 실패: \(error?.localizedDescription ?? "알 수 없는 오류")")
-                            }
-                        }
-                    default:
-                        print("현재 상태에서는 액션이 정의되지 않았습니다.")
                     }
+                case "친구 추가":
+                    // 친구 요청 보내기 로직 실행
+                    self?.friendsViewModel?.sendFriendRequest(toUser: user.uid, fromUser: currentUserID) { success, error in
+                        if success {
+                            // 요청 보내기 성공 시, UI 즉시 업데이트
+                            self?.updateFriendshipStatusUI(user: user, currentUserID: currentUserID)
+                        } else {
+                            // 에러 처리
+                            print("친구 요청 보내기 실패: \(error?.localizedDescription ?? "알 수 없는 오류")")
+                        }
+                    }
+                default:
+                    print("현재 상태에서는 액션이 정의되지 않았습니다.")
                 }
             }
         }
     }
+}
 

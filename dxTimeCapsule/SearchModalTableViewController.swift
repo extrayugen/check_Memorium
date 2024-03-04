@@ -1,6 +1,7 @@
 import UIKit
 import SnapKit
 import SDWebImage
+import FirebaseAuth
 
 class SearchModalTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, UISearchBarDelegate {
 
@@ -171,11 +172,45 @@ class SearchModalTableViewController: UIViewController, UITableViewDelegate, UIT
             cell.configure(with: user, viewModel: friendsViewModel)
     
         // 친구 추가/요청 버튼 탭 액션 설정
-          cell.friendActionButtonTapAction = { [weak self] in
-              print("친구 추가/요청 로직 실행: \(user.username)")
-              // 여기에 친구 추가/요청 로직을 구현합니다.
-              // 예를 들어, FriendsViewModel의 sendFriendRequest 메서드 호출 등
-          }
+        cell.friendActionButtonTapAction = { [weak self] in
+            guard let strongSelf = self else { return }
+            
+            // 현재 사용자의 ID를 가져옵니다.
+            guard let currentUserId = Auth.auth().currentUser?.uid else {
+                print("현재 사용자 ID를 가져올 수 없습니다.")
+                return
+            }
+
+            // 상태에 따라 친구 요청 보내기 또는 친구 요청 수락하기 로직을 실행합니다.
+            strongSelf.friendsViewModel.checkFriendshipStatus(forUser: user.uid) { status in
+                DispatchQueue.main.async {
+                    switch status {
+                    case "친구 추가":
+                        // 친구 요청 보내기
+                        strongSelf.friendsViewModel.sendFriendRequest(toUser: user.uid, fromUser: currentUserId) { success, error in
+                            if success {
+                                print("친구 요청이 성공적으로 보내졌습니다.")
+                                // 필요한 경우 UI 업데이트
+                            } else {
+                                print("친구 요청 실패: \(error?.localizedDescription ?? "알 수 없는 오류")")
+                            }
+                        }
+                    case "요청 수락":
+                        // 친구 요청 수락하기
+                        strongSelf.friendsViewModel.acceptFriendRequest(fromUser: user.uid, forUser: currentUserId) { success, error in
+                            if success {
+                                print("친구 요청이 성공적으로 수락되었습니다.")
+                                // 필요한 경우 UI 업데이트
+                            } else {
+                                print("친구 요청 수락 실패: \(error?.localizedDescription ?? "알 수 없는 오류")")
+                            }
+                        }
+                    default:
+                        print("이미 처리된 상태입니다.")
+                    }
+                }
+            }
+        }
           return cell
         }
     }
