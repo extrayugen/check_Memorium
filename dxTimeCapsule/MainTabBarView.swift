@@ -30,7 +30,7 @@ class MainTabBarView: UITabBarController {
         let viewControllers = [homeTabViewController, searchModalTableViewController, createCapsuleViewController, notificationViewController, profileViewController]
         
         self.viewControllers = viewControllers.map { UINavigationController(rootViewController: $0 ) }
-        self.tabBar.tintColor = UIColor(hex: "#D28488")
+        self.tabBar.tintColor = UIColor(hex: "#D53369")
     }
     
     func resizeImage(imageName: String, targetSize: CGSize) -> UIImage? {
