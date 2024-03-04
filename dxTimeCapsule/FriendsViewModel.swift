@@ -41,7 +41,7 @@ import FirebaseAuth
         }
     }
     
-     // 사용자의 친구 상태를 확인하는 메서드
+     // 친구 상태를 확인하는 메서드
        func checkFriendshipStatus(forUser userId: String, completion: @escaping (String) -> Void) {
            guard let currentUser = Auth.auth().currentUser else {
                completion("사용자 인증 실패")
@@ -62,7 +62,7 @@ import FirebaseAuth
                    } else if sentRequests.contains(userId) {
                        completion("요청 보냄")
                    } else if receivedRequests.contains(userId) {
-                       completion("요청 받음")
+                       completion("요청 수락")
                    } else {
                        completion("친구 추가")
                    }
@@ -73,7 +73,7 @@ import FirebaseAuth
            }
        }
     
-     // 사용자 ID를 기반으로 친구 요청 보내기
+     // 친구 요청 보내기
      func sendFriendRequest(toUser targetUserId: String, fromUser currentUserId: String, completion: @escaping (Bool, Error?) -> Void) {
          // 먼저 친구 상태를 확인
          checkFriendshipStatus(forUser: targetUserId) { status in
@@ -88,7 +88,7 @@ import FirebaseAuth
      }
      
      
-     // 친구 요청 배열 업데이트 로직
+     // 친구 요청 배열 업데이트
         private func updateFriendRequestArrays(targetUserId: String, currentUserId: String, completion: @escaping (Bool, Error?) -> Void) {
             let fromUserRef = db.collection("users").document(currentUserId)
             fromUserRef.updateData([
@@ -112,12 +112,37 @@ import FirebaseAuth
                 }
             }
         }
+     
+     // 친구 요청 수락하기
+       func acceptFriendRequest(fromUser targetUserId: String, forUser currentUserId: String, completion: @escaping (Bool, Error?) -> Void) {
+           // 동시에 여러 Firestore 업데이트를 처리하기 위해 batch 사용
+           let batch = db.batch()
+           
+           let currentUserRef = db.collection("users").document(currentUserId)
+           let targetUserRef = db.collection("users").document(targetUserId)
+           
+           // 현재 사용자의 친구 목록에 targetUserId 추가
+           batch.updateData(["friends": FieldValue.arrayUnion([targetUserId])], forDocument: currentUserRef)
+           
+           // 타겟 사용자의 친구 목록에 currentUserId 추가
+           batch.updateData(["friends": FieldValue.arrayUnion([currentUserId])], forDocument: targetUserRef)
+           
+           // 현재 사용자의 받은 친구 요청 목록에서 targetUserId 제거
+           batch.updateData(["friendRequestsReceived": FieldValue.arrayRemove([targetUserId])], forDocument: currentUserRef)
+           
+           // 타겟 사용자의 보낸 친구 요청 목록에서 currentUserId 제거
+           batch.updateData(["friendRequestsSent": FieldValue.arrayRemove([currentUserId])], forDocument: targetUserRef)
+           
+           // batch 작업 커밋
+           batch.commit { error in
+               if let error = error {
+                   completion(false, error)
+               } else {
+                   completion(true, nil)
+               }
+           }
+       }
     }
-
-     // 받은 친구 요청 수락하기
-    func acceptFriendRequest(fromUser targetUserId: String, forUser currentUserId: String, completion: @escaping (Bool, Error?) -> Void) {
-         // Firestore에 친구 요청 수락 데이터 업데이트 로직
-     }
      
 
 
