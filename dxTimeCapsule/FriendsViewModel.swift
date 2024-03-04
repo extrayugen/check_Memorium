@@ -113,6 +113,8 @@ import FirebaseAuth
             }
         }
      
+     
+     
      // 친구 요청 수락하기
        func acceptFriendRequest(fromUser targetUserId: String, forUser currentUserId: String, completion: @escaping (Bool, Error?) -> Void) {
            // 동시에 여러 Firestore 업데이트를 처리하기 위해 batch 사용
@@ -144,6 +146,7 @@ import FirebaseAuth
        }
     }
      
+
 
 
 

@@ -33,10 +33,11 @@ class SearchModalTableViewController: UIViewController, UITableViewDelegate, UIT
     
     private let searchTextField: UITextField = {
         let textField = UITextField()
-        textField.placeholder = "Search UserName"
+        textField.placeholder = "Search by username"
         textField.borderStyle = .roundedRect
         textField.autocorrectionType = .no
         textField.spellCheckingType = .no
+        textField.layer.cornerRadius = 10
         return textField
     }()
     
