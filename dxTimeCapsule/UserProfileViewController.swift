@@ -72,7 +72,7 @@ class UserProfileViewController: UIViewController, UIImagePickerControllerDelega
         profileImageView.layer.cornerRadius = 50
         
         // Select Image Label
-        selectImageLabel.text = "사진 수정"
+        selectImageLabel.text = "Edit"
         selectImageLabel.font = .systemFont(ofSize: 14, weight: .regular)
         selectImageLabel.textColor = UIColor(hex: "#D28488")
         selectImageLabel.textAlignment = .center

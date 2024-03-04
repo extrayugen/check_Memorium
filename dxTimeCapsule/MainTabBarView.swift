@@ -14,7 +14,7 @@ class MainTabBarView: UITabBarController {
         let homeTabViewController = HomeViewController()
         homeTabViewController.tabBarItem = UITabBarItem(title: nil, image: resizeImage(imageName: "Light=Home_Deselect", targetSize: CGSize(width: 24, height: 24)), selectedImage: resizeImage(imageName: "Light=Home_Select", targetSize: CGSize(width: 24, height: 24)))
         
-        let searchModalTableViewController = SearchUserTableViewController() // 이 부분에서 SearchViewController는 실제로 존재하는 UIViewController 클래스여야 합니다.
+        let searchModalTableViewController = SearchModalTableViewController() // 이 부분에서 SearchViewController는 실제로 존재하는 UIViewController 클래스여야 합니다.
         searchModalTableViewController.tabBarItem = UITabBarItem(title: nil, image: resizeImage(imageName: "Light=Search_Deselect", targetSize: CGSize(width: 24, height: 24)), selectedImage: resizeImage(imageName: "Light=Search_Select", targetSize: CGSize(width: 24, height: 24)))
 
         

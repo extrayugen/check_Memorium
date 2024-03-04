@@ -2,27 +2,25 @@ import UIKit
 import SnapKit
 import SDWebImage
 
-class SearchModalTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, UIGestureRecognizerDelegate {
-    // 황금 비율 상수
-    let goldenRatio: CGFloat = 1.618
+class SearchModalTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, UISearchBarDelegate {
+
     
-    // MARK: - Properties
+    private var searchLabel: UILabel!
+    private var searchContainerView: UIView!
+    
     private let userProfileViewModel = UserProfileViewModel()
     private let friendsViewModel = FriendsViewModel()
     private var searchResults: [User] = []
     
     private var searchDebounceTimer: Timer?
     
-    private let tableHeaderView: UIView = {
-        let headerView = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 50))
-        headerView.backgroundColor = UIColor.systemBlue.withAlphaComponent(0.2)
-        
-        let label = UILabel(frame: headerView.bounds)
-        label.text = "친구 검색"
-        label.textAlignment = .center
-        headerView.addSubview(label)
-        
-        return headerView
+    private let searchBar: UISearchBar = {
+        let searchBar = UISearchBar()
+        searchBar.placeholder = "Search UserName"
+        searchBar.autocorrectionType = .no
+        searchBar.spellCheckingType = .no
+        searchBar.backgroundImage = UIImage() // 선 제거
+        return searchBar
     }()
     
     private let tableView: UITableView = {
@@ -31,117 +29,132 @@ class SearchModalTableViewController: UIViewController, UITableViewDelegate, UIT
         return tableView
     }()
     
-    private let searchTextField: UITextField = {
-        let textField = UITextField()
-        textField.placeholder = "Search by username"
-        textField.borderStyle = .roundedRect
-        textField.autocorrectionType = .no
-        textField.spellCheckingType = .no
-        textField.layer.cornerRadius = 10
-        return textField
-    }()
-    
+//    
+//    private let searchTextField: UITextField = {
+//        let textField = UITextField()
+//        textField.placeholder = "Search by username"
+//        textField.borderStyle = .roundedRect
+//        textField.autocorrectionType = .no
+//        textField.spellCheckingType = .no
+//        textField.layer.cornerRadius = 10
+//        return textField
+//    }()
+//
     // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupUI()
-        searchTextField.delegate = self
-        searchTextField.becomeFirstResponder() // 이 코드 추가
+        setupSearchComponents()
+        setupTableView()
         
-        searchTextField.isUserInteractionEnabled  = true
-        view.isUserInteractionEnabled = true
+        searchBar.delegate = self
     }
     
-    // MARK: - UI Setup
-    private func setupUI() {
-        view.backgroundColor = .systemBackground
-        view.addSubview(searchTextField)
-        view.addSubview(tableView)
+//    override func viewDidLoad() {
+//        super.viewDidLoad()
+//        setupUI()
+//        searchTextField.delegate = self
+//        searchTextField.becomeFirstResponder() // 이 코드 추가
+//        
+//        searchTextField.isUserInteractionEnabled  = true
+//        view.isUserInteractionEnabled = true
+//    }
+//    
+    
+    func setupSearchComponents() {
+        searchContainerView = UIView()
+        searchContainerView.backgroundColor = .white
         
-        searchTextField.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(100)
-            make.left.right.equalToSuperview().inset(20)
-            make.height.equalTo(50)
+        searchLabel = UILabel()
+        searchLabel.text = "Search"
+        searchLabel.font = UIFont.systemFont(ofSize: 26, weight: .bold)
+        searchLabel.textAlignment = .left
+        
+        if let textField = searchBar.value(forKey: "searchField") as? UITextField {
+            textField.backgroundColor = UIColor.init(hex: "#EFEFEF")
+            textField.layer.cornerRadius = 15 // 원하는 라디우스 값 설정
+            textField.clipsToBounds = true
         }
         
-        tableView.snp.makeConstraints { make in
-            make.top.equalTo(searchTextField.snp.bottom).offset(20)
-            make.left.right.bottom.equalToSuperview()
+        searchContainerView.addSubview(searchLabel)
+        searchContainerView.addSubview(searchBar)
+        
+        view.addSubview(searchContainerView)
+        
+        searchContainerView.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(-80)
+            make.leading.trailing.equalToSuperview()
+            make.bottom.equalTo(searchBar.snp.bottom)
+        }
+        
+        searchLabel.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(16)
+            make.leading.equalToSuperview().offset(16)
+            make.trailing.equalToSuperview().offset(-16)
+        }
+        
+        searchBar.snp.makeConstraints { make in
+            make.top.equalTo(searchLabel.snp.bottom).offset(8)
+            make.leading.trailing.equalToSuperview()
+            make.bottom.equalToSuperview().offset(-10)
         }
         
         tableView.delegate = self
         tableView.dataSource = self
+    }
+    
+    func setupTableView() {
+        tableView.register(SearchUserTableViewCell.self, forCellReuseIdentifier: "SearchUserCell")
+        tableView.rowHeight = 100
         
-        // 텍스트 필드의 editingChanged 이벤트에 대한 핸들러 설정
-        searchTextField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
+        view.addSubview(tableView)
+        
+        tableView.snp.makeConstraints { make in
+            make.top.equalTo(searchContainerView.snp.bottom) // 컨테이너 뷰의 바로 아래 시작
+            make.leading.bottom.trailing.equalToSuperview()
+        }
+        
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
     }
     
     // MARK: - Functions
-    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        // 디바운싱 로직을 여기에 적용
+        searchDebounceTimer?.invalidate()
+        searchDebounceTimer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false, block: { [weak self] _ in
+            self?.performSearch(with: searchText)
+        })
+    }
     // 친구 검색
-    private func performSearch() {
-        guard let searchText = searchTextField.text?.lowercased(), !searchText.isEmpty else { return }
-        
+    
+    private func performSearch(with searchText: String) {
+        guard !searchText.isEmpty else {
+            searchResults = []
+            tableView.reloadData()
+            return
+        }
+
         friendsViewModel.searchUsersByUsername(username: searchText) { [weak self] users, error in
             DispatchQueue.main.async {
                 if let error = error {
-                    // 에러 처리 로직 (예: 사용자에게 에러 메시지 표시)
                     print("Error searching users: \(error.localizedDescription)")
                 } else {
-                    if let users = users {
-                        if users.isEmpty {
-                            // 검색 결과가 없을 때, 검색 목록에 메시지 표시
-                            self?.showNoResultsMessage()
-                        } else {
-                            // 검색 결과가 있을 때는 표시
-                            self?.searchResults = users
-                            self?.tableView.reloadData()
-                        }
-                        print("Search results: \(users)")
-                    }
+                    self?.searchResults = users ?? []
+                    self?.tableView.reloadData()
                 }
             }
         }
     }
     
-    
     // MARK: - TextField Delegate
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder() // 키보드 숨김
-        performSearch()
+        searchBar.endEditing(true)
         return true
     }
     
-    // 검색 결과 없음 메시지 표시
-    private func showNoResultsMessage() {
-        // 현재 검색 결과 목록을 비워줌
-
-        
-        // 검색 결과 없음을 나타내는 레이블 생성 및 설정
-        let noResultsLabel = UILabel()
-        noResultsLabel.text = "검색 결과 없음"
-        noResultsLabel.textColor = .gray
-        noResultsLabel.textAlignment = .center
-        noResultsLabel.font = UIFont.systemFont(ofSize: 20)
-        
-        // 테이블 뷰의 footer로 설정하여 검색 결과가 없음을 표시
-        tableView.tableFooterView = noResultsLabel
-    }
-    
-    // MARK: - Actions
-    
-    // 0,5초 디바운싱.
-    @objc private func textFieldDidChange(_ textField: UITextField) {
-        // 이전에 설정된 타이머가 있으면 취소합니다.
-        searchDebounceTimer?.invalidate()
-        
-        // 사용자가 타이핑을 멈춘 후 0.5초가 지나면 검색을 수행합니다.
-        searchDebounceTimer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false, block: { [weak self] _ in
-            self?.performSearch()
-        })
-    }
     // MARK: - TableView Delegate & DataSource
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return searchResults.count
     }
