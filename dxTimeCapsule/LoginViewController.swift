@@ -119,7 +119,7 @@ class LoginViewController: UIViewController {
         logoImageView.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(80)
             make.centerX.equalToSuperview()
-            make.width.height.equalTo(220)
+            make.width.height.equalTo(200)
         }
         
         appNameLabel.snp.makeConstraints { make in

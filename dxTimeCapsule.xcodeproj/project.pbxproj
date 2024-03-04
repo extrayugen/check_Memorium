@@ -38,7 +38,7 @@
 		1FB387372B8862AF00054816 /* MainFeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB387362B8862AF00054816 /* MainFeedViewController.swift */; };
 		1FB387392B8863DE00054816 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB387382B8863DE00054816 /* HomeViewController.swift */; };
 		1FB3873E2B88791A00054816 /* TimeCapsuleCreationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB3873D2B88791A00054816 /* TimeCapsuleCreationViewModel.swift */; };
-		1FB387402B8881DB00054816 /* TimeBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB3873F2B8881DB00054816 /* TimeBox.swift */; };
+		1FB387402B8881DB00054816 /* TimeCapsule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB3873F2B8881DB00054816 /* TimeCapsule.swift */; };
 		1FC44EDD2B90C0B3002A75AF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1F0854162B8F091500711660 /* GoogleService-Info.plist */; };
 		1FC44EF52B90C491002A75AF /* ProximaNova-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1FC44EEE2B90C490002A75AF /* ProximaNova-Semibold.ttf */; };
 		1FC44EF62B90C491002A75AF /* ProximaNova-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1FC44EEF2B90C490002A75AF /* ProximaNova-Light.ttf */; };
@@ -98,7 +98,7 @@
 		1FB387362B8862AF00054816 /* MainFeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainFeedViewController.swift; sourceTree = "<group>"; };
 		1FB387382B8863DE00054816 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		1FB3873D2B88791A00054816 /* TimeCapsuleCreationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeCapsuleCreationViewModel.swift; sourceTree = "<group>"; };
-		1FB3873F2B8881DB00054816 /* TimeBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeBox.swift; sourceTree = "<group>"; };
+		1FB3873F2B8881DB00054816 /* TimeCapsule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeCapsule.swift; sourceTree = "<group>"; };
 		1FC44EEE2B90C490002A75AF /* ProximaNova-Semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ProximaNova-Semibold.ttf"; sourceTree = "<group>"; };
 		1FC44EEF2B90C490002A75AF /* ProximaNova-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ProximaNova-Light.ttf"; sourceTree = "<group>"; };
 		1FC44EF02B90C490002A75AF /* ProximaNova-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ProximaNova-Black.ttf"; sourceTree = "<group>"; };
@@ -229,7 +229,7 @@
 			isa = PBXGroup;
 			children = (
 				1FAB4DF72B8C49590054618A /* User.swift */,
-				1FB3873F2B8881DB00054816 /* TimeBox.swift */,
+				1FB3873F2B8881DB00054816 /* TimeCapsule.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -599,7 +599,7 @@
 				1FAB4DF62B8C48AF0054618A /* FriendsViewModel.swift in Sources */,
 				1FAACDE12B8FAA520005B993 /* UIImage+RoundImage.swift in Sources */,
 				1F5787132B86DBF900C40B08 /* LoginViewController.swift in Sources */,
-				1FB387402B8881DB00054816 /* TimeBox.swift in Sources */,
+				1FB387402B8881DB00054816 /* TimeCapsule.swift in Sources */,
 				1FB387392B8863DE00054816 /* HomeViewController.swift in Sources */,
 				1F0B913D2B908A5F0022EDD9 /* FindTabViewController.swift in Sources */,
 				1F0B91082B9026020022EDD9 /* UIImageView+RoundImage.swift in Sources */,
