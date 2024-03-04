@@ -12,7 +12,7 @@ import SnapKit
 
 class CapsuleMapViewController: UIViewController {
     
-    var timeCapsule = [TimeCapsule]()
+    var timeCapsule = [TimeBox]()
 //    let dummyTimeCapsules = [
 //        TimeCapsule(timeCapsuleId: "1", uid: "user123", mood: "Happy", photoUrl: "SkyImage", location: "서울특별시 양천구 신월동", userLocation: "Namsan Tower", comment: "Great day!", tags: ["tag1", "tag2"], openDate: Date(), creationDate: Date()),
 //        TimeCapsule(timeCapsuleId: "2", uid: "user124", mood: "Happy", photoUrl: "snow", location: "서울특별시 양천구 신월동", userLocation: "Namsan Tower", comment: "Great day!", tags: ["tag1", "tag2"], openDate: Date(), creationDate: Date()),

@@ -41,77 +41,85 @@ import FirebaseAuth
         }
     }
     
-    // 사용자의 친구 상태를 확인하는 메서드 추가
-    func checkFriendshipStatus(forUser userId: String, completion: @escaping (String) -> Void) {
-         // Firestore에서 현재 사용자의 친구 목록, 보낸 친구 요청 목록, 받은 친구 요청 목록을 가져오는 로직 구현
-         
-         // 예시 로직:
-         let currentUser = Auth.auth().currentUser! // 현재 사용자 ID를 적절히 설정해야 합니다.
-         
-         // 현재 사용자의 친구 목록 가져오기
-         db.collection("users").document("username").getDocument { (document, error) in
-             if let document = document, document.exists {
-                 let data = document.data()
-                 let friends = data?["friends"] as? [String] ?? []
-                 let sentRequests = data?["friendRequestsSent"] as? [String] ?? []
-                 let receivedRequests = data?["friendRequestsReceived"] as? [String] ?? []
-                 
-                 if friends.contains(userId) {
-                     completion("이미 친구입니다")
-                 } else if sentRequests.contains(userId) {
-                     completion("요청 보냄")
-                 } else if receivedRequests.contains(userId) {
-                     completion("요청 받음")
-                 } else {
-                     completion("친구 추가")
-                 }
-             } else {
-                 print("Document does not exist")
-                 completion("친구 추가")
-             }
-         }
-     }
+     // 사용자의 친구 상태를 확인하는 메서드
+       func checkFriendshipStatus(forUser userId: String, completion: @escaping (String) -> Void) {
+           guard let currentUser = Auth.auth().currentUser else {
+               completion("사용자 인증 실패")
+               return
+           }
+           let currentUserID = currentUser.uid
+           
+           // 현재 사용자의 친구 목록, 보낸 친구 요청 목록, 받은 친구 요청 목록을 가져옴
+           db.collection("users").document(currentUserID).getDocument { (document, error) in
+               if let document = document, document.exists {
+                   let data = document.data()
+                   let friends = data?["friends"] as? [String] ?? []
+                   let sentRequests = data?["friendRequestsSent"] as? [String] ?? []
+                   let receivedRequests = data?["friendRequestsReceived"] as? [String] ?? []
+                   
+                   if friends.contains(userId) {
+                       completion("이미 친구입니다")
+                   } else if sentRequests.contains(userId) {
+                       completion("요청 보냄")
+                   } else if receivedRequests.contains(userId) {
+                       completion("요청 받음")
+                   } else {
+                       completion("친구 추가")
+                   }
+               } else {
+                   print("Document does not exist")
+                   completion("친구 추가")
+               }
+           }
+       }
     
      // 사용자 ID를 기반으로 친구 요청 보내기
      func sendFriendRequest(toUser targetUserId: String, fromUser currentUserId: String, completion: @escaping (Bool, Error?) -> Void) {
-         // 요청을 보내는 사용자의 friendRequestsSent 배열 업데이트
-         let fromUserRef = db.collection("users").document(currentUserId)
-         fromUserRef.updateData([
-             "friendRequestsSent": FieldValue.arrayUnion([targetUserId])
-         ]) { error in
-             if let error = error {
-                 print("friendRequestsSent 배열 업데이트 중 에러 발생: \(error.localizedDescription)")
-                 completion(false, error)
-                 return
-             }
-             print("사용자 \(currentUserId)로부터 사용자 \(targetUserId)에게 친구 요청이 성공적으로 보내졌습니다.")
-             
-             // 요청을 받는 사용자의 friendRequestsReceived 배열 업데이트
-             let toUserRef = self.db.collection("users").document(targetUserId)
-             toUserRef.updateData([
-                 "friendRequestsReceived": FieldValue.arrayUnion([currentUserId])
-             ]) { error in
-                 if let error = error {
-                     print("friendRequestsReceived 배열 업데이트 중 에러 발생: \(error.localizedDescription)")
-                     completion(false, error)
-                     return
-                 }
-                 print("사용자 \(targetUserId)가 사용자 \(currentUserId)로부터 친구 요청을 성공적으로 받았습니다.")
-                 completion(true, nil)
+         // 먼저 친구 상태를 확인
+         checkFriendshipStatus(forUser: targetUserId) { status in
+             if status == "친구 추가" {
+                 // 요청 보내기 로직 실행
+                 self.updateFriendRequestArrays(targetUserId: targetUserId, currentUserId: currentUserId, completion: completion)
+             } else {
+                 // 이미 친구이거나 요청을 보냈거나 받은 경우
+                 completion(false, NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey: "이미 처리된 요청입니다."]))
              }
          }
      }
-
-
-
-
      
+     
+     // 친구 요청 배열 업데이트 로직
+        private func updateFriendRequestArrays(targetUserId: String, currentUserId: String, completion: @escaping (Bool, Error?) -> Void) {
+            let fromUserRef = db.collection("users").document(currentUserId)
+            fromUserRef.updateData([
+                "friendRequestsSent": FieldValue.arrayUnion([targetUserId])
+            ]) { error in
+                if let error = error {
+                    completion(false, error)
+                    return
+                }
+                
+                // 요청 받는 사용자의 friendRequestsReceived 배열 업데이트
+                let toUserRef = self.db.collection("users").document(targetUserId)
+                toUserRef.updateData([
+                    "friendRequestsReceived": FieldValue.arrayUnion([currentUserId])
+                ]) { error in
+                    if let error = error {
+                        completion(false, error)
+                    } else {
+                        completion(true, nil)
+                    }
+                }
+            }
+        }
+    }
+
      // 받은 친구 요청 수락하기
     func acceptFriendRequest(fromUser targetUserId: String, forUser currentUserId: String, completion: @escaping (Bool, Error?) -> Void) {
          // Firestore에 친구 요청 수락 데이터 업데이트 로직
      }
      
 
-}
+
 
 

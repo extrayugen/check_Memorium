@@ -3,6 +3,8 @@ import SnapKit
 import SDWebImage
 
 class SearchModalTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, UIGestureRecognizerDelegate {
+    // 황금 비율 상수
+    let goldenRatio: CGFloat = 1.618
     
     // MARK: - Properties
     private let userProfileViewModel = UserProfileViewModel()
@@ -144,7 +146,7 @@ class SearchModalTableViewController: UIViewController, UITableViewDelegate, UIT
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100
+        return 80
     }
         
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
