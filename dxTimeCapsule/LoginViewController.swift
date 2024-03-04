@@ -1,6 +1,9 @@
 import UIKit
 import SnapKit
 import FirebaseAuth
+import FirebaseCore
+import GoogleSignIn
+
 
 class LoginViewController: UIViewController {
     
@@ -13,6 +16,7 @@ class LoginViewController: UIViewController {
     private let emailTextField = UITextField()
     private let passwordTextField = UITextField()
     private let loginButton = UIButton(type: .system)
+    private let socialLogin = UIButton(type: .system)
     private let signUpLabel = UILabel()
     private let signUpButton = UIButton(type: .system)
     private let dividerView = UIView()
@@ -32,27 +36,7 @@ class LoginViewController: UIViewController {
         emailTextField.text =  "bebe@google.com"
         passwordTextField.text = "123456"
         
-        
-        //        // 폰트 체크 하기
-        //        UIFont.familyNames.sorted().forEach { familyName in
-        //            print("*** \(familyName) ***")
-        //            UIFont.fontNames(forFamilyName: familyName).forEach { fontName in
-        //                print("\(fontName)")
-        //            }
-        //            print("---------------------")
-        //        }
     }
-    
-    //    override func viewWillAppear(_ animated: Bool) {
-    //        super.viewWillAppear(animated)
-    //        // 사용자가 로그인되어 있지 않다면 로그인 화면을 유지
-    //        if Auth.auth().currentUser == nil {
-    //            // 로그인 화면 유지
-    //        } else {
-    //            // 이미 로그인되어 있다면 메인 페이지로 이동
-    //            navigateToMainFeed()
-    //        }
-    //    }
     
     private func setupSignUpButtonAction() {
         // 회원가입 버튼의 액션 설정
@@ -64,23 +48,9 @@ class LoginViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
-        // 기존 색상
-        //                loginButton.applyGradient(colors: [#colorLiteral(red: 0.7882352941, green: 0.2941176471, blue: 0.2941176471, alpha: 1), #colorLiteral(red: 0.2941176471, green: 0.07450980392, blue: 0.3098039216, alpha: 1)])
-        
-        // BlurryBeach
-        loginButton.applyGradient(colors: [#colorLiteral(red: 0.831372549, green: 0.2, blue: 0.4117647059, alpha: 1), #colorLiteral(red: 0.7960784314, green: 0.6784313725, blue: 0.4274509804, alpha: 1)])
-        
-        //         AzurLane
-        //        loginButton.applyGradient(colors: [#colorLiteral(red: 0.4980392157, green: 0.4980392157, blue: 0.8352941176, alpha: 1), #colorLiteral(red: 0.5254901961, green: 0.6588235294, blue: 0.9058823529, alpha: 1), #colorLiteral(red: 0.568627451, green: 0.9176470588, blue: 0.8941176471, alpha: 1)])
-        
-        //         ViceCity
-        //        loginButton.applyGradient(colors: [#colorLiteral(red: 0.2039215686, green: 0.5803921569, blue: 0.9019607843, alpha: 1), #colorLiteral(red: 0.9254901961, green: 0.431372549, blue: 0.6784313725, alpha: 1)])
-        
-        // Mango
-        //                loginButton.applyGradient(colors: [#colorLiteral(red: 1, green: 0.8862745098, blue: 0.3490196078, alpha: 1), #colorLiteral(red: 1, green: 0.6549019608, blue: 0.3176470588, alpha: 1)])
-        // Custom-1
-        //                loginButton.applyGradient(colors: [#colorLiteral(red: 1, green: 0.8862745098, blue: 0.3490196078, alpha: 1), #colorLiteral(red: 0.7894003391, green: 0.2963732481, blue: 0.2954288721, alpha: 1)])
-        
+        loginButton.setBlurryBeach()
+        socialLogin.setBlurryBeach()
+
     }
     
     deinit {
@@ -98,6 +68,8 @@ class LoginViewController: UIViewController {
         view.addSubview(loginButton)
         view.addSubview(dividerView)
         view.addSubview(labelsContainerView)
+        view.addSubview(socialLogin)
+
         
         // labelsContainerView 내에 라벨들을 추가
         labelsContainerView.addSubview(noAccountLabel)
@@ -106,9 +78,10 @@ class LoginViewController: UIViewController {
         // 로그인 이미지 설정
         logoImageView.image = UIImage(named: "LoginLogo")
         
+        
         // 앱 이름 설정
         appNameLabel.text = "Memorium"
-        appNameLabel.font = UIFont.pretendardSemiBold(ofSize: 36)
+        appNameLabel.font = UIFont.proximaNovaBold(ofSize: 40)
         appNameLabel.textAlignment = .center
         
         // 이메일 텍스트필드 설정
@@ -119,8 +92,10 @@ class LoginViewController: UIViewController {
         
         // 로그인 버튼 설정 및 액션 연결ㅐ
         configureButton(loginButton, title: "Login")
+        configureButton(socialLogin, title: "Social Login")
         loginButton.addTarget(self, action: #selector(didTapLoginButton), for: .touchUpInside)
-        
+        socialLogin.addTarget(self, action: #selector(handleGoogleSignIn), for: .touchUpInside)
+
         // "계정이 없으신가요?" 라벨 설정
         noAccountLabel.text = "Do not have an account?"
         noAccountLabel.font = .systemFont(ofSize: 14)
@@ -144,7 +119,7 @@ class LoginViewController: UIViewController {
         logoImageView.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(80)
             make.centerX.equalToSuperview()
-            make.width.height.equalTo(220)
+            make.width.height.equalTo(200)
         }
         
         appNameLabel.snp.makeConstraints { make in
@@ -170,6 +145,14 @@ class LoginViewController: UIViewController {
         loginButton.snp.makeConstraints { make in
             make.top.equalTo(passwordTextField.snp.bottom).offset(20)
             make.left.right.equalTo(passwordTextField)
+            make.height.equalTo(44)
+        }
+        
+        // Google 로그인 버튼 레이아웃 설정
+        socialLogin.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(loginButton.snp.bottom).offset(20)
+            make.width.equalTo(loginButton.snp.width)
             make.height.equalTo(44)
         }
         
@@ -206,6 +189,7 @@ class LoginViewController: UIViewController {
         //        signUpActionLabel.backgroundColor = .blue // signUpActionLabel의 배경색 설정
         
     }
+    
     
     
     // MARK: - Actions
@@ -250,6 +234,12 @@ class LoginViewController: UIViewController {
         print("Sign Up Button Tapped")
         
     }
+    
+    @objc private func handleGoogleSignIn() {
+        
+    }
+
+
 }
 
 
