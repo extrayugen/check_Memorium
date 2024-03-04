@@ -68,6 +68,8 @@ class SearchUserTableViewCell: UITableViewCell {
             make.centerY.equalToSuperview()
             make.trailing.equalToSuperview().offset(-35)
             make.height.equalTo(30)
+            make.width.equalTo(100)
+
         }
         
         statusLabel.snp.makeConstraints { make in

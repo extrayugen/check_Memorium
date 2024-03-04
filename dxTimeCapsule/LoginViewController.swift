@@ -1,6 +1,9 @@
 import UIKit
 import SnapKit
 import FirebaseAuth
+import FirebaseCore
+import GoogleSignIn
+
 
 class LoginViewController: UIViewController {
     
@@ -13,6 +16,7 @@ class LoginViewController: UIViewController {
     private let emailTextField = UITextField()
     private let passwordTextField = UITextField()
     private let loginButton = UIButton(type: .system)
+    private let socialLogin = UIButton(type: .system)
     private let signUpLabel = UILabel()
     private let signUpButton = UIButton(type: .system)
     private let dividerView = UIView()
@@ -32,9 +36,7 @@ class LoginViewController: UIViewController {
         emailTextField.text =  "bebe@google.com"
         passwordTextField.text = "123456"
         
-  
     }
-
     
     private func setupSignUpButtonAction() {
         // 회원가입 버튼의 액션 설정
@@ -47,6 +49,7 @@ class LoginViewController: UIViewController {
         super.viewDidLayoutSubviews()
         
         loginButton.setBlurryBeach()
+        socialLogin.setBlurryBeach()
 
     }
     
@@ -65,6 +68,8 @@ class LoginViewController: UIViewController {
         view.addSubview(loginButton)
         view.addSubview(dividerView)
         view.addSubview(labelsContainerView)
+        view.addSubview(socialLogin)
+
         
         // labelsContainerView 내에 라벨들을 추가
         labelsContainerView.addSubview(noAccountLabel)
@@ -77,7 +82,6 @@ class LoginViewController: UIViewController {
         // 앱 이름 설정
         appNameLabel.text = "Memorium"
         appNameLabel.font = UIFont.proximaNovaBold(ofSize: 40)
-        
         appNameLabel.textAlignment = .center
         
         // 이메일 텍스트필드 설정
@@ -88,8 +92,10 @@ class LoginViewController: UIViewController {
         
         // 로그인 버튼 설정 및 액션 연결ㅐ
         configureButton(loginButton, title: "Login")
+        configureButton(socialLogin, title: "Social Login")
         loginButton.addTarget(self, action: #selector(didTapLoginButton), for: .touchUpInside)
-        
+        socialLogin.addTarget(self, action: #selector(handleGoogleSignIn), for: .touchUpInside)
+
         // "계정이 없으신가요?" 라벨 설정
         noAccountLabel.text = "Do not have an account?"
         noAccountLabel.font = .systemFont(ofSize: 14)
@@ -142,6 +148,14 @@ class LoginViewController: UIViewController {
             make.height.equalTo(44)
         }
         
+        // Google 로그인 버튼 레이아웃 설정
+        socialLogin.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(loginButton.snp.bottom).offset(20)
+            make.width.equalTo(loginButton.snp.width)
+            make.height.equalTo(44)
+        }
+        
         // Ensure dividerView is added to the view before setting constraints
         dividerView.snp.makeConstraints { make in
             make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(-70)
@@ -175,6 +189,7 @@ class LoginViewController: UIViewController {
         //        signUpActionLabel.backgroundColor = .blue // signUpActionLabel의 배경색 설정
         
     }
+    
     
     
     // MARK: - Actions
@@ -219,6 +234,12 @@ class LoginViewController: UIViewController {
         print("Sign Up Button Tapped")
         
     }
+    
+    @objc private func handleGoogleSignIn() {
+        
+    }
+
+
 }
 
 

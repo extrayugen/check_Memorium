@@ -1,6 +1,8 @@
 import UIKit
-import FirebaseCore
 import NMapsMap
+import FirebaseCore
+import FirebaseAuth
+import GoogleSignIn
 
 @UIApplicationMain
  class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -9,6 +11,7 @@ import NMapsMap
 
      func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
          FirebaseApp.configure()
+         
          let NMFClientId = Bundle.main.infoDictionary?["NMFClientId"] as! String
          NMFAuthManager.shared().clientId = NMFClientId
          
@@ -25,7 +28,6 @@ import NMapsMap
 
          return true
      }
-
      
      func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
          guard let windowScene = (scene as? UIWindowScene) else { return }
