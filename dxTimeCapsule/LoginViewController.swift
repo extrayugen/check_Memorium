@@ -105,7 +105,7 @@ class LoginViewController: UIViewController {
         noAccountLabel.textColor = .black
         
         // "회원가입" 라벨 &설정
-        signUpActionLabel.text = "Sign Up!"
+        signUpActionLabel.text = "Sign up !"
         signUpActionLabel.font = UIFont.pretendardSemiBold(ofSize: 14)
         signUpActionLabel.textColor = UIColor(hex: "#D53369")
         signUpActionLabel.isUserInteractionEnabled = true

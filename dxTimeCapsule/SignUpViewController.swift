@@ -81,11 +81,11 @@ class SignUpViewController: UIViewController  {
         alreadyHaveAccountLabel.textAlignment = .center
         alreadyHaveAccountLabel.isUserInteractionEnabled = true
         
-        signInActionLabel.text = "Sign In"
-        alreadyHaveAccountLabel.font = UIFont.pretendardSemiBold(ofSize: 14)
+        signInActionLabel.text = "Sign in !"
+        signInActionLabel.font = UIFont.pretendardSemiBold(ofSize: 14)
         signInActionLabel.textAlignment = .center
         signInActionLabel.isUserInteractionEnabled = true
-        signInActionLabel.textColor = UIColor(hex: "#D28488")
+        signInActionLabel.textColor = UIColor(hex: "#D53369")
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(alreadyHaveAccountTapped))
         signInActionLabel.addGestureRecognizer(tapGesture)
