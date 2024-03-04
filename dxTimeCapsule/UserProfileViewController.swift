@@ -13,7 +13,7 @@ import FirebaseFirestore
 import FirebaseStorage
 
 
-class UserProfileViewController: UIViewController {
+class UserProfileViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     // MARK: - Properties
     private let userProfileViewModel = UserProfileViewModel()
@@ -23,6 +23,7 @@ class UserProfileViewController: UIViewController {
     private let profileImageView = UIImageView()
     private let nicknameLabel = UILabel()
     private let emailLabel = UILabel()
+    private let selectImageLabel = UILabel()
     private let logoutButton = UIButton()
     private let areYouSerious = UILabel()
     private let deleteAccountLabel = UILabel()
@@ -54,6 +55,7 @@ class UserProfileViewController: UIViewController {
     private func setupViews() {
         view.backgroundColor = .white
         view.addSubview(profileImageView)
+        view.addSubview(selectImageLabel)
         view.addSubview(nicknameLabel)
         view.addSubview(logoutButton)
         view.addSubview(dividerView)
@@ -67,6 +69,18 @@ class UserProfileViewController: UIViewController {
         // Profile Image View Setup
         profileImageView.contentMode = .scaleAspectFill
         profileImageView.clipsToBounds = true
+        profileImageView.layer.cornerRadius = 50
+        
+        // Select Image Label
+        selectImageLabel.text = "사진 수정"
+        selectImageLabel.font = .systemFont(ofSize: 14, weight: .regular)
+        selectImageLabel.textColor = UIColor(hex: "#D28488")
+        selectImageLabel.textAlignment = .center
+        
+        let labelTapGesture = UITapGestureRecognizer(target: self, action: #selector(changePhotoTapped))
+        selectImageLabel.isUserInteractionEnabled = true
+        selectImageLabel.addGestureRecognizer(labelTapGesture)
+        
         let imageSize: CGFloat = 220 // 원하는 이미지 크기로 설정
         profileImageView.layer.cornerRadius = imageSize / 2 // 이미지 뷰를 둥글게 처리하기 위해 반지름을 이미지 크기의 절반으로 설정
     
@@ -77,7 +91,7 @@ class UserProfileViewController: UIViewController {
         // Email Label Setup
         logoutButton.titleLabel?.font = .pretendardSemiBold(ofSize: 24)
         emailLabel.textAlignment = .center
-               
+        
         // Logout Button Setup
         logoutButton.setTitle("Logout", for: .normal)
         logoutButton.titleLabel?.font = .pretendardSemiBold(ofSize: 14)
@@ -115,10 +129,16 @@ class UserProfileViewController: UIViewController {
             profileImageView.setRoundedImage()
         }
         
+        // Select Image Label Constraints
+        selectImageLabel.snp.makeConstraints { make in
+            make.top.equalTo(profileImageView.snp.bottom).offset(5)
+            make.left.right.equalToSuperview().inset(20)
+        }
+        
         // Nickname Label Constraints
         nicknameLabel.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.top.equalTo(profileImageView.snp.bottom).offset(20)
+            make.top.equalTo(selectImageLabel.snp.bottom).offset(20)
             make.left.right.equalToSuperview().inset(20)
         }
         
@@ -158,7 +178,7 @@ class UserProfileViewController: UIViewController {
             make.left.equalTo(labelsContainerView.snp.left)
             make.centerY.equalTo(labelsContainerView.snp.centerY)
         }
-
+        
         deleteAccountLabel.snp.makeConstraints { make in
             make.right.equalTo(labelsContainerView.snp.right)
             make.centerY.equalTo(labelsContainerView.snp.centerY)
@@ -189,6 +209,14 @@ class UserProfileViewController: UIViewController {
     
     // MARK: - Binding
     private func bindViewModel() {
+        // 프로필 이미지 URL이 nil이거나 비어있는 경우 기본 이미지 사용
+        if let profileImageUrl = userProfileViewModel.profileImageUrl, !profileImageUrl.isEmpty {
+            profileImageView.sd_setImage(with: URL(string: profileImageUrl), placeholderImage: UIImage(named: "defaultProfileImage"))
+        } else {
+            // 기본 이미지를 사용하거나 이미지가 없는 경우를 처리할 수 있습니다.
+            profileImageView.image = UIImage(named: "LoginLogo")
+        }
+        
         // 닉네임 설정
         nicknameLabel.text = userProfileViewModel.nickname
         
@@ -209,6 +237,13 @@ class UserProfileViewController: UIViewController {
     }
 
     // MARK: - Actions
+    @objc private func changePhotoTapped() {
+        let imagePickerController = UIImagePickerController()
+        imagePickerController.delegate = self
+        imagePickerController.allowsEditing = true
+        imagePickerController.sourceType = .photoLibrary
+        present(imagePickerController, animated: true, completion: nil)
+    }
     
     @objc private func logoutTapped() {
         do {
@@ -229,7 +264,6 @@ class UserProfileViewController: UIViewController {
             print("로그아웃 실패: \(signOutError.localizedDescription)")
         }
     }
-    
     
     @objc private func deleteProfileTapped() {
         // 사용자 ID를 가져옵니다.
@@ -282,6 +316,65 @@ class UserProfileViewController: UIViewController {
             }
         }
     }
+    
+    
+    // MARK: - Image Picker Delegate
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        guard let image = info[.editedImage] as? UIImage ?? info[.originalImage] as? UIImage else {
+            dismiss(animated: true)
+            return
+        }
+        // Update profile image view
+        profileImageView.image = image
+        dismiss(animated: true)
+        
+        // Upload image to server (Firebase Storage) and update Firestore if needed
+        uploadImageToServer(image)
+    }
+    
+    @objc func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true)
+    }
+    
+    // MARK: - Image Upload
+    private func uploadImageToServer(_ image: UIImage) {
+        guard let uid = Auth.auth().currentUser?.uid else {
+            // User not authenticated
+            return
+        }
+        
+        guard let imageData = image.jpegData(compressionQuality: 0.75) else {
+            // Error converting image to data
+            return
+        }
+        
+        let storageRef = Storage.storage().reference().child("userProfileImages/\(uid)/profileImage.jpg")
+        storageRef.putData(imageData, metadata: nil) { metadata, error in
+            if let error = error {
+                print("Error uploading image: \(error.localizedDescription)")
+                return
+            }
+            
+            // Image uploaded successfully
+            storageRef.downloadURL { url, error in
+                guard let downloadURL = url else {
+                    print("Error retrieving download URL: \(error?.localizedDescription ?? "Unknown error")")
+                    return
+                }
+                
+                // Update user profile image URL in Firestore
+                let userRef = Firestore.firestore().collection("users").document(uid)
+                userRef.setData(["profileImageUrl": downloadURL.absoluteString], merge: true) { error in
+                    if let error = error {
+                        print("Error updating profile image URL in Firestore: \(error.localizedDescription)")
+                        return
+                    }
+                    print("Profile image URL updated successfully")
+                }
+            }
+        }
+    }
+    
 }
 
 
