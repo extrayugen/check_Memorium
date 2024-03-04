@@ -15,7 +15,6 @@
 		1F0B91082B9026020022EDD9 /* UIImageView+RoundImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0B91072B9026020022EDD9 /* UIImageView+RoundImage.swift */; };
 		1F0B91392B9089BB0022EDD9 /* MainTabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0B91382B9089BB0022EDD9 /* MainTabBarView.swift */; };
 		1F0B913D2B908A5F0022EDD9 /* FindTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0B913C2B908A5F0022EDD9 /* FindTabViewController.swift */; };
-		1F0B91432B908A7A0022EDD9 /* ProfileTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0B91422B908A7A0022EDD9 /* ProfileTabViewController.swift */; };
 		1F0D3B2C2B89AA2B00A31E82 /* MainCreateCapsuleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0D3B2B2B89AA2B00A31E82 /* MainCreateCapsuleViewController.swift */; };
 		1F0D3B322B89D85500A31E82 /* CapsuleUploadDeatilViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0D3B312B89D85500A31E82 /* CapsuleUploadDeatilViewController.swift */; };
 		1F367EA62B8F803A00563908 /* UIColor+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F367EA52B8F803A00563908 /* UIColor+Hex.swift */; };
@@ -73,7 +72,6 @@
 		1F0B91072B9026020022EDD9 /* UIImageView+RoundImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+RoundImage.swift"; sourceTree = "<group>"; };
 		1F0B91382B9089BB0022EDD9 /* MainTabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarView.swift; sourceTree = "<group>"; };
 		1F0B913C2B908A5F0022EDD9 /* FindTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindTabViewController.swift; sourceTree = "<group>"; };
-		1F0B91422B908A7A0022EDD9 /* ProfileTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTabViewController.swift; sourceTree = "<group>"; };
 		1F0B91442B90903C0022EDD9 /* APIKey.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = APIKey.xcconfig; sourceTree = "<group>"; };
 		1F0D3B2B2B89AA2B00A31E82 /* MainCreateCapsuleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCreateCapsuleViewController.swift; sourceTree = "<group>"; };
 		1F0D3B312B89D85500A31E82 /* CapsuleUploadDeatilViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapsuleUploadDeatilViewController.swift; sourceTree = "<group>"; };
@@ -155,7 +153,6 @@
 				1F9DA7AD2B8C921900A74D84 /* SearchUser */,
 				1FC44F0A2B932E9F002A75AF /* CreateCapsule */,
 				27865AD32B8DFCA900DB8DB6 /* NotificationViewController.swift */,
-				1F0B91422B908A7A0022EDD9 /* ProfileTabViewController.swift */,
 			);
 			name = TabBar;
 			sourceTree = "<group>";
@@ -616,7 +613,6 @@
 				27865AD42B8DFCA900DB8DB6 /* NotificationViewController.swift in Sources */,
 				1F9DA7AF2B8C922800A74D84 /* SearchUserViewController.swift in Sources */,
 				1F0B91062B901D170022EDD9 /* Etc.swift in Sources */,
-				1F0B91432B908A7A0022EDD9 /* ProfileTabViewController.swift in Sources */,
 				D25B20EB2B89CD02006CEED8 /* SplashViewController.swift in Sources */,
 				1F9DA7B52B8CA75900A74D84 /* SearchModalTableViewController.swift in Sources */,
 				1F0D3B2C2B89AA2B00A31E82 /* MainCreateCapsuleViewController.swift in Sources */,

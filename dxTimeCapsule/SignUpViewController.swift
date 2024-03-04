@@ -4,7 +4,7 @@ import FirebaseAuth
 import FirebaseFirestore
 import FirebaseStorage
 
-class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class SignUpViewController: UIViewController  {
     // MARK: - UI Components
     var profileImageUrl: String?
     
@@ -17,9 +17,9 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
     private let signUpButton = UIButton(type: .system)
     
     private let labelsContainerView = UIView()
-
+    
     private let dividerView = UIView()
-
+    
     private let alreadyHaveAccountLabel = UILabel()
     private let signInActionLabel = UILabel()
     
@@ -49,6 +49,7 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
         profileImageView.layer.cornerRadius = profileImageView.frame.height / 2
         profileImageView.clipsToBounds = true
         profileImageView.isUserInteractionEnabled = true // if you want the image to be tappable
+        profileImageView.setRoundedImage()
         view.addSubview(profileImageView)
         
         // Configure the selectImageButton
@@ -89,7 +90,6 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(alreadyHaveAccountTapped))
         signInActionLabel.addGestureRecognizer(tapGesture)
     }
-    
     
     private func setupLayouts() {
         profileImageView.snp.makeConstraints { make in
@@ -143,13 +143,13 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
             // 높이를 명시적으로 설정
             make.height.equalTo(20)
         }
-
+        
         alreadyHaveAccountLabel.snp.makeConstraints { make in
             make.left.equalTo(labelsContainerView.snp.left)
             make.centerY.equalTo(labelsContainerView.snp.centerY)
             make.height.equalTo(labelsContainerView.snp.height) // labelsContainerView와 동일한 높이를 가지도록 설정
         }
-
+        
         signInActionLabel.snp.makeConstraints { make in
             make.right.equalTo(labelsContainerView.snp.right)
             make.centerY.equalTo(labelsContainerView.snp.centerY)
@@ -171,14 +171,14 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
     
     private func configureButton(_ button: UIButton, title: String) {
         button.setTitle(title, for: .normal)
-         button.setTitleColor(.white, for: .normal)
-         button.titleLabel?.font = UIFont.systemFont(ofSize: 14) // 텍스트 크기 및 폰트 설정
-         button.layer.cornerRadius = 10
+        button.setTitleColor(.white, for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 14) // 텍스트 크기 및 폰트 설정
+        button.layer.cornerRadius = 10
         
-         button.snp.makeConstraints { make in
-             make.height.equalTo(44)
-         }
-         view.addSubview(button)
+        button.snp.makeConstraints { make in
+            make.height.equalTo(44)
+        }
+        view.addSubview(button)
     }
     
     private func presentAlert(title: String, message: String, completion: (() -> Void)? = nil) {
@@ -199,11 +199,46 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
     }
     
     @objc private func selectImage() {
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        
+        let cameraAction = UIAlertAction(title: "Take a Photo", style: .default) { _ in
+            self.openCamera()
+        }
+        
+        let libraryAction = UIAlertAction(title: "Choose from Library", style: .default) { _ in
+            self.openLibrary()
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+        
+        alert.addAction(cameraAction)
+        alert.addAction(libraryAction)
+        alert.addAction(cancelAction)
+        
+        present(alert, animated: true)
+    }
+    
+    private func openCamera() {
+        guard UIImagePickerController.isSourceTypeAvailable(.camera) else {
+            print("Camera not available")
+            return
+        }
+        
+        let imagePickerController = UIImagePickerController()
+        imagePickerController.delegate = self
+        imagePickerController.sourceType = .camera
+        imagePickerController.allowsEditing = true
+        present(imagePickerController, animated: true)
+    }
+    
+    private func openLibrary() {
         let imagePickerController = UIImagePickerController()
         imagePickerController.delegate = self
         imagePickerController.sourceType = .photoLibrary
-        present(imagePickerController, animated: true, completion: nil)
+        imagePickerController.allowsEditing = true
+        present(imagePickerController, animated: true)
     }
+    
     
     // 이전 화면으로 돌아가기
     @objc private func dismissSelf() {
@@ -219,7 +254,7 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
     @objc private func alreadyHaveAccountTapped() {
         let loginViewController = LoginViewController()
         self.present(loginViewController, animated: true, completion: nil)
-
+        
     }
     
     // 회원가입 함수
@@ -231,7 +266,7 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
             presentAlert(title: "입력 오류", message: "모든 필드를 채워주세요.")
             return
         }
-
+        
         // Firebase Authentication을 사용하여 사용자를 생성합니다.
         Auth.auth().createUser(withEmail: email, password: password) { [weak self] authResult, error in
             guard let self = self else { return }
@@ -240,12 +275,12 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
                 return
             }
             guard let uid = authResult?.user.uid else { return }
-
+            
             // Firebase Storage에 프로필 이미지 업로드 로직을 여기에 추가합니다.
             let fileName = "profileImage_\(uid)_\(Int(Date().timeIntervalSince1970)).jpg"
             let storageRef = Storage.storage().reference().child("userProfileImages/\(uid)/\(fileName)")
             guard let imageData = profileImage.jpegData(compressionQuality: 0.75) else { return }
-
+            
             storageRef.putData(imageData, metadata: nil) { metadata, error in
                 if let error = error {
                     self.presentAlert(title: "이미지 업로드 실패", message: error.localizedDescription)
@@ -288,9 +323,9 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
             }
         }
     }
-
-
-    // MARK: - Image Picker Delegate
+}
+// MARK: - Image Picker Delegate
+extension SignUpViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         guard let image = info[.editedImage] as? UIImage ?? info[.originalImage] as? UIImage else {
             dismiss(animated: true)
@@ -299,31 +334,28 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
         // 선택된 이미지를 임시로 저장합니다. profileImageView는 UIImageView 타입의 아웃렛 변수입니다.
         profileImageView.image = image
         
-        // 이미지를 둥글게 처리합니다.
+//         이미지를 둥글게 처리합니다.
         if let roundedImage = image.roundedImage() {
             profileImageView.image = roundedImage
         }
         dismiss(animated: true)
     }
 
-
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         dismiss(animated: true)
-        
     }
-    
-    
 }
 
-private extension LoginViewController {
-    func configureButton(_ button: UIButton, title: String) {
-        button.setTitle(title, for: .normal)
-        button.setTitleColor(.white, for: .normal)
-        button.layer.cornerRadius = 8
-        
-        // Set a consistent height constraint for the button
-        button.snp.makeConstraints { make in
-            make.height.equalTo(44)
-        }
-    }
-}
+
+//private extension LoginViewController {
+//    func configureButton(_ button: UIButton, title: String) {
+//        button.setTitle(title, for: .normal)
+//        button.setTitleColor(.white, for: .normal)
+//        button.layer.cornerRadius = 8
+//        
+//        // Set a consistent height constraint for the button
+//        button.snp.makeConstraints { make in
+//            make.height.equalTo(44)
+//        }
+//    }
+//}

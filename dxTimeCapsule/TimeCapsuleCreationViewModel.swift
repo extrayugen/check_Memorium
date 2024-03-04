@@ -20,7 +20,7 @@ class TimeCapsuleCreationViewModel {
             "comment": timeCapsule.userLocation ?? "", // 코멘트
             "tags": timeCapsule.tagFriend ?? [], // 태그
             "openDate": timeCapsule.openTimeCapsuleDate, // 개봉일
-            "creationDate": timeCapsule.openTimeCapsuleDate // 생성일
+            "creationDate": timeCapsule.createTimeCapsuleDate // 생성일
         ]
         
         db.collection("timeCapsules").addDocument(data: data) { error in
