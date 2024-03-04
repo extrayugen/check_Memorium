@@ -22,9 +22,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window.makeKeyAndVisible()
         
         self.window = window
-        
-        let rootVC = LoginViewController()
-        
+            
     }
 
 

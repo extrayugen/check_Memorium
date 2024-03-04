@@ -25,18 +25,20 @@ class UserProfileViewController: UIViewController, UIImagePickerControllerDelega
     private let emailLabel = UILabel()
     private let selectImageLabel = UILabel()
     private let logoutButton = UIButton()
-    
     private let areYouSerious = UILabel()
     private let deleteAccountLabel = UILabel()
     private let dividerView = UIView()
+    private var loadingIndicator = UIActivityIndicatorView(style: .medium) // 로딩 인디케이터 추가
+
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
         setupConstraints()
-        
+        showLoadingIndicator() // 데이터 로딩 전 로딩 인디케이터 표시
         userProfileViewModel.fetchUserData { [weak self] in
+            self?.hideLoadingIndicator() // 데이터 로딩 완료 후 로딩 인디케이터 숨김
             self?.bindViewModel()
         }
     }
@@ -46,7 +48,7 @@ class UserProfileViewController: UIViewController, UIImagePickerControllerDelega
         // 이미지 뷰의 크기에 따라 cornerRadius를 동적으로 설정합니다.
         let imageSize: CGFloat = profileImageView.frame.width
         profileImageView.layer.cornerRadius = imageSize / 2
-        logoutButton.applyGradient(colors: [#colorLiteral(red: 0.831372549, green: 0.2, blue: 0.4117647059, alpha: 1), #colorLiteral(red: 0.7960784314, green: 0.6784313725, blue: 0.4274509804, alpha: 1)])
+        logoutButton.setGradient(colors: [#colorLiteral(red: 0.831372549, green: 0.2, blue: 0.4117647059, alpha: 1), #colorLiteral(red: 0.7960784314, green: 0.6784313725, blue: 0.4274509804, alpha: 1)])
     }
     
     // MARK: - Setup
@@ -59,6 +61,10 @@ class UserProfileViewController: UIViewController, UIImagePickerControllerDelega
         view.addSubview(dividerView)
         view.addSubview(emailLabel)
         view.addSubview(labelsContainerView)
+        view.addSubview(loadingIndicator)
+        
+        // 로딩 인디케이터 설정
+        loadingIndicator.center = view.center
         
         // Profile Image View Setup
         profileImageView.contentMode = .scaleAspectFill
@@ -178,8 +184,28 @@ class UserProfileViewController: UIViewController, UIImagePickerControllerDelega
             make.centerY.equalTo(labelsContainerView.snp.centerY)
             make.left.equalTo(areYouSerious.snp.right).offset(5)
         }
+        
+        // 로딩 인디케이터 제약 조건 추가
+         loadingIndicator.snp.makeConstraints { make in
+             make.center.equalToSuperview()
+         }
     }
 
+    // MARK: - Loading Indicator
+      private func showLoadingIndicator() {
+          loadingIndicator.startAnimating()
+          profileImageView.isHidden = true // 로딩 중에는 프로필 이미지 숨김
+          nicknameLabel.isHidden = true // 로딩 중에는 닉네임 레이블 숨김
+          emailLabel.isHidden = true // 로딩 중에는 이메일 레이블 숨김
+      }
+      
+      private func hideLoadingIndicator() {
+          loadingIndicator.stopAnimating()
+          loadingIndicator.isHidden = true
+          profileImageView.isHidden = false // 로딩 완료 후 프로필 이미지 표시
+          nicknameLabel.isHidden = false // 로딩 완료 후 닉네임 레이블 표시
+          emailLabel.isHidden = false // 로딩 완료 후 이메일 레이블 표시
+      }
     
     // MARK: - Binding
     private func bindViewModel() {
@@ -361,4 +387,3 @@ func configureButton(_ button: UIButton, title: String) {
         make.height.equalTo(44)
     }
 }
-
