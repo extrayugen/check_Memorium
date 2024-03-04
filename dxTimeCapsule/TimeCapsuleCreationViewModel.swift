@@ -7,7 +7,7 @@ class TimeCapsuleCreationViewModel {
     private var db = Firestore.firestore()
     
     // 타임캡슐 데이터 저장
-    func saveTimeCapsule(timeCapsule: TimeBox) {
+    func saveTimeCapsule(timeCapsule: TimeCapsule) {
         guard let userId = Auth.auth().currentUser?.uid else { return }
         
         let data: [String: Any] = [
@@ -19,8 +19,8 @@ class TimeCapsuleCreationViewModel {
             "user_location": timeCapsule.userLocation ?? "", // 사용자 위치
             "comment": timeCapsule.userLocation ?? "", // 코멘트
             "tags": timeCapsule.tagFriend ?? [], // 태그
-            "openDate": timeCapsule.openBoxDate, // 개봉일
-            "creationDate": timeCapsule.createBoxDate // 생성일
+            "openDate": timeCapsule.openTimeCapsuleDate, // 개봉일
+            "creationDate": timeCapsule.openTimeCapsuleDate // 생성일
         ]
         
         db.collection("timeCapsules").addDocument(data: data) { error in
